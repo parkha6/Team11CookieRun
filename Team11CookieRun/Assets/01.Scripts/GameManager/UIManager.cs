@@ -67,18 +67,23 @@ public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수�
     internal void SetExp(int getAmount)//경험치 추가 함수
     {
         CurrentExp += getAmount;
-        PlayerPrefs.SetInt(expKey, currentExp);
+        PlayerPrefs.SetInt(expKey, CurrentExp);
+        CheckLevelUp();
     }
     internal void SetHp(int getAmount)//음수를 넣으면 데미지 아닐까?
     {
         currentHp += getAmount;
-        PlayerPrefs.SetInt(hpKey, currentHp);
+        PlayerPrefs.SetInt(hpKey, CurrentHp);
     }
     internal void SetScore(int getAmount)
     { score += getAmount; }
     internal void CompareScore()//게임이 끝나면 쓰는 함수
     {
         if (score > highScore)
-        { PlayerPrefs.SetInt(highScoreKey, score); }
+        {
+            PlayerPrefs.SetInt(highScoreKey, score);
+        }
     }//또 뭐 필요할까...
+    internal void SaveGame()//Save 메서드입니다. 저장이 필요한 구간에 가져다 쓰세요.
+    { PlayerPrefs.Save(); }
 }
