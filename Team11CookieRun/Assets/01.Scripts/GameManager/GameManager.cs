@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
-    internal static GameManager instance; //老窜 场.
-    private void Awake()
-    { instance = this; } 
-}
+//public class GameManager : MonoBehaviour
+//{
+//    internal static GameManager instance; //老窜 场.
+//    private void Awake()
+//    { instance = this; } 
+//}
