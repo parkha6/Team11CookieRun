@@ -14,6 +14,11 @@ public class Player : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float jumpPower;
 
+    //이동을 위한 중력
+    private float verticalVelocity = 0f;
+    [SerializeField] private float minVerticalVelocity;
+    [SerializeField] float gravity;
+
     //캐릭터 점수
     [SerializeField] float score;
 
@@ -37,11 +42,15 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        WaitPlayer(true);
+        //WaitPlayer(true);
     }
 
     private void FixedUpdate()
     {
+        if (isJump || isDoubleJump)
+        {
+            OnGravity();
+        }
         MoveFoward();
     }
 
@@ -59,10 +68,42 @@ public class Player : MonoBehaviour
     /// </summary>
     public void MoveFoward()
     {
-        Vector2 velocity = playerRb.velocity;
+        /*Vector2 velocity = playerRb.velocity;
         velocity.x = speed;
-        playerRb.velocity = velocity;
+        playerRb.velocity = velocity;*/
+        Vector3 moveVec = new Vector3(Speed, verticalVelocity, 0f);
+        transform.position += moveVec * Time.deltaTime;
     }
+
+    /// <summary>
+    /// 중력작용
+    /// </summary>
+    public void OnGravity()
+    {
+        verticalVelocity -= gravity * Time.deltaTime;
+        if (verticalVelocity <= minVerticalVelocity)
+            verticalVelocity = minVerticalVelocity;
+    }
+
+    /// <summary>
+    /// 점프 상태 변경
+    /// </summary>
+    public void ChangeJumpState()
+    {
+        if (isGround)
+        {
+            isGround = false;
+            isJump = true;
+        }
+        if (isJump)
+        {
+            isJump = false;
+            isDoubleJump = true;
+        }
+    }
+
+
+
     /// <summary>
     /// 플레이어 일시정지
     /// </summary>
@@ -95,7 +136,11 @@ public class Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground"))
         {
             if (isGround == false)
+            {
                 isGround = true;
+                isJump = false;
+            }
+            verticalVelocity = 0f;
         }
     }
 
@@ -105,11 +150,9 @@ public class Player : MonoBehaviour
         Debug.Log("점프");
         if (isDead || isSlide || isDoubleJump)
             return;
-        if (isGround)
-            isGround = false;
-        Vector2 velocity = playerRb.velocity;
-        velocity.y += jumpPower;
-        playerRb.velocity = velocity;
+        ChangeJumpState();
+        //isJump = true; //점프 테스트용
+        verticalVelocity = JumpPower;
     }
 
     private void OnPause()
