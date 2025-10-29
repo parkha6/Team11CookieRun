@@ -33,8 +33,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // gameOverUI°¡ nullÀÌ ¾Æ´Ò °æ¿ì¿¡¸¸ ºñÈ°¼ºÈ­ÇÕ´Ï´Ù. 
-        // (¿¹: Start ¾À¿¡´Â gameOverUI°¡ ¾øÀ» ¼öµµ ÀÖÀ½)
+        // gameOverUIê°€ nullì´ ì•„ë‹ ê²½ìš°ì—ë§Œ ë¹„í™œì„±í™”í•©ë‹ˆë‹¤. 
+        // (ì˜ˆ: Start ì”¬ì—ëŠ” gameOverUIê°€ ì—†ì„ ìˆ˜ë„ ìˆìŒ)
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(true);
@@ -49,11 +49,11 @@ public class GameManager : MonoBehaviour
         {
             gameOverUI.SetActive(false);
         }
-        uiManager.SetRestart();
+      //  uiManager.SetRestart();
        // PlayerPrefs.SetInt( ScoreLoader.LAST_SCORE_KEY , currentScore);
     }
 
-    // --- ¿©±âºÎÅÍ Ãß°¡µÈ ÇÔ¼öµé ---
+    // --- ì—¬ê¸°ë¶€í„° ì¶”ê°€ëœ í•¨ìˆ˜ë“¤ ---
 
   
     public void StartGame()
@@ -62,13 +62,13 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// °ÔÀÓÀ» Á¾·áÇÕ´Ï´Ù. (Exit ¹öÆ°¿¡ ÇÒ´ç)
+    /// ê²Œì„ì„ ì¢…ë£Œí•©ë‹ˆë‹¤. (Exit ë²„íŠ¼ì— í• ë‹¹)
     /// </summary>
     public void ExitGame()
     {
-        Debug.Log("°ÔÀÓ Á¾·á ¹öÆ° Å¬¸¯µÊ");
-        // Âü°í: Application.Quit()´Â À¯´ÏÆ¼ ¿¡µğÅÍ¿¡¼­´Â ÀÛµ¿ÇÏÁö ¾Ê°í,
-        // ½ÇÁ¦ ºôµåµÈ °ÔÀÓ¿¡¼­¸¸ ÀÛµ¿ÇÕ´Ï´Ù.
+        Debug.Log("ê²Œì„ ì¢…ë£Œ ë²„íŠ¼ í´ë¦­ë¨");
+        // ì°¸ê³ : Application.Quit()ëŠ” ìœ ë‹ˆí‹° ì—ë””í„°ì—ì„œëŠ” ì‘ë™í•˜ì§€ ì•Šê³ ,
+        // ì‹¤ì œ ë¹Œë“œëœ ê²Œì„ì—ì„œë§Œ ì‘ë™í•©ë‹ˆë‹¤.
         Application.Quit();
     }
 
