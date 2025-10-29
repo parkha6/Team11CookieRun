@@ -9,9 +9,9 @@ public class UIManager : SingletonManager<UIManager>
     const string expKey = "Current Exp";
     const string hpKey = "Current Hp";
 
-    int playerLevel = 1; //ÇÃ·¹ÀÌ¾î ·¹º§
-    int Exp { get { return 100 * playerLevel; } }//ÃÑ °æÇèÄ¡ °è»ê
-    int currentExp = 0;//ÇöÀç Exp
+    int playerLevel = 1; //í”Œë ˆì´ì–´ ë ˆë²¨
+    int Exp { get { return 100 * playerLevel; } }//ì´ ê²½í—˜ì¹˜ ê³„ì‚°
+    int currentExp = 0;//í˜„ì¬ Exp
     internal int CurrentExp
     {
         get { return currentExp; }
@@ -22,8 +22,8 @@ public class UIManager : SingletonManager<UIManager>
             currentExp = value;
         }
     }
-    int Hp { get { return 100 * playerLevel; } }//ÃÑ hp.
-    int currentHp = 100;//ÇöÀç Hp
+    int Hp { get { return 100 * playerLevel; } }//ì´ hp.
+    int currentHp = 100;//í˜„ì¬ Hp
     internal int CurrentHp
     {
         get { return currentHp; }
@@ -34,8 +34,8 @@ public class UIManager : SingletonManager<UIManager>
             currentHp = value;
         }
     }
-    int score = 0; //Á¡¼ö
-    int highestScore = 0;//ÃÖ°í Á¡¼ö 
+    int score = 0; //ì ìˆ˜
+    int highestScore = 0;//ìµœê³  ì ìˆ˜ 
     private void Awake()
     {
         LoadKey();
@@ -46,7 +46,7 @@ public class UIManager : SingletonManager<UIManager>
         { playerLevel = LevelUp(); }
     }
     void LoadKey()
-    {//Å°°ª ºÒ·¯¿À±â  
+    {//í‚¤ê°’ ë¶ˆëŸ¬ì˜¤ê¸°  
     }
     internal int LevelUp()
     { return ++playerLevel; }
