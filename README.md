@@ -14,3 +14,5 @@
 플레이어 : [Platformer Hero Pack](https://drasnus.itch.io/platformer-hero-pack)  
 폰트 : [던파 비트비트체 v2](https://df.nexon.com/data/font/dnfbitbitv2)  
 UI : [Free TDS Modern: GUI Pixel Art](https://craftpix.net/freebies/free-tds-modern-gui-pixel-art/?num=1&count=891&sq=pixel%20ui&pos=2)
+맵타일셋 : [Free Platformer Game Tileset Pixel Art](https://craftpix.net/freebies/free-platformer-game-tileset-pixel-art/)
+
