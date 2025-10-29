@@ -5,5 +5,5 @@
 ## 역할분담
 
 ## 사용에셋목록
-플레이어 : [Platformer Hero Pack](https://drasnus.itch.io/platformer-hero-pack)
+플레이어 : [Platformer Hero Pack](https://drasnus.itch.io/platformer-hero-pack)  
 폰트 : [ThaleahFat](https://tinyworlds.itch.io/free-pixel-font-thaleah)
