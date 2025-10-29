@@ -1,10 +1,22 @@
 using UnityEngine;
+using UnityEngine.UI;
 public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수와 관련되어있는 클래스
-{
+{//게임매니저란 무엇인가...
     const string levelKey = "Level";
     const string highScoreKey = "High Score";
     const string expKey = "Current Exp";
     const string hpKey = "Current Hp";
+
+    [SerializeField]
+    Text levelText;
+    [SerializeField]
+    Image expBar;
+    [SerializeField]
+    Image hpBar;
+    [SerializeField]
+    Text scoreText;
+    [SerializeField]
+    Text highscoreText;
 
     int playerLevel = 1; //플레이어 레벨
     internal int PlayerLevel
@@ -80,10 +92,8 @@ public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수�
     internal void CompareScore()//게임이 끝나면 쓰는 함수
     {
         if (score > highScore)
-        {
-            PlayerPrefs.SetInt(highScoreKey, score);
-        }
-    }//또 뭐 필요할까...
+        { PlayerPrefs.SetInt(highScoreKey, score); }
+    }
     internal void SaveGame()//Save 메서드입니다. 저장이 필요한 구간에 가져다 쓰세요.
     { PlayerPrefs.Save(); }
 }
