@@ -4,9 +4,9 @@
 ![프레임 워크 스샷](https://github.com/parkha6/Team11CookieRun/blob/main/Capture/FrameWork.jpg?raw=true)
 ## 역할분담
 * 캐릭터 & 저장 - 정유찬
-* 장애물 & 맵 -  
+* 장애물 & 맵 - 김하늘
 * 아이템 - 백성현
-* UI - 메인 : 김태환 보조 : 곽민진 
+* UI - 김태환 (보조 : 곽민진) 
 * 게임매니저 - 곽민진
 ## 사용에셋목록
 플레이어 : [Platformer Hero Pack](https://drasnus.itch.io/platformer-hero-pack)  
