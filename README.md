@@ -1,4 +1,4 @@
-# 마개조 쿠키런 만들기 프로젝트
+# Last Jump
 스파르타 (Unity 12기) 11조의 쿠키런 만들기 프로젝트 입니다.
 ## 프레임 워크
  * [프레임 워크 & 초안 구성 (Figma)](https://www.figma.com/design/er4BxLbWAEO6Qd4Cq40ifw/11%EC%A1%B0-%ED%8C%80-%EC%8A%A4%ED%81%AC%EB%9F%BC?node-id=0-1&p=f&t=G4Sh1JYKRJVKQYyJ-0)
