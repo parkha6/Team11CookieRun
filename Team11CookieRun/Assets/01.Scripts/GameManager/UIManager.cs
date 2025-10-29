@@ -50,4 +50,5 @@ public class UIManager : SingletonManager<UIManager>
     }
     internal int LevelUp()
     { return ++playerLevel; }
+
 }
