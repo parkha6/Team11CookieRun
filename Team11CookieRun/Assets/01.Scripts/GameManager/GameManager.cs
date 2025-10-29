@@ -5,6 +5,6 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : SingletonManager<GameManager>
 {
-    private void Awake()//점수 로드 으아아 주석 깨지지마
+    private void Awake()//시작시점에 필요한 변수를 로드하게 만들었음.
     { UIManager.Instance.LoadKey(); }
 }
