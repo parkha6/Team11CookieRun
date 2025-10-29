@@ -2,7 +2,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEditor;
 public enum GameStage
 {
     Start,
@@ -86,18 +85,19 @@ public class GameManager : SingletonManager<GameManager>
             case GameStage.Start:
                 break;
             case GameStage.Pause:
-                StopTime();
+                StopTime(); 
                 PauseUi.SetActive(true);
                 break;
             case GameStage.End:
                 StopTime();
+                UIManager.Instance.CompareScore();
                 EndUi.SetActive(true);
                 break;
             case GameStage.Unknown:
             default:
                 break;
         }
-    }
+    }  
     internal void SaveGame()
     { PlayerPrefs.Save(); }
     internal void QuitGame()//게임 종료 함수
