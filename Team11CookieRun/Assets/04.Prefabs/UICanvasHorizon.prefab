@@ -885,7 +885,7 @@ GameObject:
   - component: {fileID: 8677686554058230754}
   - component: {fileID: 4738703540976205952}
   m_Layer: 5
-  m_Name: UICanvasVer2
+  m_Name: UICanvasHorizon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
