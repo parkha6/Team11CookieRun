@@ -31,10 +31,7 @@ public class GameManager : SingletonManager<GameManager>
     private void Awake()//시작시점에 필요한 변수를 로드하게 만들었음.
     {
         UIManager.Instance.LoadKey();
-        pauseButton.onClick.AddListener(OnClickGamePause);
-        pauseStartButton.onClick.AddListener(StartGame);
-        restartButton.onClick.AddListener(OnClickRestart);
-        quitButton.onClick.AddListener(QuitGame);
+        AddOnClickButton();
     }
     private void Start()
     { StartGame(); }
@@ -42,6 +39,13 @@ public class GameManager : SingletonManager<GameManager>
     {
         if (UIManager.Instance.CurrentHp <= 0)
         { GameOver(); }
+    }
+    void AddOnClickButton()
+    {
+        pauseButton.onClick.AddListener(OnClickGamePause);
+        pauseStartButton.onClick.AddListener(StartGame);
+        restartButton.onClick.AddListener(OnClickRestart);
+        quitButton.onClick.AddListener(QuitGame);
     }
     void OnClickGamePause()
     {
