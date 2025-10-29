@@ -1,6 +1,8 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEditor;
 public enum GameStage
 {
     Start,
@@ -22,6 +24,8 @@ public class GameManager : SingletonManager<GameManager>
     Button pauseStartButton;
     [SerializeField]
     Button restartButton;
+    [SerializeField]
+    Button quitButton;
     GameStage currentStage = GameStage.Unknown;
 
     private void Awake()//시작시점에 필요한 변수를 로드하게 만들었음.
@@ -30,6 +34,7 @@ public class GameManager : SingletonManager<GameManager>
         pauseButton.onClick.AddListener(OnClickGamePause);
         pauseStartButton.onClick.AddListener(StartGame);
         restartButton.onClick.AddListener(OnClickRestart);
+        quitButton.onClick.AddListener(QuitGame);
     }
     private void Start()
     { StartGame(); }
@@ -67,7 +72,7 @@ public class GameManager : SingletonManager<GameManager>
         { PauseUi.SetActive(false); }
         if (EndUi.activeInHierarchy)
         { EndUi.SetActive(false); }
-            Time.timeScale = 1.0f;
+        Time.timeScale = 1.0f;
         currentStage = GameStage.Start;
     }
     void SetState()
@@ -88,5 +93,14 @@ public class GameManager : SingletonManager<GameManager>
             default:
                 break;
         }
+    }
+    internal void SaveGame()
+    { PlayerPrefs.Save(); }
+    internal void QuitGame()//게임 종료 함수
+    {
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
 }
