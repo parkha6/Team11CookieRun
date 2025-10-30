@@ -455,11 +455,14 @@ MonoBehaviour:
   - type: 0
     prefab: {fileID: 8686860405996717690, guid: fd93b5334b1a1e040b8eb0e2e32355aa, type: 3}
     weight: 1
+  - type: 1
+    prefab: {fileID: 6635736585149979701, guid: eb680e38603339e42a483c86b07cd44d, type: 3}
+    weight: 1
   _playerTransform: {fileID: 1915569872}
   _initialPieceCount: 5
   _pieceSpawnAheadDistance: 20
   _pieceDespawnBehindDistance: 20
-  _initialMapStartPoint: {x: -9.5, y: -3, z: 0}
+  _initialMapStartPoint: {x: 0, y: -3, z: 0}
 --- !u!1 &1093874068
 GameObject:
   m_ObjectHideFlags: 0
