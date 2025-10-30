@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using static PlayerConstVar;
 public class PlayerJumpState : IPlayerState
 {
     public void Enter(Player player)
@@ -26,6 +26,6 @@ public class PlayerJumpState : IPlayerState
 
     private void JumpState(Player player, bool isIn)
     {
-        player.PlayerAnim.SetBool("IsJump", isIn);
+        player.PlayerAnim.SetBool(JumpCondition, isIn);
     }
 }

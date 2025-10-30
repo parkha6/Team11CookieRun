@@ -6,7 +6,7 @@ public class Obstacle : MonoBehaviour
 {
     
     public int damage = 10; // 장애물 충돌시 피해량
-    public ObstacleType type = ObstacleType.Spike;
+    public ObstacleType type = ObstacleType.Spike_Under;
 
     private Collider2D _collider;
 

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using static PlayerConstVar;
 public class PlayerSlideState : IPlayerState
 {
     public void Enter(Player player)
@@ -18,11 +18,11 @@ public class PlayerSlideState : IPlayerState
     public void Exit(Player player)
     {
         SlideState(player, false);
-        player.PlayerAnim.SetTrigger("SlideUp");
+        player.PlayerAnim.SetTrigger(SlideUpCondition);
     }
 
     private void SlideState(Player player, bool isIn)
     {
-        player.PlayerAnim.SetBool("IsSlide", isIn);
+        player.PlayerAnim.SetBool(SlideCondition, isIn);
     }
 }

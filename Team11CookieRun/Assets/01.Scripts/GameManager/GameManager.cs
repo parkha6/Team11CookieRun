@@ -31,10 +31,19 @@ public class GameManager : SingletonManager<GameManager>
     Button quitButton;
     GameStage currentStage = GameStage.Unknown;
 
+    #region YouChan
+    //Start부분
+    private bool isStart = false;
+    //일시정지
+    private bool isPause = false;
+    public bool IsStart { get { return isStart; } set { isStart = value; } }
+    public bool IsPause { get { return isPause;} set { isPause = value; } }
+
+    #endregion
     private void Awake()//시작시점에 필요한 변수를 로드하게 만들었음.
     {
         UIManager.Instance.LoadKey();
-        AddOnClickButton();
+        //AddOnClickButton();
     }
     private void Start()
     {
@@ -59,7 +68,7 @@ public class GameManager : SingletonManager<GameManager>
             default:
                 break;
         }
-        StartGame();
+        //StartGame();
     }
     private void Update()
     {
@@ -131,4 +140,30 @@ public class GameManager : SingletonManager<GameManager>
 #endif
         Application.Quit();
     }
+
+    #region YouChan
+    private void PauseGame()
+    {
+        if (IsPause) return;
+
+        IsPause = true;
+        Time.timeScale = 0f;
+    }
+
+    private void ResumeGame()
+    {
+        if (!IsPause) return;
+
+        IsPause = false;
+        Time.timeScale = 1f;
+    }
+
+    public void ClickPause()
+    {
+        if (IsPause)
+            ResumeGame();
+        else
+            PauseGame();
+    }
+    #endregion
 }
