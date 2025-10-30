@@ -13,7 +13,7 @@ public enum GameStage
 public class GameManager : SingletonManager<GameManager>
 {
     [SerializeField]
-    bool debugMode = false;
+    string homeSceneName;//재시작할 씬의 이름.
     [SerializeField]
     string sceneName;//재시작할 씬의 이름.
     [SerializeField]
@@ -25,9 +25,17 @@ public class GameManager : SingletonManager<GameManager>
     [SerializeField]
     Button pauseOptionButton;
     [SerializeField]
+    Button pauseHomeButton;
+    [SerializeField]
+    Button pauseSettingButton;
+    [SerializeField]
     Button pauseExitButton;
     [SerializeField]
+    Button homeButton;
+    [SerializeField]
     Button restartButton;
+    [SerializeField]
+    Button deleteDataButton;
     [SerializeField]
     Button quitButton;
     [SerializeField]//디버그용으로 시작스테이지 쓸려고 공개해둠.
@@ -74,9 +82,8 @@ public class GameManager : SingletonManager<GameManager>
             case GameStage.Waiting:
                 break;
             case GameStage.Start:
+                UIManager.Instance.ShowHp();
                 UIManager.Instance.ShowScore();
-                if (debugMode)
-                { UIManager.Instance.CurrentHp -= 100f * Time.deltaTime; }
                 if (UIManager.Instance.CurrentHp <= 0)
                 {
                     currentStage = GameStage.End;
@@ -103,16 +110,22 @@ public class GameManager : SingletonManager<GameManager>
                 break;
         }
     }
-    void AddOnClickButton()
+    void AddOnClickButton()//버튼과 함수 연결
     {
         if (startButton != null)
         { startButton.onClick.AddListener(StartGame); }
         if (pauseOptionButton != null)
         { pauseOptionButton.onClick.AddListener(OnClickGamePause); }
+        if (pauseHomeButton != null)
+        { pauseHomeButton.onClick.AddListener(OnClickHome); }
         if (pauseExitButton != null)
         { pauseExitButton.onClick.AddListener(OnClickExitPause); }
+        if (homeButton != null)
+        { homeButton.onClick.AddListener(OnClickHome); }
         if (restartButton != null)
         { restartButton.onClick.AddListener(OnClickRestart); }
+        if (deleteDataButton != null)
+        { deleteDataButton.onClick.AddListener(DeleteData); }
         if (quitButton != null)
         { quitButton.onClick.AddListener(QuitGame); }
     }
@@ -122,7 +135,6 @@ public class GameManager : SingletonManager<GameManager>
     {
         HideUi();
         currentStage = GameStage.Start;
-        
         RunTime();
     }
     void OnClickGamePause()
@@ -140,31 +152,47 @@ public class GameManager : SingletonManager<GameManager>
         IsPause = false;
         StartGame();
     }
+    void OnClickHome()
+    {
+        if (currentStage == GameStage.End)
+        {
+            isEnd = false;
+            SaveGame();
+            UIManager.Instance.ResetScore();
+            MoveScene(homeSceneName);
+        }
+    }
     void OnClickRestart()
     {
         if (currentStage == GameStage.End)
         {
             isEnd = false;
-            SceneManager.LoadScene(sceneName);
+            SaveGame();
+            UIManager.Instance.ResetScore();
+            MoveScene(sceneName);
         }
     }//씬을 완전히 새로 시작?
+    void MoveScene(string sceneIs)
+    { SceneManager.LoadScene(sceneIs); }
 
     void StopTime()//시간을 멈추는 함수
     { Time.timeScale = 0;}
-    void RunTime()
+    void RunTime()//시간을 재생하는 함수
     { Time.timeScale = 1.0f; }
-    void HideUi()
+    void HideUi()//UI숨김처리
     {
+        UIManager.Instance.HideStar();
         if (PauseUi.activeInHierarchy)
         { PauseUi.SetActive(false); }
         if (EndUi.activeInHierarchy)
         { EndUi.SetActive(false); }
     }
-    internal void SaveGame()
+    void SaveGame()//게임 저장
     { PlayerPrefs.Save(); }
-    internal void QuitGame()//게임 종료 함수
+    void DeleteData()
+    { PlayerPrefs.DeleteAll(); }
+    void QuitGame()//게임 종료 함수
     {
-        UIManager.Instance.SaveGame();
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
 #endif

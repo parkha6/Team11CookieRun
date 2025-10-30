@@ -8,6 +8,10 @@ public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수�
     [SerializeField]
     Image hpBar;
     [SerializeField]
+    GameObject star;
+    [SerializeField]
+    GameObject newText;
+    [SerializeField]
     TextMeshProUGUI scoreText;
     [SerializeField]
     TextMeshProUGUI scoreText2;
@@ -66,9 +70,24 @@ public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수�
     internal void CompareScore()//게임이 끝나면 쓰는 함수
     {
         scoreText2.text = score.ToString();
-        if (score > highScore)
-        { PlayerPrefs.SetFloat(highScoreKey, score); }
+        if (score > highScore || !PlayerPrefs.HasKey(highScoreKey))
+        { PlayerPrefs.SetFloat(highScoreKey, score);
+            star.SetActive(true);
+            newText.SetActive(true);
+        }
+        highScore = PlayerPrefs.GetFloat(highScoreKey, 0);
+        highscoreText.text = highScore.ToString();
     }
-    internal void SaveGame()//Save 메서드입니다. 저장이 필요한 구간에 가져다 쓰세요.
-    { PlayerPrefs.Save(); }
+    internal void HideStar()
+    {
+        if (star.activeInHierarchy)
+        { star.SetActive(false); }
+        if (newText.activeInHierarchy)
+        { newText.SetActive(false); }
+    }
+    internal void ResetScore()
+    {
+        score = 0;
+        currentHp = Hp;
+    }
 }
