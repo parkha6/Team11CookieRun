@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public enum ItemType { Coin, Heal, Invincible }
+    public enum ItemType { Coin, Heal, Invincible, Slow}
     public ItemType itemType;
 
     //아이템 수치 설정
@@ -37,6 +37,10 @@ public class Item : MonoBehaviour
 
             case ItemType.Invincible:
                 player.ActivateInvincibility(duration);
+                break;
+
+            case ItemType.Slow:
+                //player.ApplySlow(value, duration);
                 break;
         }
     }
