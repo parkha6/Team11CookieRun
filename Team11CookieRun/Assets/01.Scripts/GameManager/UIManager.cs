@@ -6,9 +6,9 @@ public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수�
     const string highScoreKey = "High Score";
     const string hpKey = "Current Hp";
     [SerializeField]
-    internal GameObject EndUi;
+    GameObject EndUi;
     [SerializeField]
-    internal GameObject PauseUi;
+    GameObject PauseUi;
     [SerializeField]
     Image hpBar;
     [SerializeField]
