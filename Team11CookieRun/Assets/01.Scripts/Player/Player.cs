@@ -8,9 +8,10 @@ public class Player : MonoBehaviour
     //컴포넌트 참조
     [SerializeField] Rigidbody2D playerRb;
     [SerializeField] Animator playerAnim;
-    [SerializeField] BoxCollider2D playerCollider;
+    [SerializeField] CapsuleCollider2D playerCollider;
     private PlayerInputManager playerInputManager;
     private GameManager gameManager;
+    [SerializeField] SpriteRenderer playerSpriteRenderer;
 
     //캐릭터 능력치
     [SerializeField] float hp;
@@ -20,7 +21,12 @@ public class Player : MonoBehaviour
 
     //캐릭터 무적관련
     [SerializeField] bool isInvincible;
-    //private readonly WaitForSeconds blinkDelay = new WaitForSeconds(0.2f);
+    [SerializeField] int blinkNum;
+    private readonly WaitForSeconds blinkDelay = new WaitForSeconds(0.1f);
+    private readonly WaitForSeconds invincibleDelay = new WaitForSeconds(0.5f);
+
+    //캐릭터 피격판정
+    private readonly WaitForSeconds hitEffectDelay = new WaitForSeconds(0.4f);
 
     //이동을 위한 중력
     private float verticalVelocity = 0f;
@@ -147,8 +153,56 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
+        IsGround = false;
         verticalVelocity = JumpPower;
     }
+    #region ObstacleInteraction
+    public void TakeDamage(float damage)
+    {
+        Hp -= damage;
+        StartCoroutine(HitEffect());
+        StartCoroutine(HitDelay());
+        StartCoroutine(BlinkCharacter(blinkNum));
+    }
+
+    IEnumerator HitEffect()
+    {
+        Color playerColor = playerSpriteRenderer.color;
+        playerSpriteRenderer.color = Color.red;
+        yield return hitEffectDelay;
+        playerSpriteRenderer.color = playerColor;
+    }
+
+    IEnumerator HitDelay()
+    {
+        isInvincible = true;
+        yield return invincibleDelay;
+        isInvincible = false;
+    }
+
+    IEnumerator BlinkCharacter(int countNum)
+    {
+        int count = 0;
+
+        while(count < countNum)
+        {
+            SetAlpha(0.5f);
+            yield return blinkDelay;
+            SetAlpha(1f);
+            yield return blinkDelay;
+            count++;
+        }
+        SetAlpha(1f);
+    }
+
+    private void SetAlpha(float alpha)
+    {
+        Color playerColor = playerSpriteRenderer.color;
+        playerColor.a = alpha;
+        playerSpriteRenderer.color = playerColor;
+    }
+    #endregion
+
 
     #region ItemInteraction
     public void AddScore(int value)

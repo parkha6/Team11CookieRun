@@ -26,6 +26,14 @@ public class Obstacle : MonoBehaviour
     {
         /*플레이어와 충돌 했을 때
             플레이어의 체력이 감소하는 함수(아마 플레이어 클래스 내부에 존재할 듯)*/
+        if(collider.CompareTag("Player"))
+        {
+            Player player = collider.GetComponent<Player>();
+            if(player.IsInvincible == false)
+            {
+                player.TakeDamage(damage);
+            }
+        }
     }
 
 
