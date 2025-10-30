@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 5854934254511340687}
   - component: {fileID: 7250690149289741815}
   m_Layer: 5
-  m_Name: Menu
+  m_Name: Home
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 8427946577198769714}
   - component: {fileID: 5566733241636415779}
   m_Layer: 5
-  m_Name: Menu
+  m_Name: Home
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -443,7 +443,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Menu
+  m_text: Home
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3deb16a1f69c7044fa30cbf4dd61c166, type: 2}
   m_sharedMaterial: {fileID: 2837025653084761938, guid: 3deb16a1f69c7044fa30cbf4dd61c166, type: 2}
@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 2830161175202478540}
   - component: {fileID: 6074794744887454942}
   m_Layer: 5
-  m_Name: Retry
+  m_Name: Setting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -546,8 +546,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 100}
+  m_AnchoredPosition: {x: 7.94, y: 5.8}
+  m_SizeDelta: {x: 324.1, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2830161175202478540
 CanvasRenderer:
@@ -577,7 +577,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Retry
+  m_text: Setting
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3deb16a1f69c7044fa30cbf4dd61c166, type: 2}
   m_sharedMaterial: {fileID: 2837025653084761938, guid: 3deb16a1f69c7044fa30cbf4dd61c166, type: 2}
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 2555597444334628405}
   - component: {fileID: 2567993444861650697}
   m_Layer: 5
-  m_Name: Retry
+  m_Name: Setting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
