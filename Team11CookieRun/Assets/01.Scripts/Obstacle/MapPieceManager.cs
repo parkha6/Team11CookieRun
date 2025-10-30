@@ -24,6 +24,8 @@ public class MapPiecePrefabEntry
 
 public class MapPieceManager : MonoBehaviour
 {
+    public static MapPieceManager Instance { get; private set; }
+
     // 게임에 등장할 맵 조각들의 타입과 그에 해당하는 프리팹들을 여기에 연결
     [SerializeField] private List<MapPiecePrefabEntry> _mapPiecePrefabEntries;
 

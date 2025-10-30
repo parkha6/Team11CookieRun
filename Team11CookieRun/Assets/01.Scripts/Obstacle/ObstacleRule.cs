@@ -6,6 +6,7 @@ using System.Linq;
 [System.Serializable]
 public class ObstacleRule
 {
+    // 장애물 스폰 가능성
     [Range(0f, 1f)]
     public float spawnChance = 0.5f;
 
@@ -15,6 +16,4 @@ public class ObstacleRule
     public int minObstaclesToSpawn = 0; // 장애물 배치 최소 갯수
     public int maxObstaclesToSpawn = 1; // 장애물 배치 최대 갯수
 
-    // 장애물의 높이나 x위치 오프셋 추가
-    // public Vector2 spawnOffsetMinMax;
 }

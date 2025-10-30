@@ -459,7 +459,7 @@ MonoBehaviour:
   _initialPieceCount: 5
   _pieceSpawnAheadDistance: 20
   _pieceDespawnBehindDistance: 20
-  _initialMapStartPoint: {x: -9.5, y: -1.8, z: 0}
+  _initialMapStartPoint: {x: -9.5, y: -3, z: 0}
 --- !u!1 &1093874068
 GameObject:
   m_ObjectHideFlags: 0

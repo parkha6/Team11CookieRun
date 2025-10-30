@@ -18,7 +18,7 @@ public class ObstaclePrefab
 public class ObstacleSpawner : MonoBehaviour
 {
     // 싱글턴
-    public static ObstacleSpawner Instance { get; private set; }
+    public static ObstacleSpawner Instance;
 
     // 각 타입별 장애물 프리팹 목록
     [SerializeField] private List<ObstaclePrefab> _obstaclePrefabEntries;
