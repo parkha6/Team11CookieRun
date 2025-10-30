@@ -458,6 +458,9 @@ MonoBehaviour:
   - type: 1
     prefab: {fileID: 6635736585149979701, guid: eb680e38603339e42a483c86b07cd44d, type: 3}
     weight: 1
+  - type: 2
+    prefab: {fileID: 6521932809043038622, guid: dc16c72e9327f7143862700c06cf6dc8, type: 3}
+    weight: 1
   _playerTransform: {fileID: 1915569872}
   _initialPieceCount: 5
   _pieceSpawnAheadDistance: 20

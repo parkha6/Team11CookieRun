@@ -33,7 +33,7 @@ public class MapPiece : MonoBehaviour
     {
         get
         {
-            // _segmentEndPoint가 할당되지 않았다면, 현재 위치 기준으로 오른쪽으로 일정 거리 반환
+            // _pieceEndPoint 할당되지 않았다면, 현재 위치 기준으로 오른쪽으로 일정 거리 반환
             return _pieceEndPoint != null ? _pieceEndPoint.position : transform.position + Vector3.right * 10f;
         }
     }
