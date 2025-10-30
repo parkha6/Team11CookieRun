@@ -13,7 +13,7 @@
 * 아이템 - 백성현
 * UI - 김태환 (보조 : 곽민진) 
 * 게임매니저 - 곽민진
-## 사용에셋목록
+## 사용에셋 목록
 플레이어 : [Platformer Hero Pack](https://drasnus.itch.io/platformer-hero-pack)  
 폰트 : [던파 비트비트체 v2](https://df.nexon.com/data/font/dnfbitbitv2)  
 폰트2 : [ThaleahFat by Rick Hoppmann](https://tinyworlds.itch.io/free-pixel-font-thaleah)  
