@@ -13,6 +13,8 @@ public enum GameStage
 public class GameManager : SingletonManager<GameManager>
 {
     [SerializeField]
+    bool debugMode = false;
+    [SerializeField]
     string sceneName;//재시작할 씬의 이름.
     [SerializeField]
     GameObject EndUi;
@@ -73,7 +75,8 @@ public class GameManager : SingletonManager<GameManager>
                 break;
             case GameStage.Start:
                 UIManager.Instance.ShowScore();
-                UIManager.Instance.CurrentHp -= 100f * Time.deltaTime;
+                if (debugMode)
+                { UIManager.Instance.CurrentHp -= 100f * Time.deltaTime; }
                 if (UIManager.Instance.CurrentHp <= 0)
                 {
                     currentStage = GameStage.End;
