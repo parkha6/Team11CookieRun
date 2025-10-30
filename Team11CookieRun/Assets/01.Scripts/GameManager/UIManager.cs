@@ -1,98 +1,73 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수와 관련되어있는 클래스
 {//게임매니저란 무엇인가...
-    const string levelKey = "Level";
     const string highScoreKey = "High Score";
-    const string expKey = "Current Exp";
     const string hpKey = "Current Hp";
-
-    [SerializeField]
-    Text levelText;
-    [SerializeField]
-    Image expBar;
     [SerializeField]
     Image hpBar;
     [SerializeField]
-    Text scoreText;
+    TextMeshProUGUI scoreText;
     [SerializeField]
-    Text highscoreText;
+    TextMeshProUGUI scoreText2;
+    [SerializeField]
+    TextMeshProUGUI highscoreText;
 
-    int playerLevel = 1; //플레이어 레벨
-    internal int PlayerLevel
+    float hp = 100;
+    internal float Hp
     {
-        get { return playerLevel; }
+        get { return hp; }
         private set
         {
             if (value <= 0)
             { value = 0; }
-            playerLevel = value;
+            hp = value;
         }
     }
-    int Exp { get { return 100 * playerLevel; } }//총 경험치 계산
-    int currentExp = 0;//현재 Exp
-    internal int CurrentExp
-    {
-        get { return currentExp; }
-        private set
-        {
-            if (value <= 0)
-            { value = 0; }
-            currentExp = value;
-        }
-    }
-    int Hp { get { return 100 * playerLevel; } }//총 hp.
-    int currentHp = 100;//현재 Hp
-    internal int CurrentHp
+    float currentHp = 100;//현재 Hp
+    internal float CurrentHp
     {
         get { return currentHp; }
-        private set
+        set
         {
             if (value <= 0)
             { value = 0; }
-            else if (value > Hp)
-            { value = Hp; }
+            else if (value > hp)
+            { value = hp; }
             currentHp = value;
         }
     }
-    int score = 0; //점수
-    int highScore = 0;//최고 점수 
+    float score = 0; //점수
+    float highScore = 0;//최고 점수 
+    //protected override void Awake()
+    //{ hpBar = GetComponent<Image>(); }
     internal void LoadKey()//
     {
-        if (PlayerPrefs.HasKey(levelKey))
-        { PlayerLevel = PlayerPrefs.GetInt(levelKey, 0); }
         if (PlayerPrefs.HasKey(highScoreKey))
-        { highScore = PlayerPrefs.GetInt(highScoreKey, 0); }
-        if (PlayerPrefs.HasKey(expKey))
-        { currentExp = PlayerPrefs.GetInt(expKey, 0); }
+        { highScore = PlayerPrefs.GetFloat(highScoreKey, 0); }
         if (PlayerPrefs.HasKey(hpKey))
-        { currentHp = PlayerPrefs.GetInt(hpKey, 0); }
+        { currentHp = PlayerPrefs.GetFloat(hpKey, 100); }
     }
-    internal void CheckLevelUp()//레벨업 함수. int를 리턴함
-    {
-        if (CurrentExp >= Exp)
-        {
-            ++PlayerLevel;
-            PlayerPrefs.SetInt(levelKey, PlayerLevel);
-        }
-    }
-    internal void SetExp(int getAmount)//경험치 추가 함수
-    {
-        CurrentExp += getAmount;
-        PlayerPrefs.SetInt(expKey, CurrentExp);
-        CheckLevelUp();
-    }
+    internal void ShowHp()
+    { hpBar.fillAmount = CurrentHp / Hp; }
     internal void SetHp(int getAmount)//음수를 넣으면 데미지 아닐까?
     {
         currentHp += getAmount;
-        PlayerPrefs.SetInt(hpKey, CurrentHp);
+        PlayerPrefs.SetFloat(hpKey, CurrentHp);
     }
     internal void SetScore(int getAmount)
-    { score += getAmount; }
+    {
+        score += getAmount;
+        scoreText.text = score.ToString();
+    }
+    internal void ShowScore()
+    { scoreText.text = score.ToString(); }
     internal void CompareScore()//게임이 끝나면 쓰는 함수
     {
+        scoreText2.text = score.ToString();
         if (score > highScore)
-        { PlayerPrefs.SetInt(highScoreKey, score); }
+        { PlayerPrefs.SetFloat(highScoreKey, score); }
     }
     internal void SaveGame()//Save 메서드입니다. 저장이 필요한 구간에 가져다 쓰세요.
     { PlayerPrefs.Save(); }
