@@ -461,6 +461,9 @@ MonoBehaviour:
   - type: 2
     prefab: {fileID: 6521932809043038622, guid: dc16c72e9327f7143862700c06cf6dc8, type: 3}
     weight: 1
+  - type: 3
+    prefab: {fileID: 5099117570177420883, guid: 56b71f6b2b56ff64785d76a6669039ad, type: 3}
+    weight: 1
   _playerTransform: {fileID: 1915569872}
   _initialPieceCount: 5
   _pieceSpawnAheadDistance: 20
@@ -1075,6 +1078,8 @@ MonoBehaviour:
     prefab: {fileID: 5564903852613622256, guid: 9dae9bf2c5dceaf418cab2707621b61d, type: 3}
   - type: 1
     prefab: {fileID: 4061145330091336171, guid: cac4bb7aeb495ff43b33256c253ef87d, type: 3}
+  - type: 2
+    prefab: {fileID: 8397607199377882671, guid: e73b08aeea7a17a47876208f35a1814f, type: 3}
   _initialPoolSizePerType: 5
 --- !u!1 &1805217065
 GameObject:

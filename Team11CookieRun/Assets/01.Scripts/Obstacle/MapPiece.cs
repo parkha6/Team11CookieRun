@@ -57,7 +57,7 @@ public class MapPiece : MonoBehaviour
         }
     }
 
-    // 특정 장애물 생성 규칙에 따라 이 세그먼트 내에 장애물을 생성하는 함수
+    // 특정 장애물 생성 규칙에 따라 이 조각 내에 장애물을 생성하는 함수
     private void GenerateObstaclesBasedOnRule(ObstacleRule rule)
     {
         // 규칙이 유효하지 않거나 스폰 지점이 없으면 진행하지 않음
