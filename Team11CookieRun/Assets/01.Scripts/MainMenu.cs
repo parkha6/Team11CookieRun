@@ -7,10 +7,15 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public string GameSceneName = "TestUIScene";
-    public void StartGame()
+    public void  StartGame()
     {
         // "SampleScene"이라는 이름의 씬으로 이동합니다.
         SceneManager.LoadScene("TestUIScene");
+    }
+
+    public void GoToLoadScene()
+    {
+        SceneManager.LoadScene("예시");
     }
 
     public void ExitGame()
