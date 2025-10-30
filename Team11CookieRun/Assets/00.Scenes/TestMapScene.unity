@@ -507,13 +507,13 @@ MonoBehaviour:
   - type: 0
     prefab: {fileID: 8686860405996717690, guid: fd93b5334b1a1e040b8eb0e2e32355aa, type: 3}
     weight: 1
-  - type: 1
+  - type: 2
     prefab: {fileID: 6635736585149979701, guid: eb680e38603339e42a483c86b07cd44d, type: 3}
     weight: 1
-  - type: 2
+  - type: 3
     prefab: {fileID: 6521932809043038622, guid: dc16c72e9327f7143862700c06cf6dc8, type: 3}
     weight: 1
-  - type: 3
+  - type: 4
     prefab: {fileID: 5099117570177420883, guid: 56b71f6b2b56ff64785d76a6669039ad, type: 3}
     weight: 1
   _playerTransform: {fileID: 1915569872}
@@ -1424,11 +1424,13 @@ MonoBehaviour:
   playerRb: {fileID: 1915569876}
   playerAnim: {fileID: 1915569875}
   playerCollider: {fileID: 1915569874}
+  playerSpriteRenderer: {fileID: 0}
   hp: 100
   maxHp: 100
   speed: 5
   jumpPower: 4
   isInvincible: 0
+  blinkNum: 0
   minVerticalVelocity: -15
   gravity: 6
   score: 0

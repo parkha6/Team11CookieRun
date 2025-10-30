@@ -53,7 +53,7 @@ public class MapPiece : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"MapSegment '{gameObject.name}' 초기화에 실패했습니다. 유효한 _obstacleRules가 없거나 ObstacleSpawner가 없습니다.", this);
+            Debug.LogWarning($"Map '{gameObject.name}' 초기화에 실패했습니다. 유효한 _obstacleRules가 없거나 ObstacleSpawner가 없습니다.", this);
         }
     }
 
