@@ -17,10 +17,6 @@ public class GameManager : SingletonManager<GameManager>
     [SerializeField]
     string sceneName;//재시작할 씬의 이름.
     [SerializeField]
-    GameObject EndUi;
-    [SerializeField]
-    GameObject PauseUi;
-    [SerializeField]
     Button startButton;
     [SerializeField]
     Button pauseOptionButton;
@@ -51,10 +47,11 @@ public class GameManager : SingletonManager<GameManager>
     #endregion
     private bool isEnd = false;
     public bool IsEnd { get { return isEnd; } set { isEnd = value; } }
+    UIManager uiManager;
     protected override void Awake()//시작시점에 필요한 변수를 로드하게 만들었음.
     {
-        
-        UIManager.Instance.LoadKey();
+        uiManager = UIManager.Instance;
+        uiManager.LoadKey();
         AddOnClickButton();
 
     }
@@ -82,9 +79,9 @@ public class GameManager : SingletonManager<GameManager>
             case GameStage.Waiting:
                 break;
             case GameStage.Start:
-                UIManager.Instance.ShowHp();
-                UIManager.Instance.ShowScore();
-                if (UIManager.Instance.CurrentHp <= 0)
+                uiManager.ShowHp();
+                uiManager.ShowScore();
+                if (uiManager.CurrentHp <= 0)
                 {
                     currentStage = GameStage.End;
                     isEnd = true;
@@ -94,15 +91,15 @@ public class GameManager : SingletonManager<GameManager>
                 if (IsPause)
                 {
                     StopTime();
-                    PauseUi.SetActive(true);
+                    uiManager.ShowPauseUI();
                 }
                 break;
             case GameStage.End:
                 if (isEnd)
                 {
                     StopTime();
-                    UIManager.Instance.CompareScore();
-                    EndUi.SetActive(true);
+                    uiManager.CompareScore();
+                    uiManager.ShowEndUI();
                 }
                 break;
             case GameStage.Unknown:
@@ -130,10 +127,10 @@ public class GameManager : SingletonManager<GameManager>
         { quitButton.onClick.AddListener(QuitGame); }
     }
     void WaitGame()
-    { HideUi(); }
+    { uiManager.HideUi(); }
     void StartGame()
     {
-        HideUi();
+        uiManager.HideUi();
         currentStage = GameStage.Start;
         RunTime();
     }
@@ -158,7 +155,7 @@ public class GameManager : SingletonManager<GameManager>
         {
             isEnd = false;
             SaveGame();
-            UIManager.Instance.ResetScore();
+            uiManager.ResetScore();
             MoveScene(homeSceneName);
         }
     }
@@ -168,7 +165,7 @@ public class GameManager : SingletonManager<GameManager>
         {
             isEnd = false;
             SaveGame();
-            UIManager.Instance.ResetScore();
+            uiManager.ResetScore();
             MoveScene(sceneName);
         }
     }//씬을 완전히 새로 시작?
@@ -179,14 +176,6 @@ public class GameManager : SingletonManager<GameManager>
     { Time.timeScale = 0;}
     void RunTime()//시간을 재생하는 함수
     { Time.timeScale = 1.0f; }
-    void HideUi()//UI숨김처리
-    {
-        UIManager.Instance.HideStar();
-        if (PauseUi.activeInHierarchy)
-        { PauseUi.SetActive(false); }
-        if (EndUi.activeInHierarchy)
-        { EndUi.SetActive(false); }
-    }
     void SaveGame()//게임 저장
     { PlayerPrefs.Save(); }
     void DeleteData()

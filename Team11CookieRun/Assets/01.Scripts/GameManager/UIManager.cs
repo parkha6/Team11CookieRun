@@ -6,6 +6,10 @@ public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수�
     const string highScoreKey = "High Score";
     const string hpKey = "Current Hp";
     [SerializeField]
+    internal GameObject EndUi;
+    [SerializeField]
+    internal GameObject PauseUi;
+    [SerializeField]
     Image hpBar;
     [SerializeField]
     GameObject star;
@@ -89,5 +93,17 @@ public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수�
     {
         score = 0;
         currentHp = Hp;
+    }
+    internal void ShowPauseUI()
+    { PauseUi.SetActive(true); }
+    internal void ShowEndUI()
+    { EndUi.SetActive(true); }
+    internal void HideUi()//UI숨김처리
+    {
+        HideStar();
+        if (PauseUi.activeInHierarchy)
+        { PauseUi.SetActive(false); }
+        if (EndUi.activeInHierarchy)
+        { EndUi.SetActive(false); }
     }
 }
