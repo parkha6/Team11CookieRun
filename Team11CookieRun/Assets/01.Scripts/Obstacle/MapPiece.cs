@@ -5,7 +5,6 @@ using System.Linq;
 
 public class MapPiece : MonoBehaviour
 {
-    [Header("MapPiece 정보")]
     public MapType mapType = MapType.Forest_Flat;
 
     // 조각의 시작 지점(이전 조각의 끝점에 연결)을 나타내는 Transform
@@ -39,7 +38,7 @@ public class MapPiece : MonoBehaviour
         }
     }
 
-    public void InitializeSegment()
+    public void InitializePiece()
     {
         // 기존에 생성했던 장애물들을 먼저 풀로 반환하여 정리
         ClearSpawnedObstacles();

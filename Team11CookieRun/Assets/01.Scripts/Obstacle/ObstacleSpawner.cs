@@ -91,10 +91,8 @@ public class ObstacleSpawner : MonoBehaviour
             ObstaclePrefab entry = _obstaclePrefabEntries.FirstOrDefault(e => e.type == type && e.IsValid());
             if (entry == null)
             {
-                Debug.LogError($"타입 '{type}'에 해당하는 유효한 장애물 프리팹을 찾을 수 없습니다!", this);
                 return null;
             }
-            Debug.LogWarning($"풀이 비어있어 장애물 타입 '{type}'을 새로 생성했습니다.");
             obstacleToUse = Instantiate(entry.prefab, transform); // 새로 만들고 스포너의 자식으로
         }
 
@@ -111,7 +109,6 @@ public class ObstacleSpawner : MonoBehaviour
     {
         if (obstacle == null)
         {
-            Debug.LogWarning("경고: 비어있는(null) 장애물을 풀에 반환하려고 시도했습니다.", this);
             return;
         }
 
@@ -124,7 +121,6 @@ public class ObstacleSpawner : MonoBehaviour
         }
         /*else
         {
-            Debug.LogWarning($"경고: 인식할 수 없는 타입 '{type}'의 장애물이 반환되었습니다. 이 오브젝트는 파괴합니다.", obstacle);
             Destroy(obstacle);
         }*/
     }
@@ -134,15 +130,14 @@ public class ObstacleSpawner : MonoBehaviour
     {
         foreach (var pool in _obstaclePool.Values)
         {
-            // 창고에 남아있는 모든 장애물 오브젝트를 파괴합니다.
             while (pool.Count > 0)
             {
                 Destroy(pool.Dequeue());
             }
-            pool.Clear(); // 큐도 비웁니다.
+            pool.Clear();
         }
-        _obstaclePool.Clear(); // 딕셔너리 자체도 비웁니다.
+        _obstaclePool.Clear();
 
-        InitializePool(); // 풀을 다시 초기화합니다.
+        InitializePool();
     }
 }
