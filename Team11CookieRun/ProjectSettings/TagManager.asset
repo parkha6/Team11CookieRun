@@ -9,6 +9,7 @@ TagManager:
   - Invincibility
   - Heal
   - BackGround
+  - Slow
   layers:
   - Default
   - TransparentFX

@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] Animator playerAnim;
     [SerializeField] BoxCollider2D playerCollider;
     private PlayerInputManager playerInputManager;
+    private GameManager gameManager;
 
     //캐릭터 능력치
     [SerializeField] float hp;
@@ -75,10 +76,12 @@ public class Player : MonoBehaviour
     private void Start()
     {
         playerInputManager = PlayerInputManager.Instance;
+        gameManager = GameManager.Instance;
 
         playerInputManager.OnJump += () => IsJump = true;
         playerInputManager.OnSlideStart += () => IsSlide = true;
         playerInputManager.OnSlideEnd += () => IsSlide = false;
+        playerInputManager.OnPause += PausePlayer;
 
         ChangeState(idleState);
     }
@@ -109,6 +112,13 @@ public class Player : MonoBehaviour
             verticalVelocity = minVerticalVelocity;
     }
 
+    public void PausePlayer()
+    {
+        if(gameManager.IsPause)
+            playerAnim.speed = 0f;
+        else
+            playerAnim.speed = 1f;
+    }
     /// <summary>
     /// 플레이어 상태 변경
     /// </summary>
