@@ -100,3 +100,7 @@ MonoBehaviour:
   itemType: 0
   value: 3
   duration: 0
+  coinSound: {fileID: 8300000, guid: 75b86d26044ba36418b82449a3d93485, type: 3}
+  healSound: {fileID: 0}
+  invincibleSound: {fileID: 0}
+  slowSound: {fileID: 0}
