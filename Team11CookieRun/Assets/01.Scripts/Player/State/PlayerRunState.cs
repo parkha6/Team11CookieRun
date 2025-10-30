@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayerConstVar;
 
 public class PlayerRunState : IPlayerState
 {
@@ -26,6 +27,6 @@ public class PlayerRunState : IPlayerState
 
     private void RunState(Player player, bool isIn)
     {
-        player.PlayerAnim.SetBool("IsRun", isIn);
+        player.PlayerAnim.SetBool(RunCondition, isIn);
     }
 }
