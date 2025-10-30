@@ -40,7 +40,7 @@ public class Item : MonoBehaviour
                 break;
 
             case ItemType.Slow:
-                player.ApplySlow(value, duration);
+                //player.ApplySlow(value, duration);
                 break;
         }
     }
