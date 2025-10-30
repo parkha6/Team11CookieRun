@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class PlayerInputManager : SingletonManager<PlayerInputManager>
 {
     private PlayerControll playerControll;
+    private Player player;
+    private GameManager gameManager;
 
     private InputAction jumpAction;
     private InputAction slideAction;
@@ -21,6 +23,8 @@ public class PlayerInputManager : SingletonManager<PlayerInputManager>
     {
         base.Awake();
         playerControll = new PlayerControll();
+        player = FindObjectOfType<Player>();
+        gameManager = GameManager.Instance;
         InitInputAction();
         EnableInput();
     }
@@ -48,11 +52,40 @@ public class PlayerInputManager : SingletonManager<PlayerInputManager>
         pauseAction = playerControll.Player.Pause;
     }
 
+    private bool CheckGameManager()
+    {
+        return (gameManager.IsStart && !gameManager.IsPause); 
+    }
 
-    private void OnJumpPerformed(InputAction.CallbackContext ctx) => OnJump?.Invoke();
-    private void OnSlidePerformed(InputAction.CallbackContext ctx) => OnSlideStart?.Invoke();
-    private void OnSlideCanceled(InputAction.CallbackContext ctx) => OnSlideEnd?.Invoke();
-    private void OnPausePerformed(InputAction.CallbackContext ctx) => OnPause?.Invoke();
+    private bool CheckNull()
+    {
+        return (player == null || gameManager == null);
+    }
+    private void OnJumpPerformed(InputAction.CallbackContext ctx)
+    {
+        if (CheckNull()) return;
+        if (player.IsSlide || !CheckGameManager()) return;
+
+        OnJump?.Invoke();
+    }
+    private void OnSlidePerformed(InputAction.CallbackContext ctx)
+    {
+        if (CheckNull()) return;
+        if (player.IsJump || !CheckGameManager()) return;
+
+        OnSlideStart?.Invoke();
+    }
+    private void OnSlideCanceled(InputAction.CallbackContext ctx)
+    {
+        if (CheckNull()) return;
+        if (player.IsJump || !gameManager.IsStart) return;
+        OnSlideEnd?.Invoke();
+    }
+    private void OnPausePerformed(InputAction.CallbackContext ctx)
+    {
+        gameManager.ClickPause();
+        OnPause?.Invoke();
+    }
 
 
     public void EnableInput()
