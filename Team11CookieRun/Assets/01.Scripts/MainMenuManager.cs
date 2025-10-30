@@ -19,9 +19,14 @@ public class MainMenuManager : MonoBehaviour
         return true;
     }
 
+    public void Movescenemain()
+    {
+        Debug.Log("버튼이 클릭되었습니다.");
+        SceneManager.LoadScene("SampleScene");
+    }
     //public void Movescenemain()
     //{
-    //    Debug.Log("게임 시작 버튼이 클릭되었습니다.");
+    //    Debug.Log("버튼이 클릭되었습니다.");
     //    SceneManager.LoadScene("SampleScene");
     //}
 

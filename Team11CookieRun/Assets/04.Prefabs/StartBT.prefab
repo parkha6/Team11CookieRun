@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 6799374868137062735}
   - component: {fileID: 4581049054411222088}
   m_Layer: 0
-  m_Name: ExitButton
+  m_Name: StartBT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

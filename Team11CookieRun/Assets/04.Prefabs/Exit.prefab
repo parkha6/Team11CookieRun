@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 7529274063650650318}
   - component: {fileID: 6065570793537964676}
   m_Layer: 0
-  m_Name: StartButton
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
