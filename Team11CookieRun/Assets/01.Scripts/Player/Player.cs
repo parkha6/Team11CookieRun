@@ -8,12 +8,18 @@ public class Player : MonoBehaviour
     //컴포넌트 참조
     [SerializeField] Rigidbody2D playerRb;
     [SerializeField] Animator playerAnim;
+    [SerializeField] BoxCollider2D playerCollider;
     private PlayerInputManager playerInputManager;
 
     //캐릭터 능력치
     [SerializeField] float hp;
+    [SerializeField] float maxHp;
     [SerializeField] float speed;
     [SerializeField] float jumpPower;
+
+    //캐릭터 무적관련
+    [SerializeField] bool isInvincible;
+    //private readonly WaitForSeconds blinkDelay = new WaitForSeconds(0.2f);
 
     //이동을 위한 중력
     private float verticalVelocity = 0f;
@@ -43,10 +49,20 @@ public class Player : MonoBehaviour
 
     #region Property
     public Animator PlayerAnim { get { return playerAnim; } set { playerAnim = value; } }
-    public float Hp { get { return hp; } set { hp = value; } }
+    public float Hp { get { return hp; }
+        set
+        { 
+            hp = value;
+            if (hp >= maxHp)
+                hp = maxHp;
+            else if(hp <= 0f)
+                hp = 0f;
+        }
+    }
     public float Speed { get { return speed; } set { speed = value; } }
     public float JumpPower { get { return jumpPower; } set { jumpPower = value; } }
     public float Score { get { return score; } set { score = value; } }
+    public bool IsInvincible { get { return isInvincible; } }
     public bool IsGround { get { return isGround; } set { isGround = value; } }
     public bool IsRun { get { return isRun; } set { isRun = value; } }
     public bool IsSlide { get { return isSlide; } set { isSlide = value; } }
@@ -67,7 +83,7 @@ public class Player : MonoBehaviour
         ChangeState(idleState);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (curState != null)
             curState.Update(this);
@@ -107,27 +123,13 @@ public class Player : MonoBehaviour
         curState.Enter(this);
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("Item"))
-        {
-            //아이템 구현 시 아이템 역할 함수
-        }
-        else if(collision.gameObject.CompareTag("Coin"))
-        {
-            Score++; //일단 해놨는데 코인에서 가지고 와야함
-        }
-    }
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Ground"))
         {
-            if (isGround == false)
+            if (IsGround == false)
             {
-                isGround = true;
+                IsGround = true;
             }
             verticalVelocity = 0f;
         }
@@ -139,6 +141,27 @@ public class Player : MonoBehaviour
     }
 
     #region ItemInteraction
+    public void AddScore(int value)
+    {
+        Score += value;
+    }
+
+    public void HealPercent(float value)
+    {
+        Hp += value;
+    }
+
+    public void ActivateInvincibility(float value)
+    {
+        StartCoroutine(PlayerInvincibility(value));
+    }
+
+    IEnumerator PlayerInvincibility(float value)
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(value);
+        isInvincible = false;
+    }
 
     #endregion
 }
