@@ -15,6 +15,7 @@
 폰트 : [던파 비트비트체 v2](https://df.nexon.com/data/font/dnfbitbitv2)  
 폰트2 : [ThaleahFat by Rick Hoppmann](https://tinyworlds.itch.io/free-pixel-font-thaleah)  
 UI : [Free TDS Modern: GUI Pixel Art](https://craftpix.net/freebies/free-tds-modern-gui-pixel-art/?num=1&count=891&sq=pixel%20ui&pos=2)  
+UI2 : [Fantasy Minimal Pixel Art GUI by etahoshi](https://etahoshi.itch.io/minimal-fantasy-gui-by-eta)  
 맵타일셋 : [Free Platformer Game Tileset Pixel Art](https://craftpix.net/freebies/free-platformer-game-tileset-pixel-art/)  
 체력바: [Basic Pixel Health bar and Scroll bar](https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar)
 
