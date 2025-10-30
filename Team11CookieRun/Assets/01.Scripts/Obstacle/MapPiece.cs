@@ -33,7 +33,7 @@ public class MapPiece : MonoBehaviour
     {
         get
         {
-            // _segmentEndPoint가 할당되지 않았다면, 현재 위치 기준으로 오른쪽으로 일정 거리 반환
+            // _pieceEndPoint 할당되지 않았다면, 현재 위치 기준으로 오른쪽으로 일정 거리 반환
             return _pieceEndPoint != null ? _pieceEndPoint.position : transform.position + Vector3.right * 10f;
         }
     }
@@ -53,11 +53,11 @@ public class MapPiece : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"MapSegment '{gameObject.name}' 초기화에 실패했습니다. 유효한 _obstacleRules가 없거나 ObstacleSpawner가 없습니다.", this);
+            Debug.LogWarning($"Map '{gameObject.name}' 초기화에 실패했습니다. 유효한 _obstacleRules가 없거나 ObstacleSpawner가 없습니다.", this);
         }
     }
 
-    // 특정 장애물 생성 규칙에 따라 이 세그먼트 내에 장애물을 생성하는 함수
+    // 특정 장애물 생성 규칙에 따라 이 조각 내에 장애물을 생성하는 함수
     private void GenerateObstaclesBasedOnRule(ObstacleRule rule)
     {
         // 규칙이 유효하지 않거나 스폰 지점이 없으면 진행하지 않음

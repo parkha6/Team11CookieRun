@@ -50,7 +50,7 @@ public class MapPieceManager : MonoBehaviour
     // 현재 활성화되어 있는 맵 조각을 순서대로 관리하는 큐
     private Queue<MapPiece> _activePieces = new Queue<MapPiece>();
 
-    // 맵 조각 오브젝트 풀 (Key: MapSegmentType, Value: 해당 타입의 MapSegment Queue)
+    // 맵 조각 오브젝트 풀
     private Dictionary<MapType, Queue<MapPiece>> _piecePool = new Dictionary<MapType, Queue<MapPiece>>();
 
 
@@ -72,7 +72,7 @@ public class MapPieceManager : MonoBehaviour
     {
         if (_playerTransform == null)
         {
-            Debug.LogError("MapSegmentManager에 _playerTransform이 할당되지 않았습니다.", this);
+            Debug.LogError("MapManager에 _playerTransform이 할당되지 않았습니다.", this);
             enabled = false;
             return;
         }

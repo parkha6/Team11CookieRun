@@ -10,7 +10,6 @@ TagManager:
   - Heal
   - BackGround
   - Slow
-  - Ground
   layers:
   - Default
   - TransparentFX
