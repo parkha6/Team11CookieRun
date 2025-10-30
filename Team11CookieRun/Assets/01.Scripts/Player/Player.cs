@@ -7,12 +7,19 @@ public class Player : MonoBehaviour
 {
     //컴포넌트 참조
     [SerializeField] Rigidbody2D playerRb;
-    [SerializeField] PlayerInput playerInput;
     [SerializeField] Animator playerAnim;
+    [SerializeField] BoxCollider2D playerCollider;
+    private PlayerInputManager playerInputManager;
 
     //캐릭터 능력치
+    [SerializeField] float hp;
+    [SerializeField] float maxHp;
     [SerializeField] float speed;
     [SerializeField] float jumpPower;
+
+    //캐릭터 무적관련
+    [SerializeField] bool isInvincible;
+    //private readonly WaitForSeconds blinkDelay = new WaitForSeconds(0.2f);
 
     //이동을 위한 중력
     private float verticalVelocity = 0f;
@@ -25,41 +32,61 @@ public class Player : MonoBehaviour
     //일시정지
     private Vector2 saveVelocity;
 
-    //플레이어 상태
+    //플레이어 상태조건  
     private bool isGround;
+    private bool isRun;
     private bool isSlide;
     private bool isJump;
     private bool isDoubleJump;
     private bool isDead;
 
-    //프로퍼티
+    //플레이어 상태머신
+    private IPlayerState curState;
+    public PlayerIdleState idleState = new PlayerIdleState();
+    public PlayerRunState runState = new PlayerRunState();
+    public PlayerJumpState jumpState = new PlayerJumpState();
+    public PlayerSlideState slideState = new PlayerSlideState();
+
+    #region Property
+    public Animator PlayerAnim { get { return playerAnim; } set { playerAnim = value; } }
+    public float Hp { get { return hp; }
+        set
+        { 
+            hp = value;
+            if (hp >= maxHp)
+                hp = maxHp;
+            else if(hp <= 0f)
+                hp = 0f;
+        }
+    }
     public float Speed { get { return speed; } set { speed = value; } }
     public float JumpPower { get { return jumpPower; } set { jumpPower = value; } }
     public float Score { get { return score; } set { score = value; } }
+    public bool IsInvincible { get { return isInvincible; } }
+    public bool IsGround { get { return isGround; } set { isGround = value; } }
+    public bool IsRun { get { return isRun; } set { isRun = value; } }
+    public bool IsSlide { get { return isSlide; } set { isSlide = value; } }
+    public bool IsJump { get { return isJump; } set { isJump = value; } }
+    #endregion
 
 
 
 
     private void Start()
     {
-        //WaitPlayer(true);
+        playerInputManager = PlayerInputManager.Instance;
+
+        playerInputManager.OnJump += () => IsJump = true;
+        playerInputManager.OnSlideStart += () => IsSlide = true;
+        playerInputManager.OnSlideEnd += () => IsSlide = false;
+
+        ChangeState(idleState);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (isJump || isDoubleJump)
-        {
-            OnGravity();
-        }
-        MoveFoward();
-    }
-
-    /// <summary>
-    /// 초반 대기 함수(매개변수와 반대로 작동)
-    /// </summary>
-    public void WaitPlayer(bool isWait)
-    {
-        playerInput.enabled = !isWait;        
+        if (curState != null)
+            curState.Update(this);
     }
 
 
@@ -68,9 +95,6 @@ public class Player : MonoBehaviour
     /// </summary>
     public void MoveFoward()
     {
-        /*Vector2 velocity = playerRb.velocity;
-        velocity.x = speed;
-        playerRb.velocity = velocity;*/
         Vector3 moveVec = new Vector3(Speed, verticalVelocity, 0f);
         transform.position += moveVec * Time.deltaTime;
     }
@@ -86,87 +110,58 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// 점프 상태 변경
+    /// 플레이어 상태 변경
     /// </summary>
-    public void ChangeJumpState()
+    /// <param name="newState"></param>
+    public void ChangeState(IPlayerState newState)
     {
-        if (isGround)
+        if ((curState != null))
         {
-            isGround = false;
-            isJump = true;
+            curState.Exit(this);            
         }
-        if (isJump)
-        {
-            isJump = false;
-            isDoubleJump = true;
-        }
+        curState = newState;
+        curState.Enter(this);
     }
-
-
-
-    /// <summary>
-    /// 플레이어 일시정지
-    /// </summary>
-    public void PausePlayer()
-    {
-        //정지 기능 게임매니저에서 가져와야함
-        if(playerRb != null)
-        {
-            saveVelocity = playerRb.velocity;
-            Destroy(playerRb);
-        }
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("Item"))
-        {
-            //아이템 구현 시 아이템 역할 함수
-        }
-        else if(collision.gameObject.CompareTag("Coin"))
-        {
-            Score++; //일단 해놨는데 코인에서 가지고 와야함
-        }
-    }
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Ground"))
         {
-            if (isGround == false)
+            if (IsGround == false)
             {
-                isGround = true;
-                isJump = false;
+                IsGround = true;
             }
             verticalVelocity = 0f;
         }
     }
 
-    #region InputSystem
-    private void OnJump()
+    public void Jump()
     {
-        Debug.Log("점프");
-        if (isDead || isSlide || isDoubleJump)
-            return;
-        ChangeJumpState();
-        //isJump = true; //점프 테스트용
         verticalVelocity = JumpPower;
     }
 
-    private void OnPause()
+    #region ItemInteraction
+    public void AddScore(int value)
     {
-        Debug.Log("정지");
-        PausePlayer();
+        Score += value;
     }
 
-    private void OnSlide()
+    public void HealPercent(float value)
     {
-        if (!isGround || isDead)
-            return;
-        Debug.Log("슬라이드");
+        Hp += value;
     }
+
+    public void ActivateInvincibility(float value)
+    {
+        StartCoroutine(PlayerInvincibility(value));
+    }
+
+    IEnumerator PlayerInvincibility(float value)
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(value);
+        isInvincible = false;
+    }
+
     #endregion
-
 }
