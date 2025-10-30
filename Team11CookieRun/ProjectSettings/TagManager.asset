@@ -8,6 +8,7 @@ TagManager:
   - Coin
   - Invincibility
   - Heal
+  - Slow
   layers:
   - Default
   - TransparentFX
