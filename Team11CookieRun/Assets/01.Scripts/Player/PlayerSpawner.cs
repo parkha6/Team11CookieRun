@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSpawner : MonoBehaviour
 {
     [SerializeField] GameObject playerPrefab;
-    [SerializeField] StartCanvasManager gameCanvasManager;
+    [SerializeField] GameUIManager gameCanvasManager;
     [SerializeField] FollowCamera camera;
     [SerializeField] MapPieceManager mapPieceManager;
     [SerializeField] Vector3 startPos;

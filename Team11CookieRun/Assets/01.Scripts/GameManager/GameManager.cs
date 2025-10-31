@@ -3,14 +3,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : SingletonManager<GameManager>
 {
+    [Tooltip("디버그 모드를 켜는 불리언 값")]
     [SerializeField]
     internal bool debugMode = false;
+    [Tooltip("메인씬을 다 안 만들었을때 Waiting에서 넘어갈 방법이 없어서 공개해 놓은 값")]
     [SerializeField]
     internal GameStage currentStage = GameStage.Unknown;
     #region Other Manager
-    UIManager uiManager;//UI매니저 받아오기용
+    ScoreManager uiManager;//UI매니저 받아오기용
     Player player;
-    StartCanvasManager startCanvasManager;
+    GameUIManager gameUIManager;
     #endregion
     #region YouChan
     //Start부분
@@ -25,10 +27,13 @@ public class GameManager : SingletonManager<GameManager>
     protected override void Awake()//시작시점에 필요한 변수를 로드하게 만들었음.
     {
         player = FindObjectOfType<Player>();
-        uiManager = UIManager.Instance;
+        uiManager = ScoreManager.Instance;
         uiManager.LoadKey();
     }
-    private void Start()//씬이 바뀔거 같은 부분만 살려놨음.
+    /// <summary>
+    /// 최초의 메인씬에서만 작동함.
+    /// </summary>
+    private void Start()//TODO: 씬 매니저로 이동시킨다.
     {
         switch (currentStage)
         {
@@ -46,8 +51,15 @@ public class GameManager : SingletonManager<GameManager>
                 break;
         }
     }
-    internal void AddStartScene(StartCanvasManager startScene)
-    { startCanvasManager = startScene; }
+    /// <summary>
+    /// 게임 UI 매니저를 게임매니저에 넣기 위해 만든 함수.
+    /// </summary>
+    /// <param name="startScene"></param>
+    internal void AddStartScene(GameUIManager startScene)
+    { gameUIManager = startScene; }
+    /// <summary>
+    /// 스위치 루프를 돌면서 currentStage의 값에 따라 업데이트를 돌린다.
+    /// </summary>
     private void Update()
     {
         switch (currentStage)
@@ -55,19 +67,19 @@ public class GameManager : SingletonManager<GameManager>
             case GameStage.Waiting:
                 break;
             case GameStage.Start:
-                startCanvasManager.ShowHp(player.Hp, player.MaxHp);
-                startCanvasManager.ShowScore(player.Score);
+                gameUIManager.ShowHp(player.Hp, player.MaxHp);
+                gameUIManager.ShowScore(player.Score);
                 if (player.IsDie)
                 { currentStage = GameStage.End; }
                 break;
             case GameStage.Pause:
                 StopTime();
-                startCanvasManager.ShowPauseUI();
+                gameUIManager.ShowPauseUI();
                 break;
             case GameStage.End:
                 StopTime();
-                startCanvasManager.CompareScore(player.Score);
-                startCanvasManager.ShowEndUI();
+                gameUIManager.CompareScore(player.Score);
+                gameUIManager.ShowEndUI();
                 break;
             case GameStage.Unknown:
             default:
@@ -78,7 +90,7 @@ public class GameManager : SingletonManager<GameManager>
     #region Starting
     internal void StartGame()//게임이 시작될때 세팅.
     {
-        startCanvasManager.HideUi();
+        gameUIManager.HideUi();
         RunTime();
     }
     #endregion
@@ -100,7 +112,7 @@ public class GameManager : SingletonManager<GameManager>
     }
     #endregion
     #region EndGame
-    internal void OnClickRestart(string sceneName)
+    internal void OnClickRetry(string sceneName)
     {
         if (currentStage == GameStage.End)
         {

@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] CapsuleCollider2D playerCollider;
     private PlayerInputManager playerInputManager;
     private GameManager gameManager;
-    private StartCanvasManager gameCanvasManager;
+    private GameUIManager gameCanvasManager;
     [SerializeField] SpriteRenderer playerSpriteRenderer;
 
     //캐릭터 능력치
@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
         ChangeState(idleState);
     }
 
-    public void InitCanvasManager(StartCanvasManager scm)
+    public void InitCanvasManager(GameUIManager scm)
     {
         gameCanvasManager = scm;
     }
