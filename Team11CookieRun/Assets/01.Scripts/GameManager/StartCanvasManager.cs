@@ -22,6 +22,7 @@ public class StartCanvasManager : MonoBehaviour
     #region DefaultUI
     [SerializeField]
     internal string sceneName;
+    [SerializeField]
     internal string homeSceneName;
     [SerializeField]
     internal Image hpBar;
@@ -56,7 +57,6 @@ public class StartCanvasManager : MonoBehaviour
     [SerializeField]
     internal GameObject newText;
     #endregion
-
     void OnClickAddListeners()
     {
         if (pauseOptionButton != null)
@@ -80,7 +80,6 @@ public class StartCanvasManager : MonoBehaviour
     }
     void Restart()
     { gameManager.OnClickRestart(sceneName); }
-
     internal void SetScore(int getAmount)
     {
         uiManager.Score += getAmount;

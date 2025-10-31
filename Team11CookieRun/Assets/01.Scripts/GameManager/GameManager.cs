@@ -83,7 +83,6 @@ public class GameManager : SingletonManager<GameManager>
     internal void StartGame()//게임이 시작될때 세팅.
     {
         startCanvasManager.HideUi();
-        currentStage = GameStage.Start;
         RunTime();
     }
     #endregion

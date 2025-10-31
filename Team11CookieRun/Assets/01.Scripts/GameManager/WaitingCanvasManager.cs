@@ -12,8 +12,6 @@ public class WaitingCanvasManager : MonoBehaviour
         OnClickAddListeners();
     }
     [SerializeField]
-    internal string homeSceneName;//홈씬의 이름
-    [SerializeField]
     string startSceneName;
     [SerializeField]
     internal Button startButton;
@@ -30,15 +28,8 @@ public class WaitingCanvasManager : MonoBehaviour
         { quitButton.onClick.AddListener(gameManager.QuitGame); }
     }
     void StartGame()
-    { SceneManager.LoadScene(startSceneName); }
-    internal void OnClickHome()
     {
-        if (gameManager.currentStage == GameStage.End)
-        {
-            //isEnd = false;
-            gameManager.SaveGame();
-            uiManager.ResetScore();
-            gameManager.MoveScene(homeSceneName);
-        }
+        gameManager.currentStage = GameStage.Start;
+        SceneManager.LoadScene(startSceneName); 
     }
 }
