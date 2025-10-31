@@ -9,4 +9,5 @@ public static class PlayerConstVar
     public const string SlideCondition = "IsSlide";
     public const string SlideUpCondition = "SlideUp";
     public const string RunCondition = "IsRun";
+    public const string DieCondition = "Die";
 }

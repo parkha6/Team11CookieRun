@@ -5,11 +5,11 @@ using static PlayerConstVar;
 
 public class PlayerRunState : IPlayerState
 {
-    public void Enter(Player player)
+    public void EnterState(Player player)
     {
-        RunState(player,true);
+        ConditionSetting(player,true);
     }
-    public void Update(Player player)
+    public void UpdateState(Player player)
     {
         player.MoveFoward();
         if (player.IsJump)
@@ -18,14 +18,13 @@ public class PlayerRunState : IPlayerState
             player.ChangeState(player.slideState);
     }
 
-    public void Exit(Player player)
+    public void ExitState(Player player)
     {
         player.IsRun = false;
-        RunState(player, false);      
+        ConditionSetting(player, false);      
     }
 
-
-    private void RunState(Player player, bool isIn)
+    public void ConditionSetting(Player player, bool isIn)
     {
         player.PlayerAnim.SetBool(RunCondition, isIn);
     }
