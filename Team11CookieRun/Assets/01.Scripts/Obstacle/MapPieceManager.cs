@@ -13,7 +13,7 @@ public class MapPieceManager : MonoBehaviour
     [SerializeField] private List<MapPiecePrefabEntry> _mapPiecePrefabEntries;
 
     // 추적할 플레이어의 Transform 맵 생성 기준점
-    [SerializeField] private Transform _playerTransform;
+    [SerializeField] public Transform _playerTransform;
 
     // 게임 시작 시 미리 생성할 맵 조각 개수
     [SerializeField] private int _initialPieceCount = 5;
@@ -40,6 +40,8 @@ public class MapPieceManager : MonoBehaviour
 
     [SerializeField] private List<ItemRule> _itemRules;
     [SerializeField] [Range(0f, 1f)] private float _ItemSpawnChance = 0.5f; // 맵 조각 전체에 아이템이 스폰될지 말지 결정하는 확률
+
+
 
     void Awake()
     {
@@ -75,6 +77,7 @@ public class MapPieceManager : MonoBehaviour
 
     void Update()
     {
+        if (_playerTransform == null) return;
         // 플레이어가 일정 거리 이상 전진하면 새로운 맵 조각을 생성
         // 현재 플레이어 위치 + (앞으로 생성될 거리)가 다음 생성 위치보다 크면 생성
         if (_playerTransform.position.x + _pieceSpawnAheadDistance > _nextSpawnPosition.x)

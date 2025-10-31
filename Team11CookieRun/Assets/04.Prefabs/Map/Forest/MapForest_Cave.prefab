@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7159897386644736630}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EndPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 330185878373491598}
   - component: {fileID: 3834734791247072135}
   - component: {fileID: 2077994188342482355}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2176,7 +2176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2138722714425723779}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ObstaclePoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2207,7 +2207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8551920964602546874}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StartPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2269,7 +2269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4978737253404485524}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ObstaclePoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2334,7 +2334,7 @@ GameObject:
   - component: {fileID: 8389707595129970857}
   - component: {fileID: 255287459817134102}
   - component: {fileID: 6428323596545175351}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MapForest_Cave
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2883,7 +2883,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3372428213110851293}
   - component: {fileID: 5934245391924295257}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2962,7 +2962,7 @@ GameObject:
   - component: {fileID: 5095676132820959827}
   - component: {fileID: 214209014588088293}
   - component: {fileID: 2565368615692745347}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
