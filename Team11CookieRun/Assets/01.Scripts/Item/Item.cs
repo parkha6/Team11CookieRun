@@ -61,7 +61,7 @@ public class Item : MonoBehaviour
             case ItemType.Coin: player.AddScore((int)value); break;
             case ItemType.Heal: player.HealPercent(value); break;
             case ItemType.Invincible: player.ActivateInvincibility(duration); break;
-            case ItemType.Slow: /*player.ApplySlow(value, duration);*/ break;
+            case ItemType.Slow: player.ApplySlow(value, duration); break;
         }
     }
 
