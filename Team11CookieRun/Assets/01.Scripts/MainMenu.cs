@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     public void  StartGame()
     {
         // "SampleScene"이라는 이름의 씬으로 이동합니다.
-        SceneManager.LoadScene("TestUIScene");
+        SceneManager.LoadScene("YouChanTestScene");
     }
 
     public void GoToLoadScene()

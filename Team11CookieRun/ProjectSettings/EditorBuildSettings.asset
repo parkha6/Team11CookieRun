@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Scenes/DummyGM/TestGameScene.unity
     guid: dcab74b30ba41fb4f978b713e1b31b54
+  - enabled: 1
+    path: Assets/00.Scenes/YouChanTestScene.unity
+    guid: 71812cad48a21554382aff7b3e4e826c
   m_configObjects: {}
