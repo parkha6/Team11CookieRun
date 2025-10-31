@@ -136,6 +136,7 @@ public class GameManager : SingletonManager<GameManager>
     {
         if (currentStage == GameStage.End)
         {
+            isEnd = false;
             SaveGame();
             uiManager.ResetScore();
             MoveScene(waitingCanvasManager.homeSceneName);
@@ -145,6 +146,8 @@ public class GameManager : SingletonManager<GameManager>
     {
         if (currentStage == GameStage.End)
         {
+
+            isEnd = false;
             SaveGame();
             uiManager.ResetScore();
             MoveScene(startCanvasManager.sceneName);
