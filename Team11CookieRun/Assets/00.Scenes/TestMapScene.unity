@@ -507,23 +507,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36001d427bd4c874fb77e59c58cc8b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _firstMapPieceType: 0
   _mapPiecePrefabEntries:
   - type: 0
+    prefab: {fileID: 3098547257595994394, guid: 01b92cb108072fd4bbcaf776bf810f09, type: 3}
+    weight: 0.1
+  - type: 1
     prefab: {fileID: 8686860405996717690, guid: fd93b5334b1a1e040b8eb0e2e32355aa, type: 3}
-    weight: 1
+    weight: 5
   - type: 2
     prefab: {fileID: 6635736585149979701, guid: eb680e38603339e42a483c86b07cd44d, type: 3}
-    weight: 1
+    weight: 5
   - type: 3
     prefab: {fileID: 6521932809043038622, guid: dc16c72e9327f7143862700c06cf6dc8, type: 3}
-    weight: 1
+    weight: 5
   - type: 4
     prefab: {fileID: 5099117570177420883, guid: 56b71f6b2b56ff64785d76a6669039ad, type: 3}
-    weight: 1
+    weight: 5
   _playerTransform: {fileID: 1423640710}
   _initialPieceCount: 5
   _pieceSpawnAheadDistance: 50
-  _pieceDespawnBehindDistance: 20
+  _pieceDespawnBehindDistance: 10
   _initialMapStartPoint: {x: 0, y: -3, z: 0}
 --- !u!1 &1093874068
 GameObject:
@@ -840,6 +844,10 @@ PrefabInstance:
     - target: {fileID: 1641773324268911510, guid: 2586752cfc7b96d48a164388b405ffd5, type: 3}
       propertyPath: gravity
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641773324268911510, guid: 2586752cfc7b96d48a164388b405ffd5, type: 3}
+      propertyPath: jumpPower
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2174248731373263650, guid: 2586752cfc7b96d48a164388b405ffd5, type: 3}
       propertyPath: m_GravityScale
