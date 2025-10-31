@@ -8,42 +8,35 @@ public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수�
     const byte dead = 0;
     const byte minScore = 0;
     const byte minHp = 0;
-    [SerializeField]
-    GameObject EndUi;
-    [SerializeField]
-    GameObject PauseUi;
- 
-    [SerializeField]
-    GameObject star;
-    [SerializeField]
-    GameObject newText;
     #region Scores
-    [SerializeField]
-    TextMeshProUGUI scoreText;
-    [SerializeField]
-    TextMeshProUGUI finalScoreText;
-    [SerializeField]
-    TextMeshProUGUI highscoreText;
     float score = 0; //점수
     float highScore = 0;//최고 점수 
+
+    WaitingCanvasManager waitingCanvasManager;
+    StartCanvasManager startCanvasManager;
+    protected override void Awake()//시작시점에 필요한 변수를 로드하게 만들었음.
+    {
+        waitingCanvasManager = WaitingCanvasManager.Instance;
+        startCanvasManager = StartCanvasManager.Instance;
+    }
     internal void SetScore(int getAmount)
     {
         score += getAmount;
-        scoreText.text = score.ToString();
+        startCanvasManager.scoreText.text = score.ToString();
     }
     internal void ShowScore()
-    { scoreText.text = score.ToString(); }
+    { startCanvasManager.scoreText.text = score.ToString(); }
     internal void CompareScore()//게임이 끝나면 쓰는 함수
     {
-        finalScoreText.text = score.ToString();
+        startCanvasManager.finalScoreText.text = score.ToString();
         if (score > highScore || !PlayerPrefs.HasKey(highScoreKey))
         {
             PlayerPrefs.SetFloat(highScoreKey, score);
-            star.SetActive(true);
-            newText.SetActive(true);
+            startCanvasManager.star.SetActive(true);
+            startCanvasManager.newText.SetActive(true);
         }
         highScore = PlayerPrefs.GetFloat(highScoreKey,minScore);
-        highscoreText.text = highScore.ToString();
+        startCanvasManager.highscoreText.text = highScore.ToString();
     }
     internal void ResetScore()
     {
@@ -52,8 +45,6 @@ public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수�
     }
     #endregion
     #region Hp
-    [SerializeField]
-    Image hpBar;
     float hp = 100;
     internal float Hp
     {
@@ -79,7 +70,7 @@ public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수�
         }
     }
     internal void ShowHp()
-    { hpBar.fillAmount = CurrentHp / Hp; }
+    { startCanvasManager.hpBar.fillAmount = CurrentHp / Hp; }
     internal void SetHp(int getAmount)//음수를 넣으면 데미지 아닐까?
     {
         currentHp += getAmount;
@@ -97,21 +88,21 @@ public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수�
     }
     internal void HideStar()
     {
-        if (star.activeInHierarchy)
-        { star.SetActive(false); }
-        if (newText.activeInHierarchy)
-        { newText.SetActive(false); }
+        if (startCanvasManager.star.activeInHierarchy)
+        { startCanvasManager.star.SetActive(false); }
+        if (startCanvasManager.newText.activeInHierarchy)
+        { startCanvasManager.newText.SetActive(false); }
     }
     internal void ShowPauseUI()
-    { PauseUi.SetActive(true); }
+    { startCanvasManager.PauseUi.SetActive(true); }
     internal void ShowEndUI()
-    { EndUi.SetActive(true); }
+    { startCanvasManager.EndUi.SetActive(true); }
     internal void HideUi()//UI숨김처리
     {
         HideStar();
-        if (PauseUi.activeInHierarchy)
-        { PauseUi.SetActive(false); }
-        if (EndUi.activeInHierarchy)
-        { EndUi.SetActive(false); }
+        if (startCanvasManager.PauseUi.activeInHierarchy)
+        { startCanvasManager.PauseUi.SetActive(false); }
+        if (startCanvasManager.EndUi.activeInHierarchy)
+        { startCanvasManager.EndUi.SetActive(false); }
     }
 }
