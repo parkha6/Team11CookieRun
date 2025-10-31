@@ -10,6 +10,12 @@ public class StartCanvasManager : SingletonManager<StartCanvasManager>
         waitingCanvasManager = WaitingCanvasManager.Instance;
         startCanvasManager = StartCanvasManager.Instance;
     }
+    #region debugUI
+    [SerializeField]
+    internal GameObject debugUI;
+    [SerializeField]
+    internal Button deleteDataButton;
+    #endregion
     #region DefaultUI
     [SerializeField]
     internal string sceneName;

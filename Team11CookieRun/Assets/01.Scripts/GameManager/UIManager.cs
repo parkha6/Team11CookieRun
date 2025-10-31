@@ -1,8 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수와 관련되어있는 클래스
-{//게임매니저란 무엇인가...
+{
     const string highScoreKey = "High Score";
     const string hpKey = "Current Hp";
     const byte dead = 0;
