@@ -280,7 +280,7 @@ Transform:
   m_GameObject: {fileID: 331055581}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30, y: 0, z: 10}
+  m_LocalPosition: {x: -50, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -415,6 +415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ab7ac8609d1cc4aa8ea95a3974d067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugMode: 0
+  currentStage: 4
 --- !u!1 &432282428
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,19 +505,22 @@ MonoBehaviour:
   - type: 1
     prefab: {fileID: 8686860405996717690, guid: fd93b5334b1a1e040b8eb0e2e32355aa, type: 3}
     weight: 5
-  - type: 2
+  - type: 3
     prefab: {fileID: 6635736585149979701, guid: eb680e38603339e42a483c86b07cd44d, type: 3}
     weight: 5
-  - type: 3
+  - type: 4
     prefab: {fileID: 6521932809043038622, guid: dc16c72e9327f7143862700c06cf6dc8, type: 3}
     weight: 5
-  - type: 4
+  - type: 5
     prefab: {fileID: 5099117570177420883, guid: 56b71f6b2b56ff64785d76a6669039ad, type: 3}
     weight: 5
+  - type: 6
+    prefab: {fileID: 2775177292282695020, guid: f87615b23f48d924f8e94eeb5903ac2d, type: 3}
+    weight: 10
   _playerTransform: {fileID: 1423640710}
   _initialPieceCount: 5
   _pieceSpawnAheadDistance: 50
-  _pieceDespawnBehindDistance: 10
+  _pieceDespawnBehindDistance: 20
   _initialMapStartPoint: {x: 0, y: -3, z: 0}
   _itemRules:
   - itemType: 1
