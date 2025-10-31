@@ -2,18 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
-[System.Serializable]
-public class ObstaclePrefab
-{
-    public ObstacleType type;
-
-    public GameObject prefab;
-
-    public bool IsValid()
-    {
-        return prefab != null;
-    }
-}
 
 public class ObstacleSpawner : MonoBehaviour
 {
