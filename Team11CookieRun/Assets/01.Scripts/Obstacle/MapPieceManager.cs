@@ -16,7 +16,7 @@ public class MapPieceManager : MonoBehaviour
     [SerializeField] private int _initialPieceCount = 5;
 
     // 플레이어로부터 이 거리만큼 앞에 맵 조각이 없으면 새로 생성
-    [SerializeField] private float _pieceSpawnAheadDistance = 20f;
+    [SerializeField] private float _pieceSpawnAheadDistance = 50f;
 
     // 플레이어로부터 이 거리만큼 뒤에 있는 맵 조각을 풀로 반환
     [SerializeField] private float _pieceDespawnBehindDistance = 20f;
