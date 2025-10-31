@@ -512,18 +512,21 @@ MonoBehaviour:
   sceneName: 
   hpBar: {fileID: 1102375265899168998}
   scoreText: {fileID: 9021020315862182700}
-  PauseUi: {fileID: 1380637868173398751}
+  pauseUi: {fileID: 1380637868173398751}
   pauseOptionButton: {fileID: 7667931756350595480}
   pauseHomeButton: {fileID: 7933689806930260650}
   pauseSettingButton: {fileID: 1725081634781246937}
   pauseExitButton: {fileID: 4095964609273268960}
   homeButton: {fileID: 4256919501287327824}
   restartButton: {fileID: 250128293824213439}
-  EndUi: {fileID: 3914811018506500237}
+  endUi: {fileID: 0}
   finalScoreText: {fileID: 5357465155544680902}
   highscoreText: {fileID: 5363855556272610691}
   star: {fileID: 4299756522696442316}
   newText: {fileID: 2557466390918901511}
+  player: {fileID: 0}
+  jumpButton: {fileID: 0}
+  slideButton: {fileID: 0}
 --- !u!223 &6947678884871347603
 Canvas:
   m_ObjectHideFlags: 0

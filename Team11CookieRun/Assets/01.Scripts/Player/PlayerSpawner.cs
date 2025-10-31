@@ -7,8 +7,9 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField] GameObject playerPrefab;
     [SerializeField] StartCanvasManager gameCanvasManager;
     [SerializeField] FollowCamera camera;
+    [SerializeField] MapPieceManager mapPieceManager;
     [SerializeField] Vector3 startPos;
-    void Start()
+    void Awake()
     {
         GameObject go = Instantiate(playerPrefab, startPos, Quaternion.identity);
         if (go.GetComponent<Player>())
@@ -22,6 +23,6 @@ public class PlayerSpawner : MonoBehaviour
     {
         player.InitCanvasManager(gameCanvasManager);
         camera.target = player.transform;
-        MapPieceManager.Instance._playerTransform = player.transform;
+        mapPieceManager._playerTransform = player.transform;
     }
 }
