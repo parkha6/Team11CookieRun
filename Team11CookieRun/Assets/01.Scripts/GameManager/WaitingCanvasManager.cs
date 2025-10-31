@@ -28,8 +28,5 @@ public class WaitingCanvasManager : MonoBehaviour
         { quitButton.onClick.AddListener(gameManager.QuitGame); }
     }
     void StartGame()
-    {
-        gameManager.currentStage = GameStage.Start;
-        SceneManager.LoadScene(startSceneName); 
-    }
+    { SceneManager.LoadScene(startSceneName); }
 }

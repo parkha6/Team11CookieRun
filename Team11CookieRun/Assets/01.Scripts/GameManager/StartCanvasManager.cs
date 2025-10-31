@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 public class StartCanvasManager : MonoBehaviour
 {
@@ -12,6 +11,7 @@ public class StartCanvasManager : MonoBehaviour
         uiManager = UIManager.Instance;
         gameManager.AddStartScene(this);
         OnClickAddListeners();
+        gameManager.currentStage = GameStage.Start;
     }
     #region debugUI
     [SerializeField]
@@ -75,8 +75,6 @@ public class StartCanvasManager : MonoBehaviour
         { homeButton.onClick.AddListener(OnClickHome); }
         if (restartButton != null)
         { restartButton.onClick.AddListener(Restart); }
-        if (deleteDataButton != null)
-        { deleteDataButton.onClick.AddListener(gameManager.DeleteData); }
         if (deleteDataButton != null)
         {
             deleteDataButton.onClick.AddListener(gameManager.DeleteData);
