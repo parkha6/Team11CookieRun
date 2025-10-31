@@ -25,7 +25,6 @@ public class GameManager : SingletonManager<GameManager>
     {
         uiManager = UIManager.Instance;
         uiManager.LoadKey();
-        AddOnClickButton();
     }
     private void Start()//씬이 바뀔거 같은 부분만 살려놨음.
     {
@@ -43,7 +42,6 @@ public class GameManager : SingletonManager<GameManager>
                 break;
         }
     }
-
     internal void AddStartScene(StartCanvasManager startScene)
     { startCanvasManager = startScene; }
     private void Update()
@@ -55,7 +53,7 @@ public class GameManager : SingletonManager<GameManager>
             case GameStage.Start:
                 startCanvasManager.ShowHp();
                 startCanvasManager.ShowScore();
-                if (uiManager.IsDead())
+                    if (uiManager.IsDead())
                 {currentStage = GameStage.End;}
                 break;
             case GameStage.Pause:
@@ -73,17 +71,10 @@ public class GameManager : SingletonManager<GameManager>
         }
     }
     #endregion
-    #region Awake Setting
-    void AddOnClickButton()//버튼과 함수 연결
-    {
-
-    }
-    #endregion
     #region Starting
     internal void StartGame()//게임이 시작될때 세팅.
     {
         startCanvasManager.HideUi();
-        currentStage = GameStage.Start;
         RunTime();
     }
     #endregion

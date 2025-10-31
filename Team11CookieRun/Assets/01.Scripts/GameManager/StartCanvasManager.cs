@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 public class StartCanvasManager : MonoBehaviour
 {
@@ -12,6 +11,7 @@ public class StartCanvasManager : MonoBehaviour
         uiManager = UIManager.Instance;
         gameManager.AddStartScene(this);
         OnClickAddListeners();
+        gameManager.currentStage = GameStage.Start;
     }
     #region debugUI
     [SerializeField]
@@ -22,6 +22,7 @@ public class StartCanvasManager : MonoBehaviour
     #region DefaultUI
     [SerializeField]
     internal string sceneName;
+    [SerializeField]
     internal string homeSceneName;
     [SerializeField]
     internal Image hpBar;
@@ -75,8 +76,6 @@ public class StartCanvasManager : MonoBehaviour
         if (restartButton != null)
         { restartButton.onClick.AddListener(Restart); }
         if (deleteDataButton != null)
-        { deleteDataButton.onClick.AddListener(gameManager.DeleteData); }
-        if (deleteDataButton != null)
         {
             deleteDataButton.onClick.AddListener(gameManager.DeleteData);
             if (gameManager.debugMode)
@@ -87,7 +86,6 @@ public class StartCanvasManager : MonoBehaviour
     }
     void Restart()
     { gameManager.OnClickRestart(sceneName); }
-
     internal void SetScore(int getAmount)
     {
         uiManager.Score += getAmount;
