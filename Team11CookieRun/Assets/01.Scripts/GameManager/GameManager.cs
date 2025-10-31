@@ -1,14 +1,6 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public enum GameStage
-{
-    Waiting,
-    Start,
-    Pause,
-    End,
-    Unknown
-}
 public class GameManager : SingletonManager<GameManager>
 {
     [SerializeField]

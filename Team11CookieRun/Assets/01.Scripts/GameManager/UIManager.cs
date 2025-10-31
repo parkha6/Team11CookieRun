@@ -1,11 +1,6 @@
 using UnityEngine;
 public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수와 관련되어있는 클래스
 {
-    const string highScoreKey = "High Score";
-    const string hpKey = "Current Hp";
-    const byte dead = 0;
-    const byte minScore = 0;
-    const byte minHp = 0;
     #region Scores
     float score = 0; //점수
     float highScore = 0;//최고 점수 
@@ -27,13 +22,13 @@ public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수�
     internal void CompareScore()//게임이 끝나면 쓰는 함수
     {
         startCanvasManager.finalScoreText.text = score.ToString();
-        if (score > highScore || !PlayerPrefs.HasKey(highScoreKey))
+        if (score > highScore || !PlayerPrefs.HasKey(GmConst.highScoreKey))
         {
-            PlayerPrefs.SetFloat(highScoreKey, score);
+            PlayerPrefs.SetFloat(GmConst.highScoreKey, score);
             startCanvasManager.star.SetActive(true);
             startCanvasManager.newText.SetActive(true);
         }
-        highScore = PlayerPrefs.GetFloat(highScoreKey,minScore);
+        highScore = PlayerPrefs.GetFloat(GmConst.highScoreKey, GmConst.minScore);
         startCanvasManager.highscoreText.text = highScore.ToString();
     }
     internal void ResetScore()
@@ -49,8 +44,8 @@ public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수�
         get { return hp; }
         private set
         {
-            if (value <= minHp)
-            { value = minHp; }
+            if (value <= GmConst.minHp)
+            { value = GmConst.minHp; }
             hp = value;
         }
     }
@@ -60,8 +55,8 @@ public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수�
         get { return currentHp; }
         set
         {
-            if (value <= minHp)
-            { value = minHp; }
+            if (value <= GmConst.minHp)
+            { value = GmConst.minHp; }
             else if (value > hp)
             { value = hp; }
             currentHp = value;
@@ -72,17 +67,17 @@ public class UIManager : SingletonManager<UIManager>//UI에 표시되는 변수�
     internal void SetHp(int getAmount)//음수를 넣으면 데미지 아닐까?
     {
         currentHp += getAmount;
-        PlayerPrefs.SetFloat(hpKey, CurrentHp);
+        PlayerPrefs.SetFloat(GmConst.hpKey, CurrentHp);
     }
     internal bool IsDead()
-    { return currentHp <= dead; }
+    { return currentHp <= GmConst.dead; }
     #endregion
     internal void LoadKey()//
     {
-        if (PlayerPrefs.HasKey(highScoreKey))
-        { highScore = PlayerPrefs.GetFloat(highScoreKey, 0); }
-        if (PlayerPrefs.HasKey(hpKey))
-        { currentHp = PlayerPrefs.GetFloat(hpKey, 100); }
+        if (PlayerPrefs.HasKey(GmConst.highScoreKey))
+        { highScore = PlayerPrefs.GetFloat(GmConst.highScoreKey, 0); }
+        if (PlayerPrefs.HasKey(GmConst.hpKey))
+        { currentHp = PlayerPrefs.GetFloat(GmConst.hpKey, 100); }
     }
     internal void HideStar()
     {
