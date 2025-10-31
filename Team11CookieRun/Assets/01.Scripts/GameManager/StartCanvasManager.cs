@@ -105,8 +105,8 @@ public class StartCanvasManager : MonoBehaviour
         uiManager.HighScore = PlayerPrefs.GetFloat(GmConst.highScoreKey, GmConst.minScore);
         highscoreText.text = uiManager.HighScore.ToString();
     }
-    internal void ShowHp()
-    { hpBar.fillAmount = uiManager.CurrentHp / uiManager.Hp; }
+    internal void ShowHp(float currentHp,float hp)
+    { hpBar.fillAmount = currentHp / hp; }
     internal void HideStar()
     {
         if (star.activeInHierarchy)
@@ -134,6 +134,7 @@ public class StartCanvasManager : MonoBehaviour
             gameManager.SaveGame();
             uiManager.ResetScore();
             HideUi();
+            gameManager.currentStage = GameStage.Waiting;
             gameManager.MoveScene(homeSceneName);
         }
     }

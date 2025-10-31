@@ -9,6 +9,7 @@ public class GameManager : SingletonManager<GameManager>
     internal GameStage currentStage = GameStage.Unknown;
     #region Other Manager
     UIManager uiManager;//UI매니저 받아오기용
+    Player player;
     StartCanvasManager startCanvasManager;
     #endregion
     #region YouChan
@@ -23,6 +24,7 @@ public class GameManager : SingletonManager<GameManager>
     #region Life Cycle
     protected override void Awake()//시작시점에 필요한 변수를 로드하게 만들었음.
     {
+        player = FindObjectOfType<Player>();
         uiManager = UIManager.Instance;
         uiManager.LoadKey();
     }
@@ -33,6 +35,7 @@ public class GameManager : SingletonManager<GameManager>
             case GameStage.Waiting:
                 break;
             case GameStage.Start:
+                player.Hp = uiManager.ResetScore();
                 StartGame();
                 break;
             case GameStage.Pause:
@@ -51,9 +54,9 @@ public class GameManager : SingletonManager<GameManager>
             case GameStage.Waiting:
                 break;
             case GameStage.Start:
-                startCanvasManager.ShowHp();
+                startCanvasManager.ShowHp(player.Hp,100);
                 startCanvasManager.ShowScore();
-                    if (uiManager.IsDead())
+                    if (player.IsDie)
                 {currentStage = GameStage.End;}
                 break;
             case GameStage.Pause:
@@ -102,7 +105,7 @@ public class GameManager : SingletonManager<GameManager>
         {
 
             SaveGame();
-            uiManager.ResetScore();
+            player.Hp = uiManager.ResetScore();
             MoveScene(sceneName);
         }
     }
