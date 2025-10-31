@@ -11,5 +11,4 @@ public class WaitingCanvasManager : SingletonManager<WaitingCanvasManager>
     internal Button deleteDataButton;
     [SerializeField]
     internal Button quitButton;
-    [SerializeField]
 }
