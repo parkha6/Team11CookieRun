@@ -77,6 +77,10 @@ public class Player : MonoBehaviour
                 hp = 0f;
         }
     }
+    #region Minjin //TODO:MaxHP 퍼가요. 문제 있으면 수정해주세요.
+    public float MaxHp
+    {get { return maxHp; }}
+    #endregion
     public float Speed { get { return speed; } set { speed = value; } }
     public float JumpPower { get { return jumpPower; } set { jumpPower = value; } }
     public float JumpGravity { get { return jumpGravity; } }

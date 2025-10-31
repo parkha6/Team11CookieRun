@@ -86,19 +86,14 @@ public class StartCanvasManager : MonoBehaviour
     }
     void Restart()
     { gameManager.OnClickRestart(sceneName); }
-    internal void SetScore(int getAmount)
+    internal void ShowScore(float score)
+    { scoreText.text = score.ToString(); }
+    internal void CompareScore(float score)//게임이 끝나면 쓰는 함수
     {
-        uiManager.Score += getAmount;
-        scoreText.text = uiManager.Score.ToString();
-    }
-    internal void ShowScore()
-    { scoreText.text = uiManager.Score.ToString(); }
-    internal void CompareScore()//게임이 끝나면 쓰는 함수
-    {
-        finalScoreText.text = uiManager.Score.ToString();
-        if (uiManager.Score > uiManager.HighScore || !PlayerPrefs.HasKey(GmConst.highScoreKey))
+        finalScoreText.text = score.ToString();
+        if (score > uiManager.HighScore || !PlayerPrefs.HasKey(GmConst.highScoreKey))
         {
-            PlayerPrefs.SetFloat(GmConst.highScoreKey, uiManager.Score);
+            PlayerPrefs.SetFloat(GmConst.highScoreKey, score);
             star.SetActive(true);
             newText.SetActive(true);
         }
@@ -132,7 +127,6 @@ public class StartCanvasManager : MonoBehaviour
         {
             //isEnd = false;
             gameManager.SaveGame();
-            uiManager.ResetScore();
             HideUi();
             gameManager.currentStage = GameStage.Waiting;
             gameManager.MoveScene(homeSceneName);

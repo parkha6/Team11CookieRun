@@ -35,7 +35,8 @@ public class GameManager : SingletonManager<GameManager>
             case GameStage.Waiting:
                 break;
             case GameStage.Start:
-                player.Hp = uiManager.ResetScore();
+                if (player.Hp <= 0 || player.Score > 0)
+                { ResetValue(); }
                 StartGame();
                 break;
             case GameStage.Pause:
@@ -54,18 +55,18 @@ public class GameManager : SingletonManager<GameManager>
             case GameStage.Waiting:
                 break;
             case GameStage.Start:
-                startCanvasManager.ShowHp(player.Hp,100);
-                startCanvasManager.ShowScore();
-                    if (player.IsDie)
-                {currentStage = GameStage.End;}
+                startCanvasManager.ShowHp(player.Hp, player.MaxHp);
+                startCanvasManager.ShowScore(player.Score);
+                if (player.IsDie)
+                { currentStage = GameStage.End; }
                 break;
             case GameStage.Pause:
-                    StopTime();
+                StopTime();
                 startCanvasManager.ShowPauseUI();
                 break;
             case GameStage.End:
-                    StopTime();
-                startCanvasManager.CompareScore();
+                StopTime();
+                startCanvasManager.CompareScore(player.Score);
                 startCanvasManager.ShowEndUI();
                 break;
             case GameStage.Unknown:
@@ -103,14 +104,18 @@ public class GameManager : SingletonManager<GameManager>
     {
         if (currentStage == GameStage.End)
         {
-
             SaveGame();
-            player.Hp = uiManager.ResetScore();
+            ResetValue();
             MoveScene(sceneName);
         }
     }
     #endregion
     #region Utility
+    void ResetValue()
+    {
+        player.Hp = player.MaxHp;
+        player.Score = GmConst.minScore;
+    }
     internal void MoveScene(string whichScene)
     { SceneManager.LoadScene(whichScene); }
     void StopTime()//시간을 멈추는 함수
