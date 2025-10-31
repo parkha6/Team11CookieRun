@@ -1,8 +1,6 @@
-using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 public enum GameStage
 {
     Waiting,
@@ -13,6 +11,9 @@ public enum GameStage
 }
 public class GameManager : SingletonManager<GameManager>
 {
+    [SerializeField]
+    bool debugMode = false;
+    [SerializeField]
     GameStage currentStage = GameStage.Unknown;
     #region Other Manager
     UIManager uiManager;//UI매니저 받아오기용
@@ -63,7 +64,7 @@ public class GameManager : SingletonManager<GameManager>
             case GameStage.Start:
                 uiManager.ShowHp();
                 uiManager.ShowScore();
-                if (uiManager.CurrentHp <= 0)
+                if (uiManager.IsDead())
                 {currentStage = GameStage.End;}
                 break;
             case GameStage.Pause:
@@ -98,18 +99,24 @@ public class GameManager : SingletonManager<GameManager>
         { startCanvasManager.restartButton.onClick.AddListener(OnClickRestart); }
         if (waitingCanvasManager.deleteDataButton != null)
         { waitingCanvasManager.deleteDataButton.onClick.AddListener(DeleteData); }
+        if (startCanvasManager.deleteDataButton != null)
+        { startCanvasManager.deleteDataButton.onClick.AddListener(DeleteData);
+            if (debugMode)
+            { startCanvasManager.debugUI.SetActive(true); }
+        }
         if (waitingCanvasManager.quitButton != null)
         { waitingCanvasManager.quitButton.onClick.AddListener(QuitGame); }
     }
     #endregion
     #region Waiting
-    void WaitGame()
+    void WaitGame()//대기화면에 들어갈때 종료 UI나 PauseUI 숨김.
     { uiManager.HideUi(); }
     #endregion
     #region Starting
-    void StartGame()
+    void StartGame()//게임이 시작될때 세팅.
     {
         uiManager.HideUi();
+        uiManager.ResetScore();
         currentStage = GameStage.Start;
         RunTime();
     }
@@ -164,13 +171,13 @@ public class GameManager : SingletonManager<GameManager>
     { PlayerPrefs.DeleteAll(); }
     void QuitGame()//게임 종료 함수
     {
+        SaveGame();
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
     }
     #endregion
-
     #region YouChan
     private void PauseGame()
     {
