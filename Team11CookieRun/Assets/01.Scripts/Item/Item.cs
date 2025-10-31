@@ -42,8 +42,16 @@ public class Item : MonoBehaviour
             ApplyEffect(player);
 
         PlaySound();
-        Destroy(gameObject);
-        
+
+        if (ItemSpawner.Instance != null)
+        {
+            ItemSpawner.Instance.ReturnItem(this.gameObject, itemType);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     void ApplyEffect(Player player)

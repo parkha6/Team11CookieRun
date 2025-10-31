@@ -37,7 +37,9 @@ public class MapPieceManager : MonoBehaviour
     private Dictionary<MapType, Queue<MapPiece>> _piecePool = new Dictionary<MapType, Queue<MapPiece>>();
 
     private bool firstPieceSpawned = false;
-    private MapType outFirstPieceType = MapType.Forest_First;
+
+    [SerializeField] private List<ItemRule> _itemRules;
+    [SerializeField] [Range(0f, 1f)] private float _ItemSpawnChance = 0.5f; // 맵 조각 전체에 아이템이 스폰될지 말지 결정하는 확률
 
     void Awake()
     {
@@ -171,16 +173,62 @@ public class MapPieceManager : MonoBehaviour
         }
 
         MapPiece newPiece = GetPieceFromPool(nextPieceType);
-        
+
+        _activePieces.Enqueue(newPiece);
+
         newPiece.transform.position = _nextSpawnPosition;
 
         newPiece.InitializePiece();
 
-        _activePieces.Enqueue(newPiece);
+        SpawnCoinsOnMapPiece(newPiece);
+
+        SpawnItemsOnMapPiece(newPiece);
 
         _nextSpawnPosition = newPiece.EndPosition;
     }
 
+    private void SpawnCoinsOnMapPiece(MapPiece mapPiece)
+    {
+        foreach (Transform spawnPoint in mapPiece.CoinSpawnPoints)
+        {
+            GameObject coinObj = ItemSpawner.Instance.GetItem(Item.ItemType.Coin, spawnPoint.position);
+            if(coinObj != null)
+            {
+                coinObj.transform.SetParent(spawnPoint);
+                coinObj.transform.localPosition = Vector3.zero;
+
+                mapPiece.SpawnedItems.Add(coinObj);
+            }
+        }
+    }
+
+    private void SpawnItemsOnMapPiece(MapPiece mapPiece)
+    {
+        if (Random.value > _ItemSpawnChance)
+        {
+            return;
+        }
+
+        foreach (Transform spawnPoint in mapPiece.ItemSpawnPoints)
+        {
+            foreach (var rule in _itemRules)
+            {
+                if (Random.value < rule.spawnChance)
+                {
+                    GameObject itemObj = ItemSpawner.Instance.GetItem(rule.itemType, spawnPoint.position);
+                    if(itemObj != null)
+                    {
+                        itemObj.transform.SetParent(spawnPoint);
+                        itemObj.transform.localPosition = Vector3.zero;
+
+                        mapPiece.SpawnedItems.Add(itemObj);
+
+                        break;
+                    }
+                }
+            }
+        }
+    }
 
     private void RecycleOldestPiece()
     {
@@ -234,6 +282,11 @@ public class MapPieceManager : MonoBehaviour
             {
                 pool.Dequeue().gameObject.SetActive(false);
             }
+        }
+
+        if (ItemSpawner.Instance != null)
+        {
+            ItemSpawner.Instance.ResetAllItems();
         }
 
         _nextSpawnPosition = _initialMapStartPoint;

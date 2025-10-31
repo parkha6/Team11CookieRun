@@ -19,8 +19,18 @@ public class MapPiece : MonoBehaviour
     // 이 맵 조각에 적용될 장애물 생성 규칙들의 리스트
     [SerializeField] private List<ObstacleRule> _obstacleRules;
 
-    // 현재 맵 조각에 의해 생성된 장애물들을 추적하는 리스트
+    // 코인 스폰 포인트 리스트
+    [SerializeField] private List<Transform> _coinSpawnPoints;
+    public List<Transform> CoinSpawnPoints => _coinSpawnPoints;
+    // 아이템 스폰 포인트 리스트
+    [SerializeField] private List<Transform> _itemSpawnPoints;
+    public List<Transform> ItemSpawnPoints => _itemSpawnPoints;
+
+    // 현재 맵 조각에 의해 생성된 장애물, 아이템을 추적하는 리스트
     private List<GameObject> _spawnedObstacles = new List<GameObject>();
+    private List<GameObject> _spawnedItems = new List<GameObject>();
+
+    public List<GameObject> SpawnedItems => _spawnedItems;
 
     // 맵 조각의 시작 위치를 제공 (World Space)
     public Vector3 StartPosition
@@ -37,24 +47,12 @@ public class MapPiece : MonoBehaviour
             return _pieceEndPoint != null ? _pieceEndPoint.position : transform.position + Vector3.right * 10f;
         }
     }
-    void OnDrawGizmos()
-    {
-        if (_pieceStartPoint != null)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawSphere(_pieceStartPoint.position, 0.2f); // 시작점 녹색
-        }
-        if (_pieceEndPoint != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(_pieceEndPoint.position, 0.2f); // 끝점 빨간색
-        }
-    }
 
     public void InitializePiece()
     {
         // 기존에 생성했던 장애물들을 먼저 풀로 반환하여 정리
         ClearSpawnedObstacles();
+        ClearSpawnedItems();
 
         // 자신이 가진 _obstacleRules에 따라 장애물을 생성
         if (_obstacleRules != null && ObstacleSpawner.Instance != null)
@@ -134,9 +132,32 @@ public class MapPiece : MonoBehaviour
         _spawnedObstacles.Clear();
     }
 
+    private void ClearSpawnedItems()
+    {
+        if (ItemSpawner.Instance == null) return;
+
+        foreach(GameObject item in _spawnedItems)
+        {
+            if(item != null)
+            {
+                Item itemComponenet = item.GetComponent<Item>();
+                if (itemComponenet != null)
+                {
+                    ItemSpawner.Instance.ReturnItem(item, itemComponenet.itemType);
+                }
+                else
+                {
+                    Destroy(item);
+                }
+            }
+        }
+        _spawnedItems.Clear();
+    }
+
     // 오브젝트 풀로 반환될 때 장애물을 정리
     void OnDisable()
     {
         ClearSpawnedObstacles();
+        ClearSpawnedItems();
     }
 }

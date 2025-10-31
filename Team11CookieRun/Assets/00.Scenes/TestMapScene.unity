@@ -415,18 +415,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ab7ac8609d1cc4aa8ea95a3974d067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  homeSceneName: 
-  sceneName: 
-  startButton: {fileID: 0}
-  pauseOptionButton: {fileID: 0}
-  pauseHomeButton: {fileID: 0}
-  pauseSettingButton: {fileID: 0}
-  pauseExitButton: {fileID: 0}
-  homeButton: {fileID: 0}
-  restartButton: {fileID: 0}
-  deleteDataButton: {fileID: 0}
-  quitButton: {fileID: 0}
-  currentStage: 4
 --- !u!1 &432282428
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,6 +517,14 @@ MonoBehaviour:
   _pieceSpawnAheadDistance: 50
   _pieceDespawnBehindDistance: 10
   _initialMapStartPoint: {x: 0, y: -3, z: 0}
+  _itemRules:
+  - itemType: 1
+    spawnChance: 0.2
+  - itemType: 2
+    spawnChance: 0.3
+  - itemType: 3
+    spawnChance: 0.5
+  _ItemSpawnChance: 0.3
 --- !u!1 &1093874068
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,6 +785,64 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 20, y: 11}
   m_EdgeRadius: 0
+--- !u!1 &1115375131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1115375132}
+  - component: {fileID: 1115375133}
+  m_Layer: 0
+  m_Name: ItemSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1115375132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115375131}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1115375133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115375131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 580b681958f3aa741afa4e0b5de9d192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefabs:
+  - type: 0
+    prefab: {fileID: 7270365921373334467, guid: b16608215b142014da434f004b479f59, type: 3}
+  - type: 0
+    prefab: {fileID: 7102715061209053898, guid: f7e39b1dfd06f8a4e846bb359f17c5cf, type: 3}
+  - type: 0
+    prefab: {fileID: 2584998246366536847, guid: 30627d1df4925794b8d5cd43e3e95639, type: 3}
+  - type: 1
+    prefab: {fileID: 1329735933750386572, guid: 5511617a48b99334bb9ae6f6e9d05a6a, type: 3}
+  - type: 2
+    prefab: {fileID: 1885589913159038217, guid: 9bb1d0ba70b1fdc4da52e44e7ac72b7f, type: 3}
+  - type: 3
+    prefab: {fileID: 4194418966292567653, guid: d6c5feb02f8fd3c4a97eea1e0b5f8472, type: 3}
+  initialPoolSizePerType: 20
 --- !u!1 &1320629359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,3 +1436,4 @@ SceneRoots:
   - {fileID: 335480443}
   - {fileID: 1320629360}
   - {fileID: 1423640709}
+  - {fileID: 1115375132}
