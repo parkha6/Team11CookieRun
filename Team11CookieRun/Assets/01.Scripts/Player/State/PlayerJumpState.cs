@@ -11,7 +11,7 @@ public class PlayerJumpState : IPlayerState
     }
     public void UpdateState(Player player)
     {
-        player.OnGravity();
+        player.OnGravity(player.JumpGravity);
         player.MoveFoward();
 
         if (player.IsGround)

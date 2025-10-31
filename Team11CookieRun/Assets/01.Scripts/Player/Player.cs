@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,10 +29,10 @@ public class Player : MonoBehaviour
     //캐릭터 피격판정
     private readonly WaitForSeconds hitEffectDelay = new WaitForSeconds(0.4f);
 
-    //이동을 위한 중력
+    //점프를 위한 중력
     private float verticalVelocity = 0f;
     [SerializeField] private float minVerticalVelocity;
-    [SerializeField] float gravity;
+    [SerializeField] float jumpGravity;
 
     //캐릭터 점수
     [SerializeField] float score;
@@ -46,6 +47,14 @@ public class Player : MonoBehaviour
     private bool isJump;
     private bool isDoubleJump;
     private bool isDie;
+
+    //플레이어 땅 중력 판단
+    [SerializeField] private Vector2 boxSize;
+    [SerializeField] private float rayDistance;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float groundGravity;
+    private readonly WaitForSeconds fallWait = new WaitForSeconds(2f);
+
 
     //플레이어 상태머신
     private IPlayerState curState;
@@ -69,6 +78,7 @@ public class Player : MonoBehaviour
     }
     public float Speed { get { return speed; } set { speed = value; } }
     public float JumpPower { get { return jumpPower; } set { jumpPower = value; } }
+    public float JumpGravity { get { return jumpGravity; } }
     public float Score { get { return score; } set { score = value; } }
     public bool IsInvincible { get { return isInvincible; } set { isInvincible = value; } }
     public bool IsGround { get { return isGround; } set { isGround = value; } }
@@ -76,6 +86,10 @@ public class Player : MonoBehaviour
     public bool IsSlide { get { return isSlide; } set { isSlide = value; } }
     public bool IsJump { get { return isJump; } set { isJump = value; } }
     public bool IsDie { get { return isDie; } set { isDie = value; } }
+    public Vector2 BoxSize { get { return boxSize; } }
+    public float RayDistance { get { return rayDistance; } }
+    public LayerMask GroundLayer { get { return groundLayer; } }
+    public float GroundGravity { get { return groundGravity; } }
     #endregion
 
 
@@ -97,7 +111,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         if (curState != null)
-            curState.UpdateState(this);
+            curState.UpdateState(this);      
     }
 
 
@@ -113,13 +127,32 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 중력작용
     /// </summary>
-    public void OnGravity()
+    public void OnGravity(float gravity)
     {
         verticalVelocity -= gravity * Time.deltaTime;
         if (verticalVelocity <= minVerticalVelocity)
             verticalVelocity = minVerticalVelocity;
     }
 
+    public void FallPlayer()
+    {
+        playerAnim.speed = 0f;
+        playerCollider.isTrigger = true;
+        playerInputManager.DisableInput();
+        Speed = 0f;
+        StartCoroutine(Fall());
+    }
+
+    IEnumerator Fall()
+    {
+        yield return fallWait;
+        Destroy(this.gameObject);
+    }
+
+
+    /// <summary>
+    /// 플레이어 일시정지
+    /// </summary>
     public void PausePlayer()
     {
         if(gameManager.IsPause)
@@ -227,12 +260,23 @@ public class Player : MonoBehaviour
         StartCoroutine(PlayerInvincibility(value));
     }
 
-    IEnumerator PlayerInvincibility(float value)
+    IEnumerator PlayerInvincibility(float duration)
     {
         isInvincible = true;
-        yield return new WaitForSeconds(value);
+        yield return new WaitForSeconds(duration);
         isInvincible = false;
     }
 
+    public void ApplySlow(float value, float duration)
+    {
+        StartCoroutine(SlowPlayer(value, duration));
+    }
+
+    IEnumerator SlowPlayer(float value, float duration)
+    {
+        Speed -= value;
+        yield return new WaitForSeconds(duration);
+        Speed += value;
+    }
     #endregion
 }

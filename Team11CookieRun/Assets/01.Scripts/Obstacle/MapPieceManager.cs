@@ -73,6 +73,7 @@ public class MapPieceManager : MonoBehaviour
 
     void Update()
     {
+        if (_playerTransform == null) return;
         // 플레이어가 일정 거리 이상 전진하면 새로운 맵 조각을 생성
         // 현재 플레이어 위치 + (앞으로 생성될 거리)가 다음 생성 위치보다 크면 생성
         if (_playerTransform.position.x + _pieceSpawnAheadDistance > _nextSpawnPosition.x)

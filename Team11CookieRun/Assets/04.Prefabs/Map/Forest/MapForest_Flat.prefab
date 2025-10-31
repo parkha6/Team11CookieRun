@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3983826557222914218}
   - component: {fileID: 6834116510104924692}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 1056269627176133398}
   - component: {fileID: 8994617595967430133}
   - component: {fileID: 1893789878087205932}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1043,7 +1043,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5571781993000842016}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ObstaclePoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1074,7 +1074,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3341039673790706092}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StartPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1105,7 +1105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5130002239406989670}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ObstaclePoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1136,7 +1136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6871909511320433244}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EndPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1170,7 +1170,7 @@ GameObject:
   - component: {fileID: 7358180492047316592}
   - component: {fileID: 1874626138955176988}
   - component: {fileID: 8042345160691910634}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MapForest_Flat
   m_TagString: Ground
   m_Icon: {fileID: 0}
