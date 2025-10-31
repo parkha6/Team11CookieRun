@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,30 +13,12 @@ public enum GameStage
 }
 public class GameManager : SingletonManager<GameManager>
 {
-    [SerializeField]
-    string homeSceneName;//재시작할 씬의 이름.
-    [SerializeField]
-    string sceneName;//재시작할 씬의 이름.
-    [SerializeField]
-    Button startButton;
-    [SerializeField]
-    Button pauseOptionButton;
-    [SerializeField]
-    Button pauseHomeButton;
-    [SerializeField]
-    Button pauseSettingButton;
-    [SerializeField]
-    Button pauseExitButton;
-    [SerializeField]
-    Button homeButton;
-    [SerializeField]
-    Button restartButton;
-    [SerializeField]
-    Button deleteDataButton;
-    [SerializeField]
-    Button quitButton;
-    [SerializeField]//디버그용으로 시작스테이지 쓸려고 공개해둠.
     GameStage currentStage = GameStage.Unknown;
+    #region Other Manager
+    UIManager uiManager;//UI매니저 받아오기용
+    WaitingCanvasManager waitingCanvasManager;
+    StartCanvasManager startCanvasManager;
+    #endregion
     #region YouChan
     //Start부분
     private bool isStart = false;
@@ -45,15 +28,14 @@ public class GameManager : SingletonManager<GameManager>
     public bool IsStart { get { return isStart; } set { isStart = value; } }
     public bool IsPause { get { return isPause; } set { isPause = value; } }
     #endregion
-    private bool isEnd = false;
-    public bool IsEnd { get { return isEnd; } set { isEnd = value; } }
-    UIManager uiManager;
+    #region Life Cycle
     protected override void Awake()//시작시점에 필요한 변수를 로드하게 만들었음.
     {
         uiManager = UIManager.Instance;
+        waitingCanvasManager = WaitingCanvasManager.Instance;
+        startCanvasManager = StartCanvasManager.Instance;
         uiManager.LoadKey();
         AddOnClickButton();
-
     }
     private void Start()//씬이 바뀔거 같은 부분만 살려놨음.
     {
@@ -82,58 +64,57 @@ public class GameManager : SingletonManager<GameManager>
                 uiManager.ShowHp();
                 uiManager.ShowScore();
                 if (uiManager.CurrentHp <= 0)
-                {
-                    currentStage = GameStage.End;
-                    isEnd = true;
-                }
+                {currentStage = GameStage.End;}
                 break;
             case GameStage.Pause:
-                if (IsPause)
-                {
                     StopTime();
                     uiManager.ShowPauseUI();
-                }
                 break;
             case GameStage.End:
-                if (isEnd)
-                {
                     StopTime();
                     uiManager.CompareScore();
                     uiManager.ShowEndUI();
-                }
                 break;
             case GameStage.Unknown:
             default:
                 break;
         }
     }
+    #endregion
+    #region Awake Setting
     void AddOnClickButton()//버튼과 함수 연결
     {
-        if (startButton != null)
-        { startButton.onClick.AddListener(StartGame); }
-        if (pauseOptionButton != null)
-        { pauseOptionButton.onClick.AddListener(OnClickGamePause); }
-        if (pauseHomeButton != null)
-        { pauseHomeButton.onClick.AddListener(OnClickHome); }
-        if (pauseExitButton != null)
-        { pauseExitButton.onClick.AddListener(OnClickExitPause); }
-        if (homeButton != null)
-        { homeButton.onClick.AddListener(OnClickHome); }
-        if (restartButton != null)
-        { restartButton.onClick.AddListener(OnClickRestart); }
-        if (deleteDataButton != null)
-        { deleteDataButton.onClick.AddListener(DeleteData); }
-        if (quitButton != null)
-        { quitButton.onClick.AddListener(QuitGame); }
+        if (waitingCanvasManager.startButton != null)
+        { waitingCanvasManager.startButton.onClick.AddListener(StartGame); }
+        if (startCanvasManager.pauseOptionButton != null)
+        { startCanvasManager.pauseOptionButton.onClick.AddListener(OnClickGamePause); }
+        if (startCanvasManager.pauseHomeButton != null)
+        { startCanvasManager.pauseHomeButton.onClick.AddListener(OnClickHome); }
+        if (startCanvasManager.pauseExitButton != null)
+        { startCanvasManager.pauseExitButton.onClick.AddListener(OnClickExitPause); }
+        if (startCanvasManager.homeButton != null)
+        { startCanvasManager.homeButton.onClick.AddListener(OnClickHome); }
+        if (startCanvasManager.restartButton != null)
+        { startCanvasManager.restartButton.onClick.AddListener(OnClickRestart); }
+        if (waitingCanvasManager.deleteDataButton != null)
+        { waitingCanvasManager.deleteDataButton.onClick.AddListener(DeleteData); }
+        if (waitingCanvasManager.quitButton != null)
+        { waitingCanvasManager.quitButton.onClick.AddListener(QuitGame); }
     }
+    #endregion
+    #region Waiting
     void WaitGame()
     { uiManager.HideUi(); }
+    #endregion
+    #region Starting
     void StartGame()
     {
         uiManager.HideUi();
         currentStage = GameStage.Start;
         RunTime();
     }
+    #endregion
+    #region PauseGame
     void OnClickGamePause()
     {
         if (currentStage != GameStage.End && currentStage != GameStage.Pause)
@@ -149,6 +130,8 @@ public class GameManager : SingletonManager<GameManager>
         IsPause = false;
         StartGame();
     }
+    #endregion
+    #region EndGame
     void OnClickHome()
     {
         if (currentStage == GameStage.End)
@@ -156,24 +139,26 @@ public class GameManager : SingletonManager<GameManager>
             isEnd = false;
             SaveGame();
             uiManager.ResetScore();
-            MoveScene(homeSceneName);
+            MoveScene(waitingCanvasManager.homeSceneName);
         }
     }
     void OnClickRestart()
     {
         if (currentStage == GameStage.End)
         {
+
             isEnd = false;
             SaveGame();
             uiManager.ResetScore();
-            MoveScene(sceneName);
+            MoveScene(startCanvasManager.sceneName);
         }
-    }//씬을 완전히 새로 시작?
-    void MoveScene(string sceneIs)
-    { SceneManager.LoadScene(sceneIs); }
-
+    }
+    #endregion
+    #region Utility
+    void MoveScene(string whichScene)
+    { SceneManager.LoadScene(whichScene); }
     void StopTime()//시간을 멈추는 함수
-    { Time.timeScale = 0;}
+    { Time.timeScale = 0; }
     void RunTime()//시간을 재생하는 함수
     { Time.timeScale = 1.0f; }
     void SaveGame()//게임 저장
@@ -187,6 +172,8 @@ public class GameManager : SingletonManager<GameManager>
 #endif
         Application.Quit();
     }
+    #endregion
+
     #region YouChan
     private void PauseGame()
     {
