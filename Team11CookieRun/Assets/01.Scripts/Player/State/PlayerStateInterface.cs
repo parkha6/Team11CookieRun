@@ -4,7 +4,9 @@ using UnityEngine;
 
 public interface IPlayerState
 {
-    void Enter(Player player);
-    void Update(Player player);
-    void Exit(Player player);
+    void EnterState(Player player);
+    void UpdateState(Player player);
+    void ExitState(Player player);
+
+    void ConditionSetting(Player player, bool isIn);
 }

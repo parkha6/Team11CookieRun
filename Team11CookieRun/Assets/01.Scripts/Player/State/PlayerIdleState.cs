@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerIdleState : IPlayerState
 {
     private GameManager gameManager;
-    public void Enter(Player player)
+    public void EnterState(Player player)
     {
         gameManager = GameManager.Instance;
     }
-    public void Update(Player player)
+    public void UpdateState(Player player)
     {
         //시작 시 RunState변경
         /*if (gameManager.IsStart)
@@ -23,8 +23,12 @@ public class PlayerIdleState : IPlayerState
         }
     }
 
-    public void Exit(Player player)
+    public void ExitState(Player player)
     {
         
+    }
+
+    public void ConditionSetting(Player player, bool isIn)
+    {
     }
 }

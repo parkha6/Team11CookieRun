@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
     private bool isSlide;
     private bool isJump;
     private bool isDoubleJump;
-    private bool isDead;
+    private bool isDie;
 
     //플레이어 상태머신
     private IPlayerState curState;
@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
     public PlayerRunState runState = new PlayerRunState();
     public PlayerJumpState jumpState = new PlayerJumpState();
     public PlayerSlideState slideState = new PlayerSlideState();
+    public PlayerDeathState deathState = new PlayerDeathState();
 
     #region Property
     public Animator PlayerAnim { get { return playerAnim; } set { playerAnim = value; } }
@@ -69,11 +70,12 @@ public class Player : MonoBehaviour
     public float Speed { get { return speed; } set { speed = value; } }
     public float JumpPower { get { return jumpPower; } set { jumpPower = value; } }
     public float Score { get { return score; } set { score = value; } }
-    public bool IsInvincible { get { return isInvincible; } }
+    public bool IsInvincible { get { return isInvincible; } set { isInvincible = value; } }
     public bool IsGround { get { return isGround; } set { isGround = value; } }
     public bool IsRun { get { return isRun; } set { isRun = value; } }
     public bool IsSlide { get { return isSlide; } set { isSlide = value; } }
     public bool IsJump { get { return isJump; } set { isJump = value; } }
+    public bool IsDie { get { return isDie; } set { isDie = value; } }
     #endregion
 
 
@@ -95,7 +97,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         if (curState != null)
-            curState.Update(this);
+            curState.UpdateState(this);
     }
 
 
@@ -133,10 +135,10 @@ public class Player : MonoBehaviour
     {
         if ((curState != null))
         {
-            curState.Exit(this);            
+            curState.ExitState(this);            
         }
         curState = newState;
-        curState.Enter(this);
+        curState.EnterState(this);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -160,6 +162,11 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damage)
     {
         Hp -= damage;
+        if (Hp <= 0)
+        {
+            ChangeState(deathState);
+            return;
+        }
         StartCoroutine(HitEffect());
         StartCoroutine(HitDelay());
         StartCoroutine(BlinkCharacter(blinkNum));

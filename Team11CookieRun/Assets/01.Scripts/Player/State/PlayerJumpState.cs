@@ -4,12 +4,12 @@ using UnityEngine;
 using static PlayerConstVar;
 public class PlayerJumpState : IPlayerState
 {
-    public void Enter(Player player)
+    public void EnterState(Player player)
     {
         player.Jump();
-        JumpState(player, true);
+        ConditionSetting(player, true);
     }
-    public void Update(Player player)
+    public void UpdateState(Player player)
     {
         player.OnGravity();
         player.MoveFoward();
@@ -18,13 +18,13 @@ public class PlayerJumpState : IPlayerState
             player.ChangeState(player.runState);
     }
 
-    public void Exit(Player player)
+    public void ExitState(Player player)
     {
         player.IsJump = false;
-        JumpState(player, false);
+        ConditionSetting(player, false);
     }
 
-    private void JumpState(Player player, bool isIn)
+    public void ConditionSetting(Player player, bool isIn)
     {
         player.PlayerAnim.SetBool(JumpCondition, isIn);
     }

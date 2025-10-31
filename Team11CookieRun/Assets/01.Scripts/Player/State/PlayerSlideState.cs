@@ -4,24 +4,24 @@ using UnityEngine;
 using static PlayerConstVar;
 public class PlayerSlideState : IPlayerState
 {
-    public void Enter(Player player)
+    public void EnterState(Player player)
     {
-        SlideState(player, true);
+        ConditionSetting(player, true);
     }
-    public void Update(Player player)
+    public void UpdateState(Player player)
     {
         player.MoveFoward();
         if (player.IsSlide == false)
             player.ChangeState(player.runState);
     }
 
-    public void Exit(Player player)
+    public void ExitState(Player player)
     {
-        SlideState(player, false);
+        ConditionSetting(player, false);
         player.PlayerAnim.SetTrigger(SlideUpCondition);
     }
 
-    private void SlideState(Player player, bool isIn)
+    public void ConditionSetting(Player player, bool isIn)
     {
         player.PlayerAnim.SetBool(SlideCondition, isIn);
     }
