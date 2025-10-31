@@ -116,7 +116,6 @@ public class GameManager : SingletonManager<GameManager>
     void StartGame()//게임이 시작될때 세팅.
     {
         uiManager.HideUi();
-        uiManager.ResetScore();
         currentStage = GameStage.Start;
         RunTime();
     }
