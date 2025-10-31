@@ -1818,7 +1818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1aecf89bd7344548804a1eb7ff44c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapType: 0
+  mapType: 1
   _pieceStartPoint: {fileID: 3341039673790706092}
   _pieceEndPoint: {fileID: 6871909511320433244}
   _obstacleSpawnPoints:
