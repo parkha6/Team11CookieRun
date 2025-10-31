@@ -31,7 +31,7 @@ public class StartCanvasManager : MonoBehaviour
     #endregion
     #region PauseUI
     [SerializeField]
-    internal GameObject PauseUi;
+    internal GameObject pauseUi;
     [SerializeField]
     internal Button pauseOptionButton;
     [SerializeField]
@@ -47,7 +47,7 @@ public class StartCanvasManager : MonoBehaviour
     #endregion
     #region EndUI
     [SerializeField]
-    internal GameObject EndUi;
+    internal GameObject endUi;
     [SerializeField]
     internal TextMeshProUGUI finalScoreText;
     [SerializeField]
@@ -57,10 +57,16 @@ public class StartCanvasManager : MonoBehaviour
     [SerializeField]
     internal GameObject newText;
     #endregion
+    #region Mobile
+    [SerializeField] Player player;
+    //[SerializeField] private Button pauseOptionButton;
+    [SerializeField] private Button jumpButton;
+    [SerializeField] private Button slideButton;
+    #endregion
     void OnClickAddListeners()
     {
         if (pauseOptionButton != null)
-        { pauseOptionButton.onClick.AddListener(gameManager.OnClickGamePause); }
+        { pauseOptionButton.onClick.AddListener(OnMobilePause); }
         if (pauseHomeButton != null)
         { pauseHomeButton.onClick.AddListener(OnClickHome); }
         if (pauseExitButton != null)
@@ -77,6 +83,8 @@ public class StartCanvasManager : MonoBehaviour
             if (gameManager.debugMode)
             { debugUI.SetActive(true); }
         }
+        if (jumpButton != null) { jumpButton.onClick.AddListener(OnPlayerJump); }
+        if (slideButton != null) { jumpButton.onClick.AddListener(OnPlayerSlide); }
     }
     void Restart()
     { gameManager.OnClickRestart(sceneName); }
@@ -109,16 +117,16 @@ public class StartCanvasManager : MonoBehaviour
         { newText.SetActive(false); }
     }
     internal void ShowPauseUI()
-    { PauseUi.SetActive(true); }
+    { pauseUi.SetActive(true); }
     internal void ShowEndUI()
-    { EndUi.SetActive(true); }
+    { endUi.SetActive(true); }
     internal void HideUi()//UI숨김처리
     {
         HideStar();
-        if (PauseUi.activeInHierarchy)
-        { PauseUi.SetActive(false); }
-        if (EndUi.activeInHierarchy)
-        { EndUi.SetActive(false); }
+        if (pauseUi.activeInHierarchy)
+        { pauseUi.SetActive(false); }
+        if (endUi.activeInHierarchy)
+        { endUi.SetActive(false); }
     }
     internal void OnClickHome()
     {
@@ -131,4 +139,35 @@ public class StartCanvasManager : MonoBehaviour
             gameManager.MoveScene(homeSceneName);
         }
     }
+
+    private void OnPlayerJump()
+    {
+        if (player == null) return;
+        player.ChangeState(player.jumpState);
+    }
+
+    private void OnPlayerSlide()
+    {
+        player.ChangeState(player.slideState);
+    }
+
+    private void OnMobilePause()
+    {
+        if (player == null) return;
+        pauseUi.SetActive(true);
+        gameManager.ClickPause();
+        player.PausePlayer();
+    }
+
+    private void OffMobilePause()
+    {
+        if (player == null) return;
+        pauseUi.SetActive(false);
+        gameManager.ClickPause();
+        player.PausePlayer();
+    }
+
+
+    public void OnPauseUi() => pauseUi.SetActive(true);
+    public void OffPauseUi() => pauseUi.SetActive(false);
 }

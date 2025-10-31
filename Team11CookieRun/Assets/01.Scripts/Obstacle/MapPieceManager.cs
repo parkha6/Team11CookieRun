@@ -13,7 +13,7 @@ public class MapPieceManager : MonoBehaviour
     [SerializeField] private List<MapPiecePrefabEntry> _mapPiecePrefabEntries;
 
     // 추적할 플레이어의 Transform 맵 생성 기준점
-    [SerializeField] private Transform _playerTransform;
+    [SerializeField] public Transform _playerTransform;
 
     // 게임 시작 시 미리 생성할 맵 조각 개수
     [SerializeField] private int _initialPieceCount = 5;
@@ -38,6 +38,8 @@ public class MapPieceManager : MonoBehaviour
 
     private bool firstPieceSpawned = false;
     private MapType outFirstPieceType = MapType.Forest_First;
+
+
 
     void Awake()
     {

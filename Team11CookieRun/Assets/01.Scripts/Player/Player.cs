@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] CapsuleCollider2D playerCollider;
     private PlayerInputManager playerInputManager;
     private GameManager gameManager;
+    private StartCanvasManager gameCanvasManager;
     [SerializeField] SpriteRenderer playerSpriteRenderer;
 
     //캐릭터 능력치
@@ -99,13 +100,17 @@ public class Player : MonoBehaviour
     {
         playerInputManager = PlayerInputManager.Instance;
         gameManager = GameManager.Instance;
-
         playerInputManager.OnJump += () => IsJump = true;
         playerInputManager.OnSlideStart += () => IsSlide = true;
         playerInputManager.OnSlideEnd += () => IsSlide = false;
         playerInputManager.OnPause += PausePlayer;
 
         ChangeState(idleState);
+    }
+
+    public void InitCanvasManager(StartCanvasManager scm)
+    {
+        gameCanvasManager = scm;
     }
 
     private void Update()
@@ -156,9 +161,15 @@ public class Player : MonoBehaviour
     public void PausePlayer()
     {
         if(gameManager.IsPause)
+        {
             playerAnim.speed = 0f;
+            gameCanvasManager.OnPauseUi();
+        }
         else
+        {
             playerAnim.speed = 1f;
+            gameCanvasManager.OffPauseUi();
+        }
     }
     /// <summary>
     /// 플레이어 상태 변경
