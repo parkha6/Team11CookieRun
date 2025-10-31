@@ -107,6 +107,10 @@ MonoBehaviour:
   healSound: {fileID: 8300000, guid: d18976a822951ec4d856054d8947e836, type: 3}
   invincibleSound: {fileID: 0}
   slowSound: {fileID: 0}
+  coinVolume: 1
+  healVolume: 1
+  invincibleVolume: 1
+  slowVolume: 1
 --- !u!50 &7732887414368401646
 Rigidbody2D:
   serializedVersion: 4
@@ -191,7 +195,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
