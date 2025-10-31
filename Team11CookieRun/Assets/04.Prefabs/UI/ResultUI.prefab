@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 7902434524065126961}
   - component: {fileID: 7829140876217110186}
   m_Layer: 5
-  m_Name: Result UI
+  m_Name: ResultUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
