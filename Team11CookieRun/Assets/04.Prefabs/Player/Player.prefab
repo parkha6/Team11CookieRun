@@ -59,8 +59,14 @@ MonoBehaviour:
   isInvincible: 0
   blinkNum: 2
   minVerticalVelocity: -15
-  gravity: 6
+  jumpGravity: 6
   score: 0
+  boxSize: {x: 1, y: 0.1}
+  rayDistance: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  groundGravity: 5
 --- !u!50 &2174248731373263650
 Rigidbody2D:
   serializedVersion: 4

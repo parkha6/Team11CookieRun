@@ -37,6 +37,19 @@ public class MapPiece : MonoBehaviour
             return _pieceEndPoint != null ? _pieceEndPoint.position : transform.position + Vector3.right * 10f;
         }
     }
+    void OnDrawGizmos()
+    {
+        if (_pieceStartPoint != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(_pieceStartPoint.position, 0.2f); // 시작점 녹색
+        }
+        if (_pieceEndPoint != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(_pieceEndPoint.position, 0.2f); // 끝점 빨간색
+        }
+    }
 
     public void InitializePiece()
     {

@@ -6,6 +6,9 @@ public class MapPieceManager : MonoBehaviour
 {
     public static MapPieceManager Instance;
 
+    // 게임 시작 시 맨 처음 배치 될 맵 조각
+    [SerializeField] private MapType _firstMapPieceType = MapType.Forest_First;
+
     // 게임에 등장할 맵 조각들의 타입과 그에 해당하는 프리팹들을 여기에 연결
     [SerializeField] private List<MapPiecePrefabEntry> _mapPiecePrefabEntries;
 
@@ -16,7 +19,7 @@ public class MapPieceManager : MonoBehaviour
     [SerializeField] private int _initialPieceCount = 5;
 
     // 플레이어로부터 이 거리만큼 앞에 맵 조각이 없으면 새로 생성
-    [SerializeField] private float _pieceSpawnAheadDistance = 20f;
+    [SerializeField] private float _pieceSpawnAheadDistance = 50f;
 
     // 플레이어로부터 이 거리만큼 뒤에 있는 맵 조각을 풀로 반환
     [SerializeField] private float _pieceDespawnBehindDistance = 20f;
@@ -33,7 +36,8 @@ public class MapPieceManager : MonoBehaviour
     // 맵 조각 오브젝트 풀
     private Dictionary<MapType, Queue<MapPiece>> _piecePool = new Dictionary<MapType, Queue<MapPiece>>();
 
-
+    private bool firstPieceSpawned = false;
+    private MapType outFirstPieceType = MapType.Forest_First;
 
     void Awake()
     {
@@ -59,6 +63,7 @@ public class MapPieceManager : MonoBehaviour
 
         _nextSpawnPosition = _initialMapStartPoint;
 
+        firstPieceSpawned = false;
         // 초기 맵 조각들을 생성
         for (int i = 0; i < _initialPieceCount; i++)
         {
@@ -68,6 +73,7 @@ public class MapPieceManager : MonoBehaviour
 
     void Update()
     {
+        if (_playerTransform == null) return;
         // 플레이어가 일정 거리 이상 전진하면 새로운 맵 조각을 생성
         // 현재 플레이어 위치 + (앞으로 생성될 거리)가 다음 생성 위치보다 크면 생성
         if (_playerTransform.position.x + _pieceSpawnAheadDistance > _nextSpawnPosition.x)
@@ -153,19 +159,19 @@ public class MapPieceManager : MonoBehaviour
 
     private void GenerateNextPiece()
     {
-        // 가중치를 고려하여 랜덤으로 선택 (난이도 등에 따라 선택 로직 변경 가능)
-        MapType nextPieceType = SelectPieceTypeByWeightedRandom();
-        if (nextPieceType == MapType.Forest_Flat && _mapPiecePrefabEntries.Count > 0 && _mapPiecePrefabEntries.All(e => e.type != MapType.Forest_Flat))
-        {
-            return;
-        }
+        MapType nextPieceType;
 
+        if (!firstPieceSpawned)
+        {
+            nextPieceType = _firstMapPieceType;
+            firstPieceSpawned = true;
+        }
+        else
+        {
+            nextPieceType = SelectPieceTypeByWeightedRandom();
+        }
 
         MapPiece newPiece = GetPieceFromPool(nextPieceType);
-        if (newPiece == null)
-        {
-            return;
-        }
         
         newPiece.transform.position = _nextSpawnPosition;
 
@@ -232,6 +238,8 @@ public class MapPieceManager : MonoBehaviour
         }
 
         _nextSpawnPosition = _initialMapStartPoint;
+
+        firstPieceSpawned = false;
 
         Start();
     }
