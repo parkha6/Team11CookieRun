@@ -76,11 +76,16 @@ public class GameManager : SingletonManager<GameManager>
     /// </summary>
     internal void StartGame()
     {
+        currentStage = GameStage.Start;
         gameUIManager.HideUi();
         ManageTime(GmConst.runTime);
     }
     #endregion
     #region PauseGame
+    /// <summary>
+    /// 게임이 끝나거나 일시정지상태가 아니면 일시정지를 켜고 
+    /// 일시정지면 일시정지를 끈다.
+    /// </summary>
     internal void OnClickGamePause()
     {
         if (currentStage != GameStage.End && currentStage != GameStage.Pause)
@@ -91,6 +96,9 @@ public class GameManager : SingletonManager<GameManager>
         else if (currentStage == GameStage.Pause)
         { OnClickExitPause(); }
     }
+    /// <summary>
+    /// pause상태에서 나와서 start로 돌아간다.
+    /// </summary>
     internal void OnClickExitPause()
     {
         IsPause = false;

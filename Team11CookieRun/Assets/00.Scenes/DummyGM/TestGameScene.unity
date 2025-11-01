@@ -1571,6 +1571,10 @@ PrefabInstance:
       propertyPath: menuSceneName
       value: TestStartScene
       objectReference: {fileID: 0}
+    - target: {fileID: 2180896963760910796, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6116011069437875787, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
       propertyPath: m_LocalPosition.x
       value: 292.30942

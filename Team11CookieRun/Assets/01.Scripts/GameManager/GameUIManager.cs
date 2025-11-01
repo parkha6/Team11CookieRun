@@ -10,14 +10,13 @@ public class GameUIManager : MonoBehaviour
     /// 게임을 재시작했을때 여기서 세팅함.
     /// </summary>
     private void Start()
-    { 
+    {
         gameManager = GameManager.Instance;
         scoreManager = ScoreManager.Instance;
         gameManager.AddStartScene(this);
         OnClickAddListeners();
-        gameManager.ResetValue();//TODO:임의로 이렇게 처리했는데 이러니까 재시작 했을때 키가 하나도 안 먹어요. 이건 다른 파트에서 처리해주셔야 될 듯.
+        gameManager.ResetValue();//TODO:임의로 이렇게 처리했는데 이러니까 재시작 했을때 키가 하나도 안 먹어요. 이건 hp랑 점수 리셋하는 메서드를 만들어서 건내주시면 금방 수정될 듯.
         gameManager.StartGame();
-        gameManager.currentStage = GameStage.Start;
     }
     #region debugUI
     [Tooltip("데이터를 모두 지우는 버튼을 가진 UI(나중에 지울 예정)")]
@@ -124,13 +123,12 @@ public class GameUIManager : MonoBehaviour
         deleteDataButton.onClick.RemoveListener(gameManager.DeleteData);
         jumpButton.onClick.RemoveListener(OnPlayerJump);
         jumpButton.onClick.RemoveListener(OnPlayerSlide);
-
     }
     /// <summary>
     /// 재시작 버튼을 누르면 작동하는 현재 씬을 다시 부르는 메서드
     /// </summary>
     void Retry()
-    { gameManager.OnClickRetry(gameSceneName);}
+    { gameManager.OnClickRetry(gameSceneName); }
     /// <summary>
     /// 점수 텍스트에 score를 띄움. 
     /// </summary>
@@ -159,7 +157,7 @@ public class GameUIManager : MonoBehaviour
     /// </summary>
     /// <param name="currentHp"></param>
     /// <param name="hp"></param>
-    internal void ShowHp(float currentHp,float hp)
+    internal void ShowHp(float currentHp, float hp)
     { hpBar.fillAmount = currentHp / hp; }
     /// <summary>
     /// 결과창의 별과 new표시를 감추는 메서드.
@@ -198,7 +196,7 @@ public class GameUIManager : MonoBehaviour
     /// </summary>
     internal void OnClickHome()
     {
-        if (gameManager.currentStage == GameStage.End)
+        if (gameManager.currentStage == GameStage.End || gameManager.currentStage == GameStage.Pause)
         {
             gameManager.SaveGame();
             HideUi();
@@ -220,6 +218,7 @@ public class GameUIManager : MonoBehaviour
 
     private void OnMobilePause()
     {
+        gameManager.currentStage = GameStage.Pause; //TODO:일시정지 매뉴가 안 떠서 임시로 넣어놨어요.
         if (player == null) return;
         pauseUi.SetActive(true);
         gameManager.ClickPause();
