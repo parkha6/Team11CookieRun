@@ -15,7 +15,7 @@ public class GameUIManager : MonoBehaviour
         scoreManager = ScoreManager.Instance;
         gameManager.AddStartScene(this);
         OnClickAddListeners();
-        gameManager.ResetValue();//TODO:임의로 이렇게 처리했는데 이러니까 재시작 했을때 키가 하나도 안 먹어요. 이건 hp랑 점수 리셋하는 메서드를 만들어서 건내주시면 금방 수정될 듯.
+        gameManager.ResetValue();//TODO:임의로 이렇게 처리했는데 이러니까 재시작 했을때 키가 하나도 안 먹어요.
         gameManager.StartGame();
     }
     #region debugUI
