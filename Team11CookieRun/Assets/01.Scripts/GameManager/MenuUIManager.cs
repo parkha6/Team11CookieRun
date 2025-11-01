@@ -12,6 +12,8 @@ public class MenuUIManager : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         scoreManager = ScoreManager.Instance;
+        if (Time.timeScale <= GmConst.stopTime)
+        {   gameManager.ManageTime(GmConst.runTime);}
         OnClickAddListeners();
     }
     [Tooltip("시작버튼을 누르면 이동하는 씬의 이름")]

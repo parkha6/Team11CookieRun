@@ -13,6 +13,7 @@ public class GameUIManager : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         scoreManager = ScoreManager.Instance;
+        gameManager.ManageTime(GmConst.runTime);
         gameManager.AddStartScene(this);
         OnClickAddListeners();
         gameManager.ResetValue();//TODO:임의로 이렇게 처리했는데 이러니까 재시작 했을때 키가 하나도 안 먹어요.

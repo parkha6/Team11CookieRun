@@ -140,7 +140,7 @@ public class GameManager : SingletonManager<GameManager>
     /// inputTime의 값에 맞춰서 시간을 조작한다.
     /// </summary>
     /// <param name="inputTime"></param>
-    void ManageTime(float inputTime)
+    internal void ManageTime(float inputTime)
     {
         if (inputTime < 0)
         { inputTime = 0; }
