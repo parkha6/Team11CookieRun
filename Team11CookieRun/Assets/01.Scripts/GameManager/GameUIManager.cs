@@ -7,6 +7,7 @@ public class GameUIManager : MonoBehaviour
     ScoreManager scoreManager;
     /// <summary>
     /// 매니저 인스턴스들을 등록하고 게임매니저에 자기 자신을 집어넣은 뒤 버튼을 구독하고 스타트 게임으로 변수를 바꿈.
+    /// 게임을 재시작했을때 여기서 세팅함.
     /// </summary>
     private void Start()
     { 
@@ -14,6 +15,8 @@ public class GameUIManager : MonoBehaviour
         scoreManager = ScoreManager.Instance;
         gameManager.AddStartScene(this);
         OnClickAddListeners();
+        gameManager.ResetValue();//TODO:임의로 이렇게 처리했는데 이러니까 재시작 했을때 키가 하나도 안 먹어요. 이건 다른 파트에서 처리해주셔야 될 듯.
+        gameManager.StartGame();
         gameManager.currentStage = GameStage.Start;
     }
     #region debugUI

@@ -31,27 +31,6 @@ public class GameManager : SingletonManager<GameManager>
         uiManager.LoadKey();
     }
     /// <summary>
-    /// 최초의 메인씬에서만 작동함.
-    /// </summary>
-    private void Start()//TODO: 씬 매니저로 이동시킨다.
-    {
-        switch (currentStage)
-        {
-            case GameStage.Waiting:
-                break;
-            case GameStage.Start:
-                if (player.Hp <= 0 || player.Score > 0)
-                { ResetValue(); }
-                StartGame();
-                break;
-            case GameStage.Pause:
-            case GameStage.End:
-            case GameStage.Unknown:
-            default:
-                break;
-        }
-    }
-    /// <summary>
     /// 게임 UI 매니저를 게임매니저에 넣기 위해 만든 함수.
     /// </summary>
     /// <param name="startScene"></param>
@@ -123,10 +102,14 @@ public class GameManager : SingletonManager<GameManager>
     }
     #endregion
     #region Utility
-    void ResetValue()
+    internal void ResetValue()
     {
-        player.Hp = player.MaxHp;
-        player.Score = GmConst.minScore;
+        if (player.Hp <= GmConst.dead )
+        { player.Hp = player.MaxHp; }
+        if (player.IsDie)
+        { player.IsDie = false; }
+        if (player.Score > 0)
+        { player.Score = GmConst.minScore; }
     }
     internal void MoveScene(string whichScene)
     { SceneManager.LoadScene(whichScene); }
