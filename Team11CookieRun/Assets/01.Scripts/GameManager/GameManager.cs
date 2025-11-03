@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 /// <summary>
@@ -16,8 +17,6 @@ public class GameManager : SingletonManager<GameManager>
     /// <summary>
     /// 게임의 전체적인 상태를 컨트롤하는 enum변수.
     /// </summary>
-    [Tooltip("메인씬을 다 안 만들었을때 Waiting에서 넘어갈 방법이 없어서 공개해 놓은 값")]
-    [SerializeField]
     internal GameStage currentStage = GameStage.Unknown;
     #region Other Manager
     /// <summary>
@@ -32,6 +31,10 @@ public class GameManager : SingletonManager<GameManager>
     /// 게임 UI매니저 넣는 변수
     /// </summary>
     GameUIManager gameUIManager;
+    /// <summary>
+    /// 게임 BGM매니저 넣는 변수
+    /// </summary>
+    GameBgmManager gameBgmManager;
     #endregion
     #region YouChan
     //Start부분
@@ -48,8 +51,7 @@ public class GameManager : SingletonManager<GameManager>
     /// </summary>
     protected override void Awake()
     {
-        scoreManager = ScoreManager.Instance;
-        //player = new Player();//TODO:게임매니저 클래스 테스트용입니다. 깃허브에 올릴땐 주석처리합니다. 
+        scoreManager = ScoreManager.Instance; 
         scoreManager.LoadKey();
     }
     /// <summary>
@@ -58,6 +60,9 @@ public class GameManager : SingletonManager<GameManager>
     /// <param name="startScene"></param>
     internal void AddStartScene(GameUIManager startScene)
     { gameUIManager = startScene; }
+
+    internal void AddGameBGM(GameBgmManager bgmManager)
+    { gameBgmManager = bgmManager; }
     /// <summary>
     /// 스위치 루프를 돌면서 currentStage의 값에 따라 업데이트를 돌린다. 
     /// Start는 각 씬의 UI매니저에 있습니다.
@@ -72,20 +77,44 @@ public class GameManager : SingletonManager<GameManager>
                 gameUIManager.ShowHp(player.Hp, player.MaxHp);
                 gameUIManager.ShowScore(player.Score);
                 if (player.IsDie)
-                { currentStage = GameStage.End; }
+                { currentStage = SetGameStage(GameStage.End); }
                 break;
             case GameStage.Pause:
-                ManageTime(GmConst.stopTime);
-                gameUIManager.ShowPauseUI();
                 break;
             case GameStage.End:
-                ManageTime(GmConst.stopTime);
-                gameUIManager.CompareScore(player.Score);
-                gameUIManager.ShowEndUI();
                 break;
             case GameStage.Unknown:
             default:
                 break;
+        }
+    }
+    /// <summary>
+    /// changeStage에 바꿀 스테이지를 넣으면 필수적인 세팅을 하고 스테이지를 반환한다. 
+    /// </summary>
+    /// <param name="changeStage"></param>
+    /// <returns></returns>
+    internal GameStage SetGameStage(GameStage changeStage)
+    {
+        switch (changeStage)
+        {
+            case GameStage.Waiting:
+                return GameStage.Waiting;
+            case GameStage.Start:
+                BgmSetting(gameBgmManager.stageBgm, true);
+                return GameStage.Start;
+            case GameStage.Pause:
+                ManageTime(GmConst.stopTime);
+                gameUIManager.ShowPauseUI();
+                return GameStage.Pause;
+            case GameStage.End:
+                BgmSetting(gameBgmManager.resultBgm, false);
+                ManageTime(GmConst.stopTime);
+                gameUIManager.CompareScore(player.Score);
+                gameUIManager.ShowEndUI();
+                return GameStage.End;
+            case GameStage.Unknown:
+            default:
+                return GameStage.Unknown;
         }
     }
     #endregion
@@ -95,9 +124,20 @@ public class GameManager : SingletonManager<GameManager>
     /// </summary>
     internal void StartGame()
     {
-        currentStage = GameStage.Start;
+        currentStage = SetGameStage(GameStage.Start);
         gameUIManager.HideUi();
         ManageTime(GmConst.runTime);
+    }
+    /// <summary>
+    /// clip에 원하는 음악을 넣고 isLoop에 루프를 할지 말지 bool 값을 입력하면 배경음악을 재생해준다.
+    /// </summary>
+    /// <param name="clip"></param>
+    /// <param name="isLoop"></param>
+    void BgmSetting(AudioClip clip,bool isLoop)
+    {
+        gameBgmManager.audioSource.clip = clip;
+        gameBgmManager.audioSource.Play();
+        gameBgmManager.audioSource.loop = isLoop;
     }
     #endregion
     #region PauseGame
@@ -109,7 +149,7 @@ public class GameManager : SingletonManager<GameManager>
     {
         if (currentStage != GameStage.End && currentStage != GameStage.Pause)
         {
-            currentStage = GameStage.Pause;
+            currentStage = SetGameStage(GameStage.Pause);
             IsPause = true;
         }
         else if (currentStage == GameStage.Pause)
@@ -208,12 +248,12 @@ public class GameManager : SingletonManager<GameManager>
     {
         if (IsPause)
         {
-            currentStage = GameStage.Start;
+            currentStage = SetGameStage(GameStage.Start);
             ResumeGame();
         }
         else
         {
-            currentStage = GameStage.Pause;
+            currentStage = SetGameStage(GameStage.Pause);
             PauseGame();
         }
     }
