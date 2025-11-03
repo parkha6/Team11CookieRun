@@ -3,8 +3,19 @@ using UnityEngine;
 using UnityEngine.UI;
 public class GameUIManager : MonoBehaviour
 {
+    /// <summary>
+    /// 게임매니저 넣는 변수
+    /// </summary>
     GameManager gameManager;
+    /// <summary>
+    /// 스코어 매니저 넣는 변수
+    /// </summary>
     ScoreManager scoreManager;
+    /// <summary>
+    /// 이미지 색을 바꾸기 위한 변수 녹색 : #356F34 노랑 :#E38F08 빨강:#BF0911
+    /// 더 스텍 참고해서 색이 서서히 변하게 해야지.
+    /// </summary>
+    Image hpBarImage;
     #region debugUI
     [Tooltip("데이터를 모두 지우는 버튼을 가진 UI(나중에 지울 예정)")]
     [SerializeField]
@@ -81,10 +92,10 @@ public class GameUIManager : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         scoreManager = ScoreManager.Instance;
+        hpBarImage = hpBar.GetComponent<Image>();
         gameManager.ManageTime(GmConst.runTime);
         gameManager.AddStartScene(this);
         OnClickAddListeners();
-        //gameManager.ResetValue();//TODO:임의로 이렇게 처리했는데 이러니까 재시작 했을때 키가 하나도 안 먹어요.
         gameManager.StartGame();
 #if UNITY_ANDROID || UNITY_IOS
         mobileObject.SetActive(true);
@@ -112,7 +123,6 @@ public class GameUIManager : MonoBehaviour
             { debugUI.SetActive(true); }
         }
         if (jumpButton != null) { jumpButton.onClick.AddListener(OnPlayerJump); }
-        //if (slideButton != null) { slideButton.onClick.AddListener(OnPlayerSlide);}//TODO:슬라이드 버튼이 아니라 점프 버튼에 넣어요?
     }
     /// <summary>
     /// 스크립트가 파괴되면 버튼 구독을 취소함
