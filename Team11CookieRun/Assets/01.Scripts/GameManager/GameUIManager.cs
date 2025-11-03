@@ -136,6 +136,9 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private Button jumpButton;
     [SerializeField] private Button slideButton;
     #endregion
+    #region Item Buff
+    [SerializeField] private Transform buffTransform;
+    #endregion
     /// <summary>
     /// 매니저 인스턴스들을 등록하고 게임매니저에 자기 자신을 집어넣은 뒤 버튼을 구독하고 스타트 게임으로 변수를 바꿈.
     /// 게임을 재시작했을때 여기서 세팅함.
@@ -358,4 +361,9 @@ public class GameUIManager : MonoBehaviour
 
     public void OnPauseUi() => pauseUi.SetActive(true);
     public void OffPauseUi() => pauseUi.SetActive(false);
+
+    public void OnBuffUi(GameObject buff)
+    {
+        Instantiate(buff, buffTransform);
+    }
 }
