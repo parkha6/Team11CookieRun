@@ -304,6 +304,7 @@ public class Player : MonoBehaviour
         if (invicibleBuffCoroutine != null)
         {
             StopCoroutine(invicibleBuffCoroutine);
+            playerSpriteRenderer.color = Color.white;
             invicibleBuffCoroutine = null;
         }
         invicibleBuffCoroutine = StartCoroutine(PlayerInvincibility(value));
@@ -312,11 +313,12 @@ public class Player : MonoBehaviour
     IEnumerator PlayerInvincibility(float duration)
     {
         isInvincible = true;
+        Color color = playerSpriteRenderer.color;
         playerSpriteRenderer.color = Color.yellow;
         yield return new WaitForSeconds(duration);
         isInvincible = false;
         invicibleBuffCoroutine = null;
-        playerSpriteRenderer.color = Color.white;
+        playerSpriteRenderer.color = color;
     }
 
     public void ApplySlow(float value, float duration)
@@ -324,6 +326,7 @@ public class Player : MonoBehaviour
         if (slowBuffCoroutine != null)
         {
             StopCoroutine(slowBuffCoroutine);
+            Speed += value;
             slowBuffCoroutine = null;
         }
         slowBuffCoroutine = StartCoroutine(SlowPlayer(value, duration));

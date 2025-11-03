@@ -363,7 +363,7 @@ MonoBehaviour:
   mobileObject: {fileID: 139663666113692475}
   jumpButton: {fileID: 8245393914278524830}
   slideButton: {fileID: 7644400215238832648}
-  buffTransform: {fileID: 0}
+  buffTransform: {fileID: 2579004676985050864}
 --- !u!1 &1388880953032426668
 GameObject:
   m_ObjectHideFlags: 0
