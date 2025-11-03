@@ -7,6 +7,14 @@ public class Item : MonoBehaviour
     public enum ItemType { Coin, Heal, Invincible, Slow }
     public ItemType itemType;
 
+    public enum CoinSubType
+    {
+        Normal,
+        Special1,
+        Special2,
+    }
+    public CoinSubType coinSubType = CoinSubType.Normal;
+
     //아이템 수치 설정
     public float value = 0f;     // 코인 점수 or 회복량(%)
     public float duration = 5f;  // 무적 지속 시간
