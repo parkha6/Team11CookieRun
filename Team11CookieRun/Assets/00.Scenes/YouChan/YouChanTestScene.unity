@@ -970,7 +970,7 @@ MonoBehaviour:
   gameCanvasManager: {fileID: 262380908}
   camera: {fileID: 1571722150}
   mapPieceManager: {fileID: 875382610}
-  timeManager: {fileID: 0}
+  timeManager: {fileID: 776750554}
   startPos: {x: -8, y: -1.328871, z: 0}
 --- !u!1 &1571722145
 GameObject:
