@@ -126,6 +126,10 @@ public class GameManager : SingletonManager<GameManager>
     }
     #endregion
     #region EndGame
+    /// <summary>
+    /// Retry키를 누르면 작동하는 메서드
+    /// </summary>
+    /// <param name="sceneName"></param>
     internal void OnClickRetry(string sceneName)
     {
         if (currentStage == GameStage.End)
@@ -138,8 +142,7 @@ public class GameManager : SingletonManager<GameManager>
     #endregion
     #region Utility
     /// <summary>
-    /// HP를 초기화하고 IsDie bool을 풀고 현재 점수를 0으로 만드는 변수.
-    /// 근데 제가 임의로 이러니까 조작키가 안 먹어서 유찬님이 만들어주시는게 좋을듯.
+    /// 재시작할때 bool값 다시 세팅.
     /// </summary>
     internal void ResetValue()
     {
@@ -175,7 +178,7 @@ public class GameManager : SingletonManager<GameManager>
     /// <summary>
     /// 메모리에 있는 데이터를 저장한 후 에디터면 에디터를 종료하고 본게임이면 본게임을 종료한다.
     /// </summary>
-    internal void QuitGame()//게임 종료 함수
+    internal void QuitGame()
     {
         SaveGame();
 #if UNITY_EDITOR
