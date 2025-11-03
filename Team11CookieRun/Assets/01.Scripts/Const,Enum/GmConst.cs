@@ -25,6 +25,18 @@ public class GmConst
     /// </summary>
     internal const float gameSceneMaxHeightRatio = 192f / 647f;
     /// <summary>
+    /// 알파 투명 값
+    /// </summary>
+    internal const byte invisibleAlphaRatio = 0;
+    /// <summary>
+    /// 알파 불투명 값
+    /// </summary>
+    internal const byte visibleAlphaRatio = 1;
+    /// <summary>
+    ///배경이미지의 알파값 증가 수치
+    /// </summary>
+    internal const float changeAlphaRatio = 0.01f;
+    /// <summary>
     /// Expand가 아닐시 메인화면의 매치 비율.
     /// </summary>
     internal const float mainMenuMatchRatio = 0.863f;
@@ -60,4 +72,8 @@ public class GmConst
     /// 시간이 재생되는 숫자 값
     /// </summary>
     internal const byte runTime = 1;
+    /// <summary>
+    /// 타이머를 리셋하는 값
+    /// </summary>
+    internal const byte resetTimer = 0;
 }
