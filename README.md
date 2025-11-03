@@ -22,5 +22,6 @@ UI2 : [Fantasy Minimal Pixel Art GUI by etahoshi](https://etahoshi.itch.io/minim
 맵타일셋 : [Free Platformer Game Tileset Pixel Art](https://craftpix.net/freebies/free-platformer-game-tileset-pixel-art/)  
 체력바: [Basic Pixel Health bar and Scroll bar](https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar)  
 아이템 이미지 : [Survivalist 2D - The Ultimate Pack by ChahatKhandelwal](https://chahatkhandelwal.itch.io/survivalist-2d-the-ultimate-pack)    
+돌 에셋 : [Free Rocks Pixel Art Asset Pack](https://craftpix.net/freebies/free-rocks-pixel-art-asset-pack/)
 메인화면 BGM : [Don’t Give Up The Fight - 김성원](https://gongu.copyright.or.kr/gongu/wrt/wrt/view.do?wrtSn=13073685&menuNo=200020)  
 
