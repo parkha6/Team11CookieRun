@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 3
-  value: 50
+  value: 1
   duration: 5
   coinSound: {fileID: 0}
   healSound: {fileID: 0}
