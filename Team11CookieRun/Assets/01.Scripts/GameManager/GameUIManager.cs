@@ -304,7 +304,7 @@ public class GameUIManager : MonoBehaviour
         {
             gameManager.SaveGame();
             HideUi();
-            gameManager.currentStage = GameStage.Waiting;
+            gameManager.currentStage = gameManager.SetGameStage(GameStage.Waiting);
             gameManager.MoveScene(menuSceneName);
         }
     }
@@ -343,7 +343,7 @@ public class GameUIManager : MonoBehaviour
 
     private void OnMobilePause()
     {
-        gameManager.currentStage = GameStage.Pause; //TODO:일시정지 매뉴가 안 떠서 임시로 넣어놨어요.
+        gameManager.currentStage = gameManager.SetGameStage(GameStage.Pause);
         if (player == null) return;
         pauseUi.SetActive(true);
         gameManager.ClickPause();

@@ -173,7 +173,7 @@ public class Player : MonoBehaviour
     IEnumerator Fall()
     {
         yield return fallWait;
-        gameManager.currentStage = GameStage.End;
+        gameManager.currentStage = gameManager.SetGameStage(GameStage.End);
         Destroy(this.gameObject);
     }
 
