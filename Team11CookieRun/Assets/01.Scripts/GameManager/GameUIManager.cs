@@ -224,7 +224,6 @@ public class GameUIManager : MonoBehaviour
     /// <param name="hp"></param>
     internal void ShowHp(float currentHp, float hp)
     {
-        Debug.Log("왜 난리임?");
         float hpRatio = currentHp / hp;
         hpBar.fillAmount = hpRatio;
         float normalizedRatio;

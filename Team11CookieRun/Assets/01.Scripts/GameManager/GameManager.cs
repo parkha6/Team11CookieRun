@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -48,6 +49,7 @@ public class GameManager : SingletonManager<GameManager>
     protected override void Awake()
     {
         scoreManager = ScoreManager.Instance;
+        //player = new Player();//TODO:게임매니저 클래스 테스트용입니다. 깃허브에 올릴땐 주석처리합니다. 
         scoreManager.LoadKey();
     }
     /// <summary>
