@@ -1,6 +1,9 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+/// <summary>
+/// 게임의 재생단계를 관리하는 클래스. (예시 : 메인화면>게임시작>일시정지>게임결과...)
+/// </summary>
 public class GameManager : SingletonManager<GameManager>
 {
     /// <summary>

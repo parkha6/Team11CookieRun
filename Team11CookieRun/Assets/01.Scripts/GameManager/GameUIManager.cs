@@ -2,6 +2,9 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+/// <summary>
+/// 게임씬에서 재생되는 클래스. 게임씬이 넘어가면 사라짐.
+/// </summary>
 public class GameUIManager : MonoBehaviour
 {
     /// <summary>
@@ -34,116 +37,98 @@ public class GameUIManager : MonoBehaviour
     /// 데이터를 모두 지우는 버튼을 가진 UI(나중에 지울 예정)
     /// </summary>
     [Tooltip("데이터를 모두 지우는 버튼을 가진 UI(나중에 지울 예정)")]
-    [SerializeField]
-    internal GameObject debugUI;
+    [SerializeField] internal GameObject debugUI;
     /// <summary>
     /// 데이터를 모두 지우는 버튼(나중에 지울 예정)
     /// </summary>
     [Tooltip("데이터를 모두 지우는 버튼(나중에 지울 예정)")]
-    [SerializeField]
-    internal Button deleteDataButton;
+    [SerializeField] internal Button deleteDataButton;
     #endregion
     /// <summary>
     /// 재도전 버튼을 누르면 이동하는 게임 재생씬의 이름
     /// </summary>
     #region DefaultUI
     [Tooltip("재도전 버튼을 누르면 이동하는 게임 재생씬의 이름")]
-    [SerializeField]
-    internal string gameSceneName;
+    [SerializeField] internal string gameSceneName;
     /// <summary>
     /// 홈 버튼을 누르면 가는 메뉴 씬의 이름
     /// </summary>
     [Tooltip("홈 버튼을 누르면 가는 메뉴 씬의 이름")]
-    [SerializeField]
-    internal string menuSceneName;
+    [SerializeField] internal string menuSceneName;
     /// <summary>
     /// 게임 상단에 표시되는 체력 바
     /// </summary>
     [Tooltip("게임 상단에 표시되는 체력 바")]
-    [SerializeField]
-    internal Image hpBar;
+    [SerializeField] internal Image hpBar;
     /// <summary>
     /// 게임 상단에 표시되는 점수 바
     /// </summary>
     [Tooltip("게임 상단에 표시되는 점수 바")]
-    [SerializeField]
-    internal TextMeshProUGUI scoreText;
+    [SerializeField] internal TextMeshProUGUI scoreText;
     #endregion
     #region PauseUI
     /// <summary>
     /// 화면 우측상단의 옵션 버튼을 누르면 나오는 일시정지 UI
     /// </summary>
     [Tooltip("화면 우측상단의 옵션 버튼을 누르면 나오는 일시정지 UI")]
-    [SerializeField]
-    internal GameObject pauseUi;
+    [SerializeField] internal GameObject pauseUi;
     /// <summary>
     /// 화면 우측상단에 표시 될 옵션버튼
     /// </summary>
     [Tooltip("화면 우측상단에 표시 될 옵션버튼")]
-    [SerializeField]
-    internal Button pauseOptionButton;
+    [SerializeField] internal Button pauseOptionButton;
     /// <summary>
     /// 일시정지 매뉴에 나오는 홈 버튼
     /// </summary>
     [Tooltip("일시정지 매뉴에 나오는 홈 버튼")]
-    [SerializeField]
-    internal Button pauseHomeButton;
+    [SerializeField] internal Button pauseHomeButton;
     /// <summary>
     /// 일시정지 매뉴에 나오는 세팅 버튼
     /// </summary>
     [Tooltip("일시정지 매뉴에 나오는 세팅 버튼")]
-    [SerializeField]
-    internal Button pauseSettingButton;
+    [SerializeField] internal Button pauseSettingButton;
     /// <summary>
     /// 일시정지 매뉴에 나오는 Back 버튼
     /// </summary>
     [Tooltip("일시정지 매뉴에 나오는 Back 버튼")]
-    [SerializeField]
-    internal Button pauseBackButton;
+    [SerializeField] internal Button pauseBackButton;
     #endregion
     #region EndUI
     /// <summary>
     /// 결과창 UI
     /// </summary>
     [Tooltip("결과창 UI")]
-    [SerializeField]
-    internal GameObject endUi;
+    [SerializeField] internal GameObject endUi;
     /// <summary>
     /// 결과창에 표시되는 점수 텍스트
     /// </summary>
     [Tooltip("결과창에 표시되는 점수 텍스트")]
-    [SerializeField]
-    internal TextMeshProUGUI finalScoreText;
+    [SerializeField] internal TextMeshProUGUI finalScoreText;
     /// <summary>
     /// 결과창에 표시되는 최고 점수 텍스트
     /// </summary>
     [Tooltip("결과창에 표시되는 최고 점수 텍스트")]
-    [SerializeField]
-    internal TextMeshProUGUI highscoreText;
+    [SerializeField] internal TextMeshProUGUI highscoreText;
     /// <summary>
     /// 최고 점수를 갱신하면 나오는 별 이미지
     /// </summary>
     [Tooltip("최고 점수를 갱신하면 나오는 별 이미지")]
-    [SerializeField]
-    internal GameObject star;
+    [SerializeField] internal GameObject star;
     /// <summary>
     /// 최고 점수를 갱신하면 최고점수 옆에 나오는 New 버튼
     /// </summary>
     [Tooltip("최고 점수를 갱신하면 최고점수 옆에 나오는 New 버튼")]
-    [SerializeField]
-    internal GameObject newText;
+    [SerializeField]internal GameObject newText;
     /// <summary>
     /// 결과창에 나오는 홈 버튼
     /// </summary>
     [Tooltip("결과창에 나오는 홈 버튼")]
-    [SerializeField]
-    internal Button endHomeButton;
+    [SerializeField]internal Button endHomeButton;
     /// <summary>
     /// 결과창에 나오는 재시작 버튼
     /// </summary>
     [Tooltip("결과창에 나오는 재시작 버튼")]
-    [SerializeField]
-    internal Button endRetryButton;
+    [SerializeField]internal Button endRetryButton;
     #endregion
     #region Mobile
     public Player player;
@@ -239,6 +224,7 @@ public class GameUIManager : MonoBehaviour
     /// <param name="hp"></param>
     internal void ShowHp(float currentHp, float hp)
     {
+        Debug.Log("왜 난리임?");
         float hpRatio = currentHp / hp;
         hpBar.fillAmount = hpRatio;
         float normalizedRatio;

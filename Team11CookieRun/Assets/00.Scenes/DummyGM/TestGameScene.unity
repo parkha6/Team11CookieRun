@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb308926025b0774d8b0742920935bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!4 &940905859
 Transform:
   m_ObjectHideFlags: 0
@@ -791,6 +792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugMode: 0
   currentStage: 4
+  player: {fileID: 0}
 --- !u!4 &1491788134
 Transform:
   m_ObjectHideFlags: 0
@@ -1060,15 +1062,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4076885495094370537, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
       propertyPath: m_Color.b
-      value: 0.0636108
+      value: 0.20392157
       objectReference: {fileID: 0}
     - target: {fileID: 4076885495094370537, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
       propertyPath: m_Color.g
-      value: 0.03163936
+      value: 0.43529412
       objectReference: {fileID: 0}
     - target: {fileID: 4076885495094370537, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
       propertyPath: m_Color.r
-      value: 0.745283
+      value: 0.20784314
       objectReference: {fileID: 0}
     - target: {fileID: 4942851873096047289, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
       propertyPath: m_LocalPosition.x
