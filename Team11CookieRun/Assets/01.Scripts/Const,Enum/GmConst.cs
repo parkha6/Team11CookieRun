@@ -13,6 +13,34 @@ public class GmConst
     /// </summary>
     internal const string highScoreKey = "High Score";
     /// <summary>
+    /// 메인화면의 최대 화면비
+    /// </summary>
+    internal const float mainMenuMaxRatio = 341f / 752f;
+    /// <summary>
+    /// 게임화면의 최대 가로 화면비
+    /// </summary>
+    internal const float gameSceneMaxWideRatio = 1210f / 144f;
+    /// <summary>
+    /// 게임화면의 최대 세로 화면비
+    /// </summary>
+    internal const float gameSceneMaxHeightRatio = 192f / 647f;
+    /// <summary>
+    /// Expand가 아닐시 메인화면의 매치 비율.
+    /// </summary>
+    internal const float mainMenuMatchRatio = 0.863f;
+    /// <summary>
+    /// Expand가 아닐시 게임화면의 매치 비율.
+    /// </summary>
+    internal const float gameSceneMatchRatio = 0.367f;
+    /// <summary>
+    /// 최대 비율
+    /// </summary>
+    internal const byte maxRatio = 1;
+    /// <summary>
+    /// 최소 비율
+    /// </summary>
+    internal const byte minRatio = 0;
+    /// <summary>
     /// 최소점수
     /// </summary>
     internal const byte minScore = 0;
