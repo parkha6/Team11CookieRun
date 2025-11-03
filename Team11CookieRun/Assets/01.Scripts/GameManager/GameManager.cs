@@ -108,7 +108,7 @@ public class GameManager : SingletonManager<GameManager>
                 return GameStage.Pause;
             case GameStage.End:
                 BgmSetting(gameBgmManager.resultBgm, false);
-                ManageTime(GmConst.stopTime);
+                //ManageTime(GmConst.stopTime);
                 gameUIManager.CompareScore(player.Score);
                 gameUIManager.ShowEndUI();
                 return GameStage.End;
