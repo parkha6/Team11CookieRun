@@ -1075,6 +1075,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 604884295932128501, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3063137444510910194, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
       propertyPath: gameSceneName
       value: TestGameScene
@@ -1138,6 +1142,10 @@ PrefabInstance:
     - target: {fileID: 4942851873096047289, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396620119433536670, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7019999904471415252, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
       propertyPath: m_AnchoredPosition.x
