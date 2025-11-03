@@ -254,5 +254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2daf376b628f364fad7dd48c5eb7c1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 5
   coolTimeImage: {fileID: 832410745164994473}
+  duration: 5
+  type: 3

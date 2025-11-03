@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -67,7 +68,8 @@ public class Player : MonoBehaviour
 
     //플레이어 버프 관련
     public Dictionary<Item.ItemType, BuffUi> bufflist = new Dictionary<Item.ItemType, BuffUi>();
-
+    private Coroutine slowBuffCoroutine;
+    private Coroutine invicibleBuffCoroutine;
 
     #region Property
     public Animator PlayerAnim { get { return playerAnim; } set { playerAnim = value; } }
@@ -299,22 +301,35 @@ public class Player : MonoBehaviour
 
     public void ActivateInvincibility(float value)
     {
-        StartCoroutine(PlayerInvincibility(value));
+        if (invicibleBuffCoroutine != null)
+        {
+            StopCoroutine(invicibleBuffCoroutine);
+            playerSpriteRenderer.color = Color.white;
+            invicibleBuffCoroutine = null;
+        }
+        invicibleBuffCoroutine = StartCoroutine(PlayerInvincibility(value));
     }
 
     IEnumerator PlayerInvincibility(float duration)
     {
         isInvincible = true;
-        Color playerColor = playerSpriteRenderer.color;
+        Color color = playerSpriteRenderer.color;
         playerSpriteRenderer.color = Color.yellow;
         yield return new WaitForSeconds(duration);
         isInvincible = false;
-        playerSpriteRenderer.color = playerColor;
+        invicibleBuffCoroutine = null;
+        playerSpriteRenderer.color = color;
     }
 
     public void ApplySlow(float value, float duration)
     {
-        StartCoroutine(SlowPlayer(value, duration));
+        if (slowBuffCoroutine != null)
+        {
+            StopCoroutine(slowBuffCoroutine);
+            Speed += value;
+            slowBuffCoroutine = null;
+        }
+        slowBuffCoroutine = StartCoroutine(SlowPlayer(value, duration));
     }
 
     IEnumerator SlowPlayer(float value, float duration)
@@ -322,7 +337,10 @@ public class Player : MonoBehaviour
         Speed -= value;
         yield return new WaitForSeconds(duration);
         Speed += value;
+        slowBuffCoroutine = null;
     }
+
+    public GameObject GetBuffUi(GameObject buff) => gameCanvasManager.OnBuffUi(buff);
 
     public void ObtainBuffItem(GameObject obj)
     {
@@ -335,7 +353,6 @@ public class Player : MonoBehaviour
                 bufflist.Remove(buff.type);
             }
             bufflist.Add(buff.type, buff);
-            gameCanvasManager.OnBuffUi(obj);
         }
     }
     #endregion

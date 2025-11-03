@@ -362,8 +362,8 @@ public class GameUIManager : MonoBehaviour
     public void OnPauseUi() => pauseUi.SetActive(true);
     public void OffPauseUi() => pauseUi.SetActive(false);
 
-    public void OnBuffUi(GameObject buff)
+    public GameObject OnBuffUi(GameObject buff)
     {
-        Instantiate(buff, buffTransform);
+        return Instantiate(buff, buffTransform);
     }
 }
