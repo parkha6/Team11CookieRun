@@ -110,8 +110,13 @@ public class GameUIManager : MonoBehaviour
         { pauseOptionButton.onClick.AddListener(OnMobilePause); }
         if (pauseHomeButton != null)
         { pauseHomeButton.onClick.AddListener(OnClickHome); }
+#if UNITY_ANDROID || UNITY_IOS
+        if (pauseBackButton != null)
+        { pauseBackButton.onClick.AddListener(OffMobilePause); }
+#else
         if (pauseBackButton != null)
         { pauseBackButton.onClick.AddListener(gameManager.OnClickExitPause); }
+#endif
         if (endHomeButton != null)
         { endHomeButton.onClick.AddListener(OnClickHome); }
         if (endRetryButton != null)
@@ -131,7 +136,11 @@ public class GameUIManager : MonoBehaviour
     {
         pauseOptionButton.onClick.RemoveListener(OnMobilePause);
         pauseHomeButton.onClick.RemoveListener(OnClickHome);
+#if UNITY_ANDROID || UNITY_IOS
+        { pauseBackButton.onClick.RemoveListener(OffMobilePause); }
+#else
         pauseBackButton.onClick.RemoveListener(gameManager.OnClickExitPause);
+#endif
         endHomeButton.onClick.RemoveListener(OnClickHome);
         endRetryButton.onClick.AddListener(Retry);
         deleteDataButton.onClick.RemoveListener(gameManager.DeleteData);

@@ -116,6 +116,7 @@ public class GameManager : SingletonManager<GameManager>
     internal void OnClickExitPause()
     {
         IsPause = false;
+        player.PausePlayer();
         StartGame();
     }
     #endregion
@@ -125,12 +126,21 @@ public class GameManager : SingletonManager<GameManager>
         if (currentStage == GameStage.End)
         {
             SaveGame();
-            //ResetValue();
+            ResetValue();
             MoveScene(sceneName);
         }
     }
     #endregion
     #region Utility
+    /// <summary>
+    /// HP를 초기화하고 IsDie bool을 풀고 현재 점수를 0으로 만드는 변수.
+    /// 근데 제가 임의로 이러니까 조작키가 안 먹어서 유찬님이 만들어주시는게 좋을듯.
+    /// </summary>
+    internal void ResetValue()
+    {
+        IsStart = false;
+        IsPause = false;
+    }
     /// <summary>
     /// whichScene에 입력된 string값이랑 같은 제목의 씬으로 이동하는 함수.
     /// </summary>
@@ -189,9 +199,15 @@ public class GameManager : SingletonManager<GameManager>
     public void ClickPause()
     {
         if (IsPause)
+        {
+            currentStage = GameStage.Start;
             ResumeGame();
+        }
         else
+        {
+            currentStage = GameStage.Pause;
             PauseGame();
+        }
     }
     #endregion
 }
