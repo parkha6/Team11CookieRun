@@ -104,13 +104,25 @@ public class Player : MonoBehaviour
     {
         playerInputManager = PlayerInputManager.Instance;
         gameManager = GameManager.Instance;
-        playerInputManager.OnJump += () => IsJump = true;
-        playerInputManager.OnSlideStart += () => IsSlide = true;
-        playerInputManager.OnSlideEnd += () => IsSlide = false;
+        playerInputManager.OnJump += HandleJump;
+        playerInputManager.OnSlideStart += HandleSlide;
+        playerInputManager.OnSlideEnd += HandleSlideUp;
         playerInputManager.OnPause += PausePlayer;
 
         ChangeState(idleState);
     }
+
+    private void OnDisable()
+    {
+        playerInputManager.OnJump -= HandleJump;
+        playerInputManager.OnSlideStart -= HandleSlide;
+        playerInputManager.OnSlideEnd -= HandleSlideUp;
+        playerInputManager.OnPause -= PausePlayer;
+    }
+
+    private void HandleJump() => IsJump = true;
+    private void HandleSlide() => IsSlide = true;
+    private void HandleSlideUp() => IsSlide = false;
 
     public void InitCanvasManager(GameUIManager scm)
     {
@@ -158,6 +170,11 @@ public class Player : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+
+    public void SpeedUp(float value)
+    {
+        Speed += value;
+    }
 
     /// <summary>
     /// 플레이어 일시정지

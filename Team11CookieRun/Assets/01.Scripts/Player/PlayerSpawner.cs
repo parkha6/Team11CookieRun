@@ -8,6 +8,7 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField] GameUIManager gameCanvasManager;
     [SerializeField] FollowCamera camera;
     [SerializeField] MapPieceManager mapPieceManager;
+    [SerializeField] TimeManager timeManager;
     [SerializeField] Vector3 startPos;
     void Awake()
     {
@@ -25,6 +26,7 @@ public class PlayerSpawner : MonoBehaviour
         gameCanvasManager.player = player;
         GameManager.Instance.player = player;
         PlayerInputManager.Instance.player = player;
+        timeManager.player = player;
         camera.target = player.transform;
         mapPieceManager._playerTransform = player.transform;
     }

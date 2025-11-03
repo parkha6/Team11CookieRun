@@ -25,7 +25,6 @@ public class PlayerInputManager : SingletonManager<PlayerInputManager>
         playerControll = new PlayerControll();
         gameManager = GameManager.Instance;
         InitInputAction();
-        EnableInput();
     }
     private void OnEnable()
     {
@@ -37,11 +36,11 @@ public class PlayerInputManager : SingletonManager<PlayerInputManager>
 
     private void OnDisable()
     {
-        jumpAction.performed -= OnJumpPerformed;
+        /*jumpAction.performed -= OnJumpPerformed;
         slideAction.performed -= OnSlidePerformed;
         slideAction.canceled -= OnSlideCanceled;
         pauseAction.performed -= OnPausePerformed;
-        DisableInput();
+        DisableInput();*/
     }
 
     private void InitInputAction()
