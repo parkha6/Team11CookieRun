@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 1
+  coinSubType: 0
   value: 60
   duration: 0
   coinSound: {fileID: 0}
@@ -111,6 +112,7 @@ MonoBehaviour:
   healVolume: 1
   invincibleVolume: 1
   slowVolume: 1
+  buffUi: {fileID: 0}
 --- !u!50 &7732887414368401646
 Rigidbody2D:
   serializedVersion: 4
