@@ -24,8 +24,11 @@ public class MoveBackground : MonoBehaviour
     { savePosition = inputChanger.transform.localPosition; }
     private void Update()
     {
-        inputChanger.transform.localPosition += Vector3.left * speed * Time.deltaTime;
-        if (inputChanger.transform.localPosition.x < savePosition.x - imageWide)
-        { inputChanger.transform.localPosition = savePosition; }
+        if (GameManager.Instance.currentStage != GameStage.End && GameManager.Instance.currentStage != GameStage.Pause)
+        {
+            inputChanger.transform.localPosition += Vector3.left * speed * Time.deltaTime;
+            if (inputChanger.transform.localPosition.x < savePosition.x - imageWide)
+            { inputChanger.transform.localPosition = savePosition; }
+        }
     }
 }
