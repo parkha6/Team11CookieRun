@@ -20,13 +20,12 @@ public class MoveBackground : MonoBehaviour
     /// 초기 위치 저장 
     /// </summary>
     Vector3 savePosition;
-
     private void Start()
-    { savePosition = inputChanger.transform.position; }
+    { savePosition = inputChanger.transform.localPosition; }
     private void Update()
     {
-        inputChanger.transform.position += Vector3.left * speed * Time.deltaTime;
-        if (inputChanger.transform.position.x > savePosition.x + imageWide)
-        { inputChanger.transform.position = savePosition; }
+        inputChanger.transform.localPosition += Vector3.left * speed * Time.deltaTime;
+        if (inputChanger.transform.localPosition.x < savePosition.x - imageWide)
+        { inputChanger.transform.localPosition = savePosition; }
     }
 }
