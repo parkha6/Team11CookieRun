@@ -111,6 +111,7 @@ MonoBehaviour:
   healVolume: 1
   invincibleVolume: 1
   slowVolume: 1
+  buffUi: {fileID: 8488537874920015217, guid: 951bf0f618de1784db64199014a722b7, type: 3}
 --- !u!50 &6615006819523393867
 Rigidbody2D:
   serializedVersion: 4
