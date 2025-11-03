@@ -7,6 +7,8 @@ public class Obstacle : MonoBehaviour
     
     public int damage = 10; // 장애물 충돌시 피해량
     public ObstacleType type = ObstacleType.Spike_Under;
+    public float value = 0f;
+    public float duration = 5f;
 
     private Collider2D _collider;
 
@@ -24,17 +26,23 @@ public class Obstacle : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
-        /*플레이어와 충돌 했을 때
-            플레이어의 체력이 감소하는 함수(아마 플레이어 클래스 내부에 존재할 듯)*/
         if(collider.CompareTag("Player"))
         {
             Player player = collider.GetComponent<Player>();
             if(player.IsInvincible == false)
             {
+                ApplyEffect(player);
                 player.TakeDamage(damage);
             }
         }
     }
 
-
+    void ApplyEffect(Player player)
+    {
+        switch (type)
+        {
+            case ObstacleType.Drone: player.ApplySlow(value, duration);
+                break;
+        }
+    }
 }
