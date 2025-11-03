@@ -7,5 +7,7 @@ public enum MapType
     Forest_Cave,
     Forest_MonFlower,
     Forest_ManySpike,
+    Forest_Dog,
+    Forest_Drone,
     // 등등
 }

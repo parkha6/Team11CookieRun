@@ -513,10 +513,16 @@ MonoBehaviour:
     weight: 5
   - type: 5
     prefab: {fileID: 5099117570177420883, guid: 56b71f6b2b56ff64785d76a6669039ad, type: 3}
-    weight: 5
+    weight: 1
   - type: 6
     prefab: {fileID: 2775177292282695020, guid: f87615b23f48d924f8e94eeb5903ac2d, type: 3}
-    weight: 10
+    weight: 2
+  - type: 7
+    prefab: {fileID: 2061949339855918407, guid: 0d6522e0782a6a347a3fdfc1e8fb29c0, type: 3}
+    weight: 5
+  - type: 8
+    prefab: {fileID: 4965010902715261555, guid: 74898f04ea2d6474184c8684faf0f7d1, type: 3}
+    weight: 4
   _playerTransform: {fileID: 1423640710}
   _initialPieceCount: 5
   _pieceSpawnAheadDistance: 50
@@ -916,6 +922,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8723124046811488542, guid: 2586752cfc7b96d48a164388b405ffd5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8837980590763444107, guid: 2586752cfc7b96d48a164388b405ffd5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8
@@ -955,6 +965,18 @@ PrefabInstance:
     - target: {fileID: 8837980590763444107, guid: 2586752cfc7b96d48a164388b405ffd5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197252719727384305, guid: 2586752cfc7b96d48a164388b405ffd5, type: 3}
+      propertyPath: m_Size.y
+      value: 1.2653748
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197252719727384305, guid: 2586752cfc7b96d48a164388b405ffd5, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.02000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197252719727384305, guid: 2586752cfc7b96d48a164388b405ffd5, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.09354752
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1169,6 +1191,10 @@ MonoBehaviour:
     prefab: {fileID: 4061145330091336171, guid: cac4bb7aeb495ff43b33256c253ef87d, type: 3}
   - type: 2
     prefab: {fileID: 8397607199377882671, guid: e73b08aeea7a17a47876208f35a1814f, type: 3}
+  - type: 3
+    prefab: {fileID: 3458790706624094593, guid: 938e210e7c6778544b5be884ac9a5f3b, type: 3}
+  - type: 4
+    prefab: {fileID: 7902879547274952643, guid: 8ad72026df88cdd428b9f684e702110f, type: 3}
   _initialPoolSizePerType: 5
 --- !u!1 &1805217065
 GameObject:
