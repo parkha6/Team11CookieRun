@@ -2524,7 +2524,7 @@ MonoBehaviour:
   _obstacleRules:
   - spawnChance: 0.886
     obstacleType: 1
-    minObstaclesToSpawn: 1
+    minObstaclesToSpawn: 2
     maxObstaclesToSpawn: 7
   _coinSpawnPoints:
   - {fileID: 4049231164508317347}

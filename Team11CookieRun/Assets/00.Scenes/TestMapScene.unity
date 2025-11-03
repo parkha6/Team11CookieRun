@@ -505,9 +505,9 @@ MonoBehaviour:
   - type: 1
     prefab: {fileID: 8686860405996717690, guid: fd93b5334b1a1e040b8eb0e2e32355aa, type: 3}
     weight: 5
-  - type: 3
+  - type: 2
     prefab: {fileID: 6635736585149979701, guid: eb680e38603339e42a483c86b07cd44d, type: 3}
-    weight: 5
+    weight: 10
   - type: 4
     prefab: {fileID: 6521932809043038622, guid: dc16c72e9327f7143862700c06cf6dc8, type: 3}
     weight: 5
@@ -536,6 +536,22 @@ MonoBehaviour:
   - itemType: 3
     spawnChance: 0.5
   _ItemSpawnChance: 0.3
+  _coinRules:
+  - coinType: 0
+    coinPrefab:
+      type: 0
+      prefab: {fileID: 7270365921373334467, guid: b16608215b142014da434f004b479f59, type: 3}
+    spawnChance: 1
+  - coinType: 1
+    coinPrefab:
+      type: 0
+      prefab: {fileID: 2584998246366536847, guid: 30627d1df4925794b8d5cd43e3e95639, type: 3}
+    spawnChance: 0.1
+  - coinType: 2
+    coinPrefab:
+      type: 0
+      prefab: {fileID: 7102715061209053898, guid: f7e39b1dfd06f8a4e846bb359f17c5cf, type: 3}
+    spawnChance: 0.01
 --- !u!1 &1093874068
 GameObject:
   m_ObjectHideFlags: 0
