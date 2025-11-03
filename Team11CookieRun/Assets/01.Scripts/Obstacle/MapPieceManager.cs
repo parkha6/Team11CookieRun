@@ -40,7 +40,8 @@ public class MapPieceManager : MonoBehaviour
 
     [SerializeField] private List<ItemRule> _itemRules;
     [SerializeField] [Range(0f, 1f)] private float _ItemSpawnChance = 0.5f; // 맵 조각 전체에 아이템이 스폰될지 말지 결정하는 확률
-
+    [SerializeField] private List<CoinRule> _coinRules;
+    [SerializeField] [Range(0f, 1f)] private float _specialCoinSpawnChance = 0.1f;
 
 
     void Awake()
@@ -192,14 +193,38 @@ public class MapPieceManager : MonoBehaviour
 
     private void SpawnCoinsOnMapPiece(MapPiece mapPiece)
     {
+        if (ItemSpawner.Instance == null) return;
+
         foreach (Transform spawnPoint in mapPiece.CoinSpawnPoints)
         {
-            GameObject coinObj = ItemSpawner.Instance.GetItem(Item.ItemType.Coin, spawnPoint.position);
-            if(coinObj != null)
+            Item.CoinSubType selectedCoinSubType = Item.CoinSubType.Normal;
+
+            if (Random.value < _specialCoinSpawnChance && _coinRules != null && _coinRules.Any())
+            {
+                float totalRuleWeight = _coinRules.Sum(rule => rule.spawnChance);
+                if (totalRuleWeight > 0)
+                {
+                    float randomValue = Random.Range(0f, totalRuleWeight);
+                    float currentWeight = 0f;
+
+                    foreach (var rule in _coinRules)
+                    {
+                        currentWeight += rule.spawnChance;
+                        if (randomValue <= currentWeight)
+                        {
+                            selectedCoinSubType = rule.CoinSubType;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            GameObject coinObj = ItemSpawner.Instance.GetItem(Item.ItemType.Coin, selectedCoinSubType, spawnPoint.position);
+
+            if (coinObj != null)
             {
                 coinObj.transform.SetParent(spawnPoint);
                 coinObj.transform.localPosition = Vector3.zero;
-
                 mapPiece.SpawnedItems.Add(coinObj);
             }
         }

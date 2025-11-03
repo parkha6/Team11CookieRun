@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9219883024028831199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3811074369482338962}
+  - component: {fileID: 1608228618295213576}
+  m_Layer: 0
+  m_Name: MapManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3811074369482338962
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9219883024028831199}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1608228618295213576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9219883024028831199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36001d427bd4c874fb77e59c58cc8b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firstMapPieceType: 0
+  _mapPiecePrefabEntries:
+  - type: 0
+    prefab: {fileID: 3098547257595994394, guid: 01b92cb108072fd4bbcaf776bf810f09, type: 3}
+    weight: 0.1
+  - type: 1
+    prefab: {fileID: 8686860405996717690, guid: fd93b5334b1a1e040b8eb0e2e32355aa, type: 3}
+    weight: 5
+  - type: 2
+    prefab: {fileID: 6635736585149979701, guid: eb680e38603339e42a483c86b07cd44d, type: 3}
+    weight: 1
+  - type: 4
+    prefab: {fileID: 6521932809043038622, guid: dc16c72e9327f7143862700c06cf6dc8, type: 3}
+    weight: 5
+  - type: 5
+    prefab: {fileID: 5099117570177420883, guid: 56b71f6b2b56ff64785d76a6669039ad, type: 3}
+    weight: 0.1
+  - type: 6
+    prefab: {fileID: 2775177292282695020, guid: f87615b23f48d924f8e94eeb5903ac2d, type: 3}
+    weight: 2
+  - type: 7
+    prefab: {fileID: 2061949339855918407, guid: 0d6522e0782a6a347a3fdfc1e8fb29c0, type: 3}
+    weight: 5
+  - type: 8
+    prefab: {fileID: 4965010902715261555, guid: 74898f04ea2d6474184c8684faf0f7d1, type: 3}
+    weight: 4
+  _playerTransform: {fileID: 0}
+  _initialPieceCount: 5
+  _pieceSpawnAheadDistance: 50
+  _pieceDespawnBehindDistance: 20
+  _initialMapStartPoint: {x: 0, y: -3, z: 0}
+  _itemRules:
+  - itemType: 1
+    spawnChance: 0.2
+  - itemType: 2
+    spawnChance: 0.3
+  - itemType: 3
+    spawnChance: 0.5
+  _ItemSpawnChance: 0.3
+  _coinRules:
+  - CoinSubType: 0
+    spawnChance: 0.5
+  - CoinSubType: 1
+    spawnChance: 0.35
+  - CoinSubType: 2
+    spawnChance: 0.15
+  _specialCoinSpawnChance: 0.3

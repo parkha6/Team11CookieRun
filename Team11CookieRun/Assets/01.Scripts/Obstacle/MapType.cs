@@ -3,7 +3,6 @@ public enum MapType
     Forest_First,
     Forest_Flat,
     Forest_Cliff,
-    Forest_Hole,
     Forest_Cave,
     Forest_MonFlower,
     Forest_ManySpike,
