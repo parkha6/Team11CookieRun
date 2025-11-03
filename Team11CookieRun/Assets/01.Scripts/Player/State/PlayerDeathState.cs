@@ -9,7 +9,7 @@ public class PlayerDeathState : IPlayerState
     public void EnterState(Player player)
     {
         ConditionSetting(player, true);
-        //StopPhysics(player);
+        StopPhysics(player);
         DisableInput();
         player.StartCoroutine(Die());
     }

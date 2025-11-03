@@ -3,15 +3,30 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : SingletonManager<GameManager>
 {
+    /// <summary>
+    /// 디버그 모드를 켜는 불리언 값
+    /// </summary>
     [Tooltip("디버그 모드를 켜는 불리언 값")]
     [SerializeField]
     internal bool debugMode = false;
+    /// <summary>
+    /// 게임의 전체적인 상태를 컨트롤하는 enum변수.
+    /// </summary>
     [Tooltip("메인씬을 다 안 만들었을때 Waiting에서 넘어갈 방법이 없어서 공개해 놓은 값")]
     [SerializeField]
     internal GameStage currentStage = GameStage.Unknown;
     #region Other Manager
-    ScoreManager uiManager;//UI매니저 받아오기용
+    /// <summary>
+    /// 점수 매니저 받아오기 용.
+    /// </summary>
+    ScoreManager scoreManager;
+    /// <summary>
+    /// 플레이어 클래스 받아오기 용.
+    /// </summary>
     Player player;
+    /// <summary>
+    /// 게임 UI매니저 넣는 변수
+    /// </summary>
     GameUIManager gameUIManager;
     #endregion
     #region YouChan
@@ -30,8 +45,8 @@ public class GameManager : SingletonManager<GameManager>
     protected override void Awake()
     {
         player = FindObjectOfType<Player>();
-        uiManager = ScoreManager.Instance;
-        uiManager.LoadKey();
+        scoreManager = ScoreManager.Instance;
+        scoreManager.LoadKey();
     }
     /// <summary>
     /// 게임 UI 매니저를 게임매니저에 넣기 위해 만든 함수.
@@ -157,7 +172,7 @@ public class GameManager : SingletonManager<GameManager>
     internal void DeleteData()
     { PlayerPrefs.DeleteAll(); }
     /// <summary>
-    /// 에디터면 에디터를 종료하고 본게임이면 본게임을 종료한다.
+    /// 메모리에 있는 데이터를 저장한 후 에디터면 에디터를 종료하고 본게임이면 본게임을 종료한다.
     /// </summary>
     internal void QuitGame()//게임 종료 함수
     {
