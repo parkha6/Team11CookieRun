@@ -5,20 +5,6 @@ public class GameUIManager : MonoBehaviour
 {
     GameManager gameManager;
     ScoreManager scoreManager;
-    /// <summary>
-    /// 매니저 인스턴스들을 등록하고 게임매니저에 자기 자신을 집어넣은 뒤 버튼을 구독하고 스타트 게임으로 변수를 바꿈.
-    /// 게임을 재시작했을때 여기서 세팅함.
-    /// </summary>
-    private void Start()
-    {
-        gameManager = GameManager.Instance;
-        scoreManager = ScoreManager.Instance;
-        gameManager.ManageTime(GmConst.runTime);
-        gameManager.AddStartScene(this);
-        OnClickAddListeners();
-        gameManager.ResetValue();//TODO:임의로 이렇게 처리했는데 이러니까 재시작 했을때 키가 하나도 안 먹어요.
-        gameManager.StartGame();
-    }
     #region debugUI
     [Tooltip("데이터를 모두 지우는 버튼을 가진 UI(나중에 지울 예정)")]
     [SerializeField]
@@ -82,11 +68,28 @@ public class GameUIManager : MonoBehaviour
     internal Button endRetryButton;//
     #endregion
     #region Mobile
-    [SerializeField] Player player;
-    //[SerializeField] private Button pauseOptionButton;
+    public Player player;
+    [SerializeField] private GameObject mobileObject;
     [SerializeField] private Button jumpButton;
     [SerializeField] private Button slideButton;
     #endregion
+    /// <summary>
+    /// 매니저 인스턴스들을 등록하고 게임매니저에 자기 자신을 집어넣은 뒤 버튼을 구독하고 스타트 게임으로 변수를 바꿈.
+    /// 게임을 재시작했을때 여기서 세팅함.
+    /// </summary>
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+        scoreManager = ScoreManager.Instance;
+        gameManager.ManageTime(GmConst.runTime);
+        gameManager.AddStartScene(this);
+        OnClickAddListeners();
+        //gameManager.ResetValue();//TODO:임의로 이렇게 처리했는데 이러니까 재시작 했을때 키가 하나도 안 먹어요.
+        gameManager.StartGame();
+#if UNITY_ANDROID || UNITY_IOS
+        mobileObject.SetActive(true);
+#endif
+    }
     /// <summary>
     /// 버튼을 구독하는 메서드.
     /// </summary>
@@ -109,7 +112,7 @@ public class GameUIManager : MonoBehaviour
             { debugUI.SetActive(true); }
         }
         if (jumpButton != null) { jumpButton.onClick.AddListener(OnPlayerJump); }
-        if (slideButton != null) { jumpButton.onClick.AddListener(OnPlayerSlide); }//TODO:슬라이드 버튼이 아니라 점프 버튼에 넣어요?
+        //if (slideButton != null) { slideButton.onClick.AddListener(OnPlayerSlide);}//TODO:슬라이드 버튼이 아니라 점프 버튼에 넣어요?
     }
     /// <summary>
     /// 스크립트가 파괴되면 버튼 구독을 취소함
@@ -123,7 +126,6 @@ public class GameUIManager : MonoBehaviour
         endRetryButton.onClick.AddListener(Retry);
         deleteDataButton.onClick.RemoveListener(gameManager.DeleteData);
         jumpButton.onClick.RemoveListener(OnPlayerJump);
-        jumpButton.onClick.RemoveListener(OnPlayerSlide);
     }
     /// <summary>
     /// 재시작 버튼을 누르면 작동하는 현재 씬을 다시 부르는 메서드
@@ -209,13 +211,34 @@ public class GameUIManager : MonoBehaviour
     private void OnPlayerJump()
     {
         if (player == null) return;
-        player.ChangeState(player.jumpState);
+        if(gameManager.IsStart && player.IsSlide == false && player.IsJump == false)
+        {
+            player.IsJump = true;
+            player.ChangeState(player.jumpState);
+        }
     }
 
-    private void OnPlayerSlide()
+    public void OnPlayerSlide()
     {
-        player.ChangeState(player.slideState);
+        if (player == null) return;
+        if (gameManager.IsStart && player.IsSlide == false && player.IsJump == false)
+        {
+            player.IsSlide = true;
+            player.ChangeState(player.slideState);
+        }
     }
+
+    public void OffPlayerSlide()
+    {
+        if (player == null) return;
+        if (gameManager.IsStart)
+        {
+            player.IsSlide = false;
+            player.IsRun = true;
+            player.ChangeState(player.runState);
+        }
+    }
+
 
     private void OnMobilePause()
     {
