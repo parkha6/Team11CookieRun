@@ -257,7 +257,7 @@ public class GameUIManager : MonoBehaviour
     /// <returns></returns>
     Color MakeHpColor(Color startColor, Color endColor, float percentValue)
     {
-        Color nextColor = Color.Lerp(startColor, endColor, percentValue);
+        Color nextColor = Color.Lerp(endColor, startColor, percentValue);
         return nextColor;
     }
     /// <summary>
