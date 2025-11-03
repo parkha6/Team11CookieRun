@@ -1191,8 +1191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugUI: {fileID: 8031862114646888579}
   deleteDataButton: {fileID: 9128270684629464116}
-  gameSceneName: TestGameScene
-  menuSceneName: TestPlayScene
+  gameSceneName: 
+  menuSceneName: 
   hpBar: {fileID: 4076885495094370537}
   scoreText: {fileID: 9188231014423368820}
   pauseUi: {fileID: 604884295932128501}

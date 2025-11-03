@@ -318,6 +318,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3063137444510910194, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
+      propertyPath: gameSceneName
+      value: YouChanTestScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 3063137444510910194, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
+      propertyPath: menuSceneName
+      value: StartScene
+      objectReference: {fileID: 0}
     - target: {fileID: 3299546772649185987, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -367,6 +375,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
+--- !u!114 &262380908 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3063137444510910194, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
+  m_PrefabInstance: {fileID: 168800302}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd4fa37561271184f8c0f4fd772eaa9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &331055581
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,17 +541,53 @@ Transform:
   - {fileID: 1805217066}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &825273458 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3436330418612286702, guid: b0a0352c6ff678442911419d3e8da015, type: 3}
-  m_PrefabInstance: {fileID: 168800302}
+--- !u!1 &776750552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 776750553}
+  - component: {fileID: 776750554}
+  m_Layer: 0
+  m_Name: TimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &776750553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776750552}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &776750554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776750552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd4fa37561271184f8c0f4fd772eaa9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 29fd4dc98ba49d24e94243e9181a020f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interval: 5
+  upSpeed: 0.5
+  player: {fileID: 0}
 --- !u!1 &875382609
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,7 +639,13 @@ MonoBehaviour:
   _pieceSpawnAheadDistance: 50
   _pieceDespawnBehindDistance: 10
   _initialMapStartPoint: {x: 0, y: -3, z: 0}
-  _itemRules: []
+  _itemRules:
+  - itemType: 1
+    spawnChance: 0.2
+  - itemType: 2
+    spawnChance: 0.3
+  - itemType: 3
+    spawnChance: 0.5
   _ItemSpawnChance: 0.5
 --- !u!4 &875382611
 Transform:
@@ -906,9 +967,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 3870251126585851723, guid: 2586752cfc7b96d48a164388b405ffd5, type: 3}
-  gameCanvasManager: {fileID: 825273458}
+  gameCanvasManager: {fileID: 262380908}
   camera: {fileID: 1571722150}
   mapPieceManager: {fileID: 875382610}
+  timeManager: {fileID: 776750554}
   startPos: {x: -8, y: -1.328871, z: 0}
 --- !u!1 &1571722145
 GameObject:
@@ -1443,3 +1505,4 @@ SceneRoots:
   - {fileID: 1491203785}
   - {fileID: 168800302}
   - {fileID: 78515410}
+  - {fileID: 776750553}

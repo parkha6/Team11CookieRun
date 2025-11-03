@@ -1,35 +1,47 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+/// <summary>
+/// 메인화면 씬에서 재생되는 클래스. 메인화면 씬이 끝나면 사라짐.
+/// </summary>
 public class MenuUIManager : MonoBehaviour
 {
+    /// <summary>
+    /// 게임 매니저를 할당하는 변수.
+    /// </summary>
     GameManager gameManager;
-    ScoreManager scoreManager;
     /// <summary>
     /// 게임매니저와 스코어 매니저를 변수에 넣고 버튼을 구독함
     /// </summary>
     private void Start()
     {
         gameManager = GameManager.Instance;
-        scoreManager = ScoreManager.Instance;
         if (Time.timeScale <= GmConst.stopTime)
-        {   gameManager.ManageTime(GmConst.runTime);}
+        { gameManager.ManageTime(GmConst.runTime); }
         OnClickAddListeners();
     }
-    [Tooltip("시작버튼을 누르면 이동하는 씬의 이름")]
-    [SerializeField]
-    string gameSceneName;
-    [Tooltip("시작버튼")]
-    [SerializeField]
-    internal Button startButton;
-    [Tooltip("종료버튼")]
-    [SerializeField]
-    internal Button quitButton;
-    [Tooltip("초기화 버튼")]
-    [SerializeField]
-    internal Button deleteDataButton;
     /// <summary>
-    /// 시작버튼과 종료버튼 구독시작
+    /// 시작버튼을 누르면 이동하는 씬의 이름
+    /// </summary>
+    [Tooltip("시작버튼을 누르면 이동하는 씬의 이름")]
+    [SerializeField] string gameSceneName;
+    /// <summary>
+    /// 시작버튼
+    /// </summary>
+    [Tooltip("시작버튼")]
+    [SerializeField] internal Button startButton;
+    /// <summary>
+    /// 종료버튼
+    /// </summary>
+    [Tooltip("종료버튼")]
+    [SerializeField] internal Button quitButton;
+    /// <summary>
+    /// 초기화 버튼
+    /// </summary>
+    [Tooltip("초기화 버튼")]
+    [SerializeField] internal Button deleteDataButton;
+    /// <summary>
+    /// 메인화면에서 필요한 버튼을 구독하는 메서드
     /// </summary>
     void OnClickAddListeners()
     {

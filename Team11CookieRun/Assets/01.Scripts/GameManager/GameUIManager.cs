@@ -1,71 +1,134 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+/// <summary>
+/// 게임씬에서 재생되는 클래스. 게임씬이 넘어가면 사라짐.
+/// </summary>
 public class GameUIManager : MonoBehaviour
 {
+    /// <summary>
+    /// 게임매니저 넣는 변수
+    /// </summary>
     GameManager gameManager;
+    /// <summary>
+    /// 스코어 매니저 넣는 변수
+    /// </summary>
     ScoreManager scoreManager;
+    /// <summary>
+    /// 이미지 색을 바꾸기 위한 변수 녹색 : #356F34 노랑 :#E38F08 빨강:#BF0911
+    /// 더 스텍 참고해서 색이 서서히 변하게 해야지.
+    /// </summary>
+    Image hpBarImage;
+    /// <summary>
+    /// 풀피일때 나오는 초록색
+    /// </summary>
+    Color green = new Color(53f / 255f, 111f / 255f, 52f / 255f, 1f);
+    /// <summary>
+    /// 중간피일때 나오는 노란색
+    /// </summary>
+    Color yellow = new Color(227f / 255f, 143f / 255f, 8f / 255f, 1f);
+    /// <summary>
+    /// 피가 거의 없을때 나오는 빨간색
+    /// </summary>
+    Color red = new Color(190f / 255f, 8f / 255f, 16f / 255, 1f);
     #region debugUI
+    /// <summary>
+    /// 데이터를 모두 지우는 버튼을 가진 UI(나중에 지울 예정)
+    /// </summary>
     [Tooltip("데이터를 모두 지우는 버튼을 가진 UI(나중에 지울 예정)")]
-    [SerializeField]
-    internal GameObject debugUI;
+    [SerializeField] internal GameObject debugUI;
+    /// <summary>
+    /// 데이터를 모두 지우는 버튼(나중에 지울 예정)
+    /// </summary>
     [Tooltip("데이터를 모두 지우는 버튼(나중에 지울 예정)")]
-    [SerializeField]
-    internal Button deleteDataButton;
+    [SerializeField] internal Button deleteDataButton;
     #endregion
+    /// <summary>
+    /// 재도전 버튼을 누르면 이동하는 게임 재생씬의 이름
+    /// </summary>
     #region DefaultUI
     [Tooltip("재도전 버튼을 누르면 이동하는 게임 재생씬의 이름")]
-    [SerializeField]
-    internal string gameSceneName;
+    [SerializeField] internal string gameSceneName;
+    /// <summary>
+    /// 홈 버튼을 누르면 가는 메뉴 씬의 이름
+    /// </summary>
     [Tooltip("홈 버튼을 누르면 가는 메뉴 씬의 이름")]
-    [SerializeField]
-    internal string menuSceneName;
+    [SerializeField] internal string menuSceneName;
+    /// <summary>
+    /// 게임 상단에 표시되는 체력 바
+    /// </summary>
     [Tooltip("게임 상단에 표시되는 체력 바")]
-    [SerializeField]
-    internal Image hpBar;
+    [SerializeField] internal Image hpBar;
+    /// <summary>
+    /// 게임 상단에 표시되는 점수 바
+    /// </summary>
     [Tooltip("게임 상단에 표시되는 점수 바")]
-    [SerializeField]
-    internal TextMeshProUGUI scoreText;
+    [SerializeField] internal TextMeshProUGUI scoreText;
     #endregion
     #region PauseUI
+    /// <summary>
+    /// 화면 우측상단의 옵션 버튼을 누르면 나오는 일시정지 UI
+    /// </summary>
     [Tooltip("화면 우측상단의 옵션 버튼을 누르면 나오는 일시정지 UI")]
-    [SerializeField]
-    internal GameObject pauseUi;
+    [SerializeField] internal GameObject pauseUi;
+    /// <summary>
+    /// 화면 우측상단에 표시 될 옵션버튼
+    /// </summary>
     [Tooltip("화면 우측상단에 표시 될 옵션버튼")]
-    [SerializeField]
-    internal Button pauseOptionButton;
+    [SerializeField] internal Button pauseOptionButton;
+    /// <summary>
+    /// 일시정지 매뉴에 나오는 홈 버튼
+    /// </summary>
     [Tooltip("일시정지 매뉴에 나오는 홈 버튼")]
-    [SerializeField]
-    internal Button pauseHomeButton;
+    [SerializeField] internal Button pauseHomeButton;
+    /// <summary>
+    /// 일시정지 매뉴에 나오는 세팅 버튼
+    /// </summary>
     [Tooltip("일시정지 매뉴에 나오는 세팅 버튼")]
-    [SerializeField]
-    internal Button pauseSettingButton;
+    [SerializeField] internal Button pauseSettingButton;
+    /// <summary>
+    /// 일시정지 매뉴에 나오는 Back 버튼
+    /// </summary>
     [Tooltip("일시정지 매뉴에 나오는 Back 버튼")]
-    [SerializeField]
-    internal Button pauseBackButton;
+    [SerializeField] internal Button pauseBackButton;
     #endregion
     #region EndUI
+    /// <summary>
+    /// 결과창 UI
+    /// </summary>
     [Tooltip("결과창 UI")]
-    [SerializeField]
-    internal GameObject endUi;
+    [SerializeField] internal GameObject endUi;
+    /// <summary>
+    /// 결과창에 표시되는 점수 텍스트
+    /// </summary>
     [Tooltip("결과창에 표시되는 점수 텍스트")]
-    [SerializeField]
-    internal TextMeshProUGUI finalScoreText;
+    [SerializeField] internal TextMeshProUGUI finalScoreText;
+    /// <summary>
+    /// 결과창에 표시되는 최고 점수 텍스트
+    /// </summary>
     [Tooltip("결과창에 표시되는 최고 점수 텍스트")]
-    [SerializeField]
-    internal TextMeshProUGUI highscoreText;
+    [SerializeField] internal TextMeshProUGUI highscoreText;
+    /// <summary>
+    /// 최고 점수를 갱신하면 나오는 별 이미지
+    /// </summary>
     [Tooltip("최고 점수를 갱신하면 나오는 별 이미지")]
-    [SerializeField]
-    internal GameObject star;
+    [SerializeField] internal GameObject star;
+    /// <summary>
+    /// 최고 점수를 갱신하면 최고점수 옆에 나오는 New 버튼
+    /// </summary>
     [Tooltip("최고 점수를 갱신하면 최고점수 옆에 나오는 New 버튼")]
-    [SerializeField]
-    internal GameObject newText;
+    [SerializeField]internal GameObject newText;
+    /// <summary>
+    /// 결과창에 나오는 홈 버튼
+    /// </summary>
     [Tooltip("결과창에 나오는 홈 버튼")]
-    [SerializeField]
-    internal Button endHomeButton;
+    [SerializeField]internal Button endHomeButton;
+    /// <summary>
+    /// 결과창에 나오는 재시작 버튼
+    /// </summary>
     [Tooltip("결과창에 나오는 재시작 버튼")]
-    [SerializeField]
-    internal Button endRetryButton;//
+    [SerializeField]internal Button endRetryButton;
     #endregion
     #region Mobile
     public Player player;
@@ -81,10 +144,10 @@ public class GameUIManager : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         scoreManager = ScoreManager.Instance;
+        hpBarImage = hpBar.GetComponent<Image>();
         gameManager.ManageTime(GmConst.runTime);
         gameManager.AddStartScene(this);
         OnClickAddListeners();
-        //gameManager.ResetValue();//TODO:임의로 이렇게 처리했는데 이러니까 재시작 했을때 키가 하나도 안 먹어요.
         gameManager.StartGame();
 #if UNITY_ANDROID || UNITY_IOS
         mobileObject.SetActive(true);
@@ -99,8 +162,13 @@ public class GameUIManager : MonoBehaviour
         { pauseOptionButton.onClick.AddListener(OnMobilePause); }
         if (pauseHomeButton != null)
         { pauseHomeButton.onClick.AddListener(OnClickHome); }
+#if UNITY_ANDROID || UNITY_IOS
+        if (pauseBackButton != null)
+        { pauseBackButton.onClick.AddListener(OffMobilePause); }
+#else
         if (pauseBackButton != null)
         { pauseBackButton.onClick.AddListener(gameManager.OnClickExitPause); }
+#endif
         if (endHomeButton != null)
         { endHomeButton.onClick.AddListener(OnClickHome); }
         if (endRetryButton != null)
@@ -112,7 +180,6 @@ public class GameUIManager : MonoBehaviour
             { debugUI.SetActive(true); }
         }
         if (jumpButton != null) { jumpButton.onClick.AddListener(OnPlayerJump); }
-        //if (slideButton != null) { slideButton.onClick.AddListener(OnPlayerSlide);}//TODO:슬라이드 버튼이 아니라 점프 버튼에 넣어요?
     }
     /// <summary>
     /// 스크립트가 파괴되면 버튼 구독을 취소함
@@ -121,7 +188,11 @@ public class GameUIManager : MonoBehaviour
     {
         pauseOptionButton.onClick.RemoveListener(OnMobilePause);
         pauseHomeButton.onClick.RemoveListener(OnClickHome);
+#if UNITY_ANDROID || UNITY_IOS
+        { pauseBackButton.onClick.RemoveListener(OffMobilePause); }
+#else
         pauseBackButton.onClick.RemoveListener(gameManager.OnClickExitPause);
+#endif
         endHomeButton.onClick.RemoveListener(OnClickHome);
         endRetryButton.onClick.AddListener(Retry);
         deleteDataButton.onClick.RemoveListener(gameManager.DeleteData);
@@ -161,7 +232,34 @@ public class GameUIManager : MonoBehaviour
     /// <param name="currentHp"></param>
     /// <param name="hp"></param>
     internal void ShowHp(float currentHp, float hp)
-    { hpBar.fillAmount = currentHp / hp; }
+    {
+        float hpRatio = currentHp / hp;
+        hpBar.fillAmount = hpRatio;
+        float normalizedRatio;
+
+        if (hpRatio >= GmConst.halfHp)
+        {
+            normalizedRatio = (hpRatio - GmConst.halfHp) * 2;
+            hpBarImage.color = MakeHpColor(green, yellow, normalizedRatio);
+        }
+        else if (hpRatio < GmConst.halfHp)
+        {
+            normalizedRatio = hpRatio * 2;
+            hpBarImage.color = MakeHpColor(yellow, red, normalizedRatio);
+        }
+    }
+    /// <summary>
+    /// startColor와 EndColor사이의 PercentValue의 값을 리턴한다. HP바용으로 만들었음.
+    /// </summary>
+    /// <param name="startColor"></param>
+    /// <param name="EndColor"></param>
+    /// <param name="percentValue"></param>
+    /// <returns></returns>
+    Color MakeHpColor(Color startColor, Color endColor, float percentValue)
+    {
+        Color nextColor = Color.Lerp(endColor, startColor, percentValue);
+        return nextColor;
+    }
     /// <summary>
     /// 결과창의 별과 new표시를 감추는 메서드.
     /// </summary>
@@ -211,7 +309,7 @@ public class GameUIManager : MonoBehaviour
     private void OnPlayerJump()
     {
         if (player == null) return;
-        if(gameManager.IsStart && player.IsSlide == false && player.IsJump == false)
+        if (gameManager.IsStart && player.IsSlide == false && player.IsJump == false)
         {
             player.IsJump = true;
             player.ChangeState(player.jumpState);

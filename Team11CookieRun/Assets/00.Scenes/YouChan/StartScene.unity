@@ -152,7 +152,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3856c545905c71249b56d46d50e74765, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.139
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -337,7 +337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5263676527786018545, guid: 6bc5edf3a0d656b42b94326be45de8be, type: 3}
       propertyPath: gameSceneName
-      value: TestGameScene
+      value: YouChanTestScene
       objectReference: {fileID: 0}
     - target: {fileID: 5601226998118312893, guid: 6bc5edf3a0d656b42b94326be45de8be, type: 3}
       propertyPath: m_AnchorMax.y

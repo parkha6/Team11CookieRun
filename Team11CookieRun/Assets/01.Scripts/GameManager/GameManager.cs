@@ -1,6 +1,10 @@
+using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+/// <summary>
+/// 게임의 재생단계를 관리하는 클래스. (예시 : 메인화면>게임시작>일시정지>게임결과...)
+/// </summary>
 public class GameManager : SingletonManager<GameManager>
 {
     /// <summary>
@@ -23,7 +27,7 @@ public class GameManager : SingletonManager<GameManager>
     /// <summary>
     /// 플레이어 클래스 받아오기 용.
     /// </summary>
-    Player player;
+    public Player player;
     /// <summary>
     /// 게임 UI매니저 넣는 변수
     /// </summary>
@@ -44,8 +48,8 @@ public class GameManager : SingletonManager<GameManager>
     /// </summary>
     protected override void Awake()
     {
-        player = FindObjectOfType<Player>();
         scoreManager = ScoreManager.Instance;
+        //player = new Player();//TODO:게임매니저 클래스 테스트용입니다. 깃허브에 올릴땐 주석처리합니다. 
         scoreManager.LoadKey();
     }
     /// <summary>
@@ -117,10 +121,15 @@ public class GameManager : SingletonManager<GameManager>
     internal void OnClickExitPause()
     {
         IsPause = false;
+        player.PausePlayer();
         StartGame();
     }
     #endregion
     #region EndGame
+    /// <summary>
+    /// Retry키를 누르면 작동하는 메서드
+    /// </summary>
+    /// <param name="sceneName"></param>
     internal void OnClickRetry(string sceneName)
     {
         if (currentStage == GameStage.End)
@@ -133,17 +142,12 @@ public class GameManager : SingletonManager<GameManager>
     #endregion
     #region Utility
     /// <summary>
-    /// HP를 초기화하고 IsDie bool을 풀고 현재 점수를 0으로 만드는 변수.
-    /// 근데 제가 임의로 이러니까 조작키가 안 먹어서 유찬님이 만들어주시는게 좋을듯.
+    /// 재시작할때 bool값 다시 세팅.
     /// </summary>
     internal void ResetValue()
     {
-        if (player.Hp <= GmConst.dead)
-        { player.Hp = player.MaxHp; }
-        if (player.IsDie)
-        { player.IsDie = false; }
-        if (player.Score > 0)
-        { player.Score = GmConst.minScore; }
+        IsStart = false;
+        IsPause = false;
     }
     /// <summary>
     /// whichScene에 입력된 string값이랑 같은 제목의 씬으로 이동하는 함수.
@@ -174,7 +178,7 @@ public class GameManager : SingletonManager<GameManager>
     /// <summary>
     /// 메모리에 있는 데이터를 저장한 후 에디터면 에디터를 종료하고 본게임이면 본게임을 종료한다.
     /// </summary>
-    internal void QuitGame()//게임 종료 함수
+    internal void QuitGame()
     {
         SaveGame();
 #if UNITY_EDITOR
@@ -203,9 +207,15 @@ public class GameManager : SingletonManager<GameManager>
     public void ClickPause()
     {
         if (IsPause)
+        {
+            currentStage = GameStage.Start;
             ResumeGame();
+        }
         else
+        {
+            currentStage = GameStage.Pause;
             PauseGame();
+        }
     }
     #endregion
 }
