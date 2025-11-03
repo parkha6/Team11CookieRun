@@ -65,6 +65,10 @@ public class Player : MonoBehaviour
     public PlayerSlideState slideState = new PlayerSlideState();
     public PlayerDeathState deathState = new PlayerDeathState();
 
+    //플레이어 버프 관련
+    public Dictionary<Item.ItemType, BuffUi> bufflist = new Dictionary<Item.ItemType, BuffUi>();
+
+
     #region Property
     public Animator PlayerAnim { get { return playerAnim; } set { playerAnim = value; } }
     public float Hp { get { return hp; }
@@ -154,7 +158,9 @@ public class Player : MonoBehaviour
         if (verticalVelocity <= minVerticalVelocity)
             verticalVelocity = minVerticalVelocity;
     }
-
+    /// <summary>
+    /// 플레이어 떨어짐
+    /// </summary>
     public void FallPlayer()
     {
         playerAnim.speed = 0f;
@@ -167,10 +173,14 @@ public class Player : MonoBehaviour
     IEnumerator Fall()
     {
         yield return fallWait;
+        gameManager.currentStage = GameStage.End;
         Destroy(this.gameObject);
     }
 
-
+    /// <summary>
+    /// 난이도 향상 목적 스피드 올리기
+    /// </summary>
+    /// <param name="value"></param>
     public void SpeedUp(float value)
     {
         Speed += value;
@@ -295,8 +305,11 @@ public class Player : MonoBehaviour
     IEnumerator PlayerInvincibility(float duration)
     {
         isInvincible = true;
+        Color playerColor = playerSpriteRenderer.color;
+        playerSpriteRenderer.color = Color.yellow;
         yield return new WaitForSeconds(duration);
         isInvincible = false;
+        playerSpriteRenderer.color = playerColor;
     }
 
     public void ApplySlow(float value, float duration)
@@ -309,6 +322,21 @@ public class Player : MonoBehaviour
         Speed -= value;
         yield return new WaitForSeconds(duration);
         Speed += value;
+    }
+
+    public void ObtainBuffItem(GameObject obj)
+    {
+        if (obj.GetComponent<BuffUi>())
+        {
+            BuffUi buff = obj.GetComponent<BuffUi>();
+            if (bufflist.ContainsKey(buff.type))
+            {
+                bufflist[buff.type].StopCooldown();
+                bufflist.Remove(buff.type);
+            }
+            bufflist.Add(buff.type, buff);
+            gameCanvasManager.OnBuffUi(obj);
+        }
     }
     #endregion
 }

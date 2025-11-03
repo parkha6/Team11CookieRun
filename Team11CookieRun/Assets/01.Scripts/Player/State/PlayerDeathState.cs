@@ -50,6 +50,6 @@ public class PlayerDeathState : IPlayerState
     IEnumerator Die()
     {
         yield return dieDelay;
-        //다이 화면 나옴
+        GameManager.Instance.currentStage = GameStage.End;
     }
 }
