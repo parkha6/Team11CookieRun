@@ -23,7 +23,7 @@ public class GameManager : SingletonManager<GameManager>
     /// <summary>
     /// 플레이어 클래스 받아오기 용.
     /// </summary>
-    Player player;
+    public Player player;
     /// <summary>
     /// 게임 UI매니저 넣는 변수
     /// </summary>
@@ -44,7 +44,6 @@ public class GameManager : SingletonManager<GameManager>
     /// </summary>
     protected override void Awake()
     {
-        player = FindObjectOfType<Player>();
         scoreManager = ScoreManager.Instance;
         scoreManager.LoadKey();
     }
@@ -126,7 +125,7 @@ public class GameManager : SingletonManager<GameManager>
         if (currentStage == GameStage.End)
         {
             SaveGame();
-            ResetValue();
+            //ResetValue();
             MoveScene(sceneName);
         }
     }

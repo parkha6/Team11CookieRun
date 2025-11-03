@@ -123,7 +123,6 @@ public class GameUIManager : MonoBehaviour
             { debugUI.SetActive(true); }
         }
         if (jumpButton != null) { jumpButton.onClick.AddListener(OnPlayerJump); }
-        //if (slideButton != null) { slideButton.onClick.AddListener(OnPlayerSlide);}
     }
     /// <summary>
     /// 스크립트가 파괴되면 버튼 구독을 취소함

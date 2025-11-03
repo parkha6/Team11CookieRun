@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputManager : SingletonManager<PlayerInputManager>
 {
     private PlayerControll playerControll;
-    private Player player;
+    public Player player;
     private GameManager gameManager;
 
     private InputAction jumpAction;
@@ -23,7 +23,6 @@ public class PlayerInputManager : SingletonManager<PlayerInputManager>
     {
         base.Awake();
         playerControll = new PlayerControll();
-        player = FindObjectOfType<Player>();
         gameManager = GameManager.Instance;
         InitInputAction();
         EnableInput();

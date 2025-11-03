@@ -23,6 +23,8 @@ public class PlayerSpawner : MonoBehaviour
     {
         player.InitCanvasManager(gameCanvasManager);
         gameCanvasManager.player = player;
+        GameManager.Instance.player = player;
+        PlayerInputManager.Instance.player = player;
         camera.target = player.transform;
         mapPieceManager._playerTransform = player.transform;
     }
