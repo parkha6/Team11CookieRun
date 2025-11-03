@@ -311,6 +311,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BGcamera
       objectReference: {fileID: 0}
+    - target: {fileID: 2744419625705996294, guid: 0c3683851f0844144b46ad6ceab94fa3, type: 3}
+      propertyPath: gameSceneName
+      value: GameScene
+      objectReference: {fileID: 0}
     - target: {fileID: 4615846302579916156, guid: 0c3683851f0844144b46ad6ceab94fa3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

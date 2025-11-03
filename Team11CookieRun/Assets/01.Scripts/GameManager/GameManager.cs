@@ -135,6 +135,7 @@ public class GameManager : SingletonManager<GameManager>
     /// <param name="isLoop"></param>
     void BgmSetting(AudioClip clip,bool isLoop)
     {
+        gameBgmManager.audioSource.Stop();
         gameBgmManager.audioSource.clip = clip;
         gameBgmManager.audioSource.Play();
         gameBgmManager.audioSource.loop = isLoop;
