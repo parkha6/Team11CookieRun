@@ -10,7 +10,7 @@ public class PlayerDeathState : IPlayerState
     {
         ConditionSetting(player, true);
         StopPhysics(player);
-        DisableInput();
+        DisableInput(player);
         player.StartCoroutine(Die());
     }
 
@@ -42,9 +42,9 @@ public class PlayerDeathState : IPlayerState
             col.enabled = false;
     }
 
-    private void DisableInput()
+    private void DisableInput(Player player)
     {
-        PlayerInputManager playerInputManager = PlayerInputManager.Instance;
+        PlayerInputManager playerInputManager = player.playerInputManager;
         playerInputManager.DisableInput();
     }
     IEnumerator Die()
