@@ -45,6 +45,10 @@ public class GameManager : SingletonManager<GameManager>
     public bool IsStart { get { return isStart; } set { isStart = value; } }
     public bool IsPause { get { return isPause; } set { isPause = value; } }
     #endregion
+
+    public float bgmVolume;
+
+
     #region Life Cycle
     /// <summary>
     /// 게임이 맨 처음 재생될때 필요한 클래스들을 가져오고 PlayerPrefs를 로드함.
@@ -53,6 +57,7 @@ public class GameManager : SingletonManager<GameManager>
     {
         scoreManager = ScoreManager.Instance; 
         scoreManager.LoadKey();
+        bgmVolume = 0.14f;
     }
     /// <summary>
     /// 게임 UI 매니저를 게임매니저에 넣기 위해 만든 함수.

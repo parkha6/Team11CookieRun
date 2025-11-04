@@ -33,8 +33,14 @@ public class GameBgmManager : MonoBehaviour
         gameManager.AddGameBGM(this);
     }
 
+    private void Start()
+    {
+        audioSource.volume = gameManager.bgmVolume;
+    }
+
     public void ControlBgmVolume()
     {
         audioSource.volume = volumeSlider.value;
+        gameManager.bgmVolume = audioSource.volume;
     }
 }

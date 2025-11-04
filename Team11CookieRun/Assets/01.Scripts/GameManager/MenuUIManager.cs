@@ -18,6 +18,7 @@ public class MenuUIManager : MonoBehaviour
         gameManager = GameManager.Instance;
         if (Time.timeScale <= GmConst.stopTime)
         { gameManager.ManageTime(GmConst.runTime); }
+        SettingVolume();
         OnClickAddListeners();
     }
     /// <summary>
@@ -72,8 +73,12 @@ public class MenuUIManager : MonoBehaviour
     void StartGame()
     { SceneManager.LoadScene(gameSceneName); }
 
+    void SettingVolume() => audioSource.volume = gameManager.bgmVolume;
+
+
     public void ControlVolume()
     {
         audioSource.volume = volumeSlider.value;
+        gameManager.bgmVolume = audioSource.volume;
     }
 }
