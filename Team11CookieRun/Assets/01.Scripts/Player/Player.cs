@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] Rigidbody2D playerRb;
     [SerializeField] Animator playerAnim;
     [SerializeField] CapsuleCollider2D playerCollider;
-    private PlayerInputManager playerInputManager;
+    public PlayerInputManager playerInputManager;
     private GameManager gameManager;
     private GameUIManager gameCanvasManager;
     [SerializeField] SpriteRenderer playerSpriteRenderer;
@@ -108,14 +108,13 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        playerInputManager = PlayerInputManager.Instance;
         gameManager = GameManager.Instance;
+        ChangeState(idleState);
         playerInputManager.OnJump += HandleJump;
         playerInputManager.OnSlideStart += HandleSlide;
         playerInputManager.OnSlideEnd += HandleSlideUp;
         playerInputManager.OnPause += PausePlayer;
 
-        ChangeState(idleState);
     }
 
     private void OnDisable()
@@ -130,9 +129,10 @@ public class Player : MonoBehaviour
     private void HandleSlide() => IsSlide = true;
     private void HandleSlideUp() => IsSlide = false;
 
-    public void InitCanvasManager(GameUIManager scm)
+    public void InitPlayerManager(GameUIManager scm, PlayerInputManager pim)
     {
         gameCanvasManager = scm;
+        playerInputManager = pim;
     }
 
     private void Update()

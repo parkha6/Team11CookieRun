@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 50
-  m_Sprite: {fileID: 21300000, guid: 75356870ed08a0d498e0a6a7309f2733, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ff8243f2d848654b9d0da19a0a1ced8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 0
+  coinSubType: 3
   value: 6
   duration: 0
   coinSound: {fileID: 8300000, guid: 7ae18852b7c4e4246851677fc5ebd59d, type: 3}
@@ -111,6 +112,7 @@ MonoBehaviour:
   healVolume: 1
   invincibleVolume: 1
   slowVolume: 1
+  buffUi: {fileID: 0}
 --- !u!50 &-6515987882925187653
 Rigidbody2D:
   serializedVersion: 4
@@ -174,7 +176,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 1.6}
+    oldSize: {x: 0.74418604, y: 0.74418604}
     newSize: {x: 0.19, y: 0.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
