@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 0
+  coinSubType: 0
   value: 1
   duration: 0
   coinSound: {fileID: 8300000, guid: ae5f2b78ae978f04fb5065c1298f4ad3, type: 3}
@@ -111,6 +112,7 @@ MonoBehaviour:
   healVolume: 0.5
   invincibleVolume: 1
   slowVolume: 1
+  buffUi: {fileID: 0}
 --- !u!50 &2441514388363961045
 Rigidbody2D:
   serializedVersion: 4
@@ -195,7 +197,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
