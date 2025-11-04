@@ -84,10 +84,10 @@ MonoBehaviour:
     spawnChance: 0.5
   _ItemSpawnChance: 0.3
   _coinRules:
-  - CoinSubType: 0
-    spawnChance: 0.5
   - CoinSubType: 1
-    spawnChance: 0.35
+    spawnChance: 0.5
   - CoinSubType: 2
+    spawnChance: 0.35
+  - CoinSubType: 3
     spawnChance: 0.15
   _specialCoinSpawnChance: 0.3

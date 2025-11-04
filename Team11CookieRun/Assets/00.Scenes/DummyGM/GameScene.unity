@@ -262,13 +262,13 @@ MonoBehaviour:
   itemPrefabs:
   - type: 0
     prefab: {fileID: 7270365921373334467, guid: b16608215b142014da434f004b479f59, type: 3}
-    coinSubType: 0
+    coinSubType: 1
   - type: 0
     prefab: {fileID: 7102715061209053898, guid: f7e39b1dfd06f8a4e846bb359f17c5cf, type: 3}
-    coinSubType: 0
+    coinSubType: 2
   - type: 0
     prefab: {fileID: 2584998246366536847, guid: 30627d1df4925794b8d5cd43e3e95639, type: 3}
-    coinSubType: 0
+    coinSubType: 3
   - type: 1
     prefab: {fileID: 1329735933750386572, guid: 5511617a48b99334bb9ae6f6e9d05a6a, type: 3}
     coinSubType: 0
@@ -340,6 +340,15 @@ MonoBehaviour:
   - type: 4
     prefab: {fileID: 5099117570177420883, guid: 56b71f6b2b56ff64785d76a6669039ad, type: 3}
     weight: 5
+  - type: 5
+    prefab: {fileID: 2775177292282695020, guid: f87615b23f48d924f8e94eeb5903ac2d, type: 3}
+    weight: 5
+  - type: 6
+    prefab: {fileID: 2061949339855918407, guid: 0d6522e0782a6a347a3fdfc1e8fb29c0, type: 3}
+    weight: 5
+  - type: 7
+    prefab: {fileID: 4965010902715261555, guid: 74898f04ea2d6474184c8684faf0f7d1, type: 3}
+    weight: 5
   _playerTransform: {fileID: 8837980590763444107, guid: 2586752cfc7b96d48a164388b405ffd5, type: 3}
   _initialPieceCount: 5
   _pieceSpawnAheadDistance: 50
@@ -353,8 +362,14 @@ MonoBehaviour:
   - itemType: 3
     spawnChance: 0.5
   _ItemSpawnChance: 0.5
-  _coinRules: []
-  _specialCoinSpawnChance: 0.1
+  _coinRules:
+  - CoinSubType: 1
+    spawnChance: 0.5
+  - CoinSubType: 2
+    spawnChance: 0.3
+  - CoinSubType: 3
+    spawnChance: 0.2
+  _specialCoinSpawnChance: 0.5
 --- !u!4 &385677572
 Transform:
   m_ObjectHideFlags: 0
@@ -727,6 +742,10 @@ MonoBehaviour:
     prefab: {fileID: 4061145330091336171, guid: cac4bb7aeb495ff43b33256c253ef87d, type: 3}
   - type: 2
     prefab: {fileID: 8397607199377882671, guid: e73b08aeea7a17a47876208f35a1814f, type: 3}
+  - type: 3
+    prefab: {fileID: 3458790706624094593, guid: 938e210e7c6778544b5be884ac9a5f3b, type: 3}
+  - type: 4
+    prefab: {fileID: 7902879547274952643, guid: 8ad72026df88cdd428b9f684e702110f, type: 3}
   _initialPoolSizePerType: 5
 --- !u!4 &1295742066
 Transform:

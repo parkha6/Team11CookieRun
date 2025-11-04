@@ -9,6 +9,7 @@ public class Item : MonoBehaviour
 
     public enum CoinSubType
     {
+        None,
         Normal,
         Special1,
         Special2,
