@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 0
-  coinSubType: 1
+  coinSubType: 3
   value: 6
   duration: 0
   coinSound: {fileID: 8300000, guid: 7ae18852b7c4e4246851677fc5ebd59d, type: 3}
