@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameBgmManager : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class GameBgmManager : MonoBehaviour
     /// </summary>
     [Tooltip("결과화면 배경음악")]
     [SerializeField] internal AudioClip resultBgm;
+
+    [SerializeField] Slider volumeSlider;
+
     /// <summary>
     /// 게임매니저를 넣는 변수
     /// </summary>
@@ -27,5 +31,10 @@ public class GameBgmManager : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         gameManager.AddGameBGM(this);
+    }
+
+    public void ControlBgmVolume()
+    {
+        audioSource.volume = volumeSlider.value;
     }
 }

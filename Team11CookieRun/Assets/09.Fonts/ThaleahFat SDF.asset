@@ -60,9 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: ThaleahFat SDF
   m_EditorClassIdentifier: 
-  hashCode: 431795209
+  hashCode: -1699987425
   material: {fileID: 2837025653084761938}
-  materialHashCode: -581567223
+  materialHashCode: 1341457759
   m_Version: 1.1.0
   m_SourceFontFileGUID: 39445ae062e2f87439bcdeb040ef9e18
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 39445ae062e2f87439bcdeb040ef9e18, type: 3}

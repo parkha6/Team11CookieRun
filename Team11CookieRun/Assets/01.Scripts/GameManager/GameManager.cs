@@ -259,5 +259,10 @@ public class GameManager : SingletonManager<GameManager>
             PauseGame();
         }
     }
+
+    public void ResetData()
+    {
+        PlayerPrefs.DeleteAll();
+    }
     #endregion
 }

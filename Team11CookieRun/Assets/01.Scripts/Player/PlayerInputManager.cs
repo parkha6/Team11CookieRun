@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputManager : MonoBehaviour
 {
+    // 인풋시스템을 C# 제너레이트 한 스크립트
     private PlayerControll playerControll;
+
     public Player player;
     private GameManager gameManager;
 
@@ -31,15 +33,6 @@ public class PlayerInputManager : MonoBehaviour
         slideAction.performed += OnSlidePerformed;
         slideAction.canceled += OnSlideCanceled;
         pauseAction.performed += OnPausePerformed;
-    }
-
-    private void OnDisable()
-    {
-        /*jumpAction.performed -= OnJumpPerformed;
-        slideAction.performed -= OnSlidePerformed;
-        slideAction.canceled -= OnSlideCanceled;
-        pauseAction.performed -= OnPausePerformed;
-        DisableInput();*/
     }
 
     public void ClearInput()

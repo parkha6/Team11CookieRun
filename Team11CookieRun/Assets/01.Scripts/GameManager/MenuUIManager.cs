@@ -40,6 +40,13 @@ public class MenuUIManager : MonoBehaviour
     /// </summary>
     [Tooltip("초기화 버튼")]
     [SerializeField] internal Button deleteDataButton;
+
+    [SerializeField] Button optionButton;
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] Slider volumeSlider;
+
+
     /// <summary>
     /// 메인화면에서 필요한 버튼을 구독하는 메서드
     /// </summary>
@@ -64,4 +71,9 @@ public class MenuUIManager : MonoBehaviour
     /// </summary>
     void StartGame()
     { SceneManager.LoadScene(gameSceneName); }
+
+    public void ControlVolume()
+    {
+        audioSource.volume = volumeSlider.value;
+    }
 }

@@ -92,6 +92,8 @@ public class GameUIManager : MonoBehaviour
     /// </summary>
     [Tooltip("일시정지 매뉴에 나오는 Back 버튼")]
     [SerializeField] internal Button pauseBackButton;
+
+    [SerializeField] GameObject settingPanel;
     #endregion
     #region EndUI
     /// <summary>
@@ -360,7 +362,12 @@ public class GameUIManager : MonoBehaviour
 
 
     public void OnPauseUi() => pauseUi.SetActive(true);
-    public void OffPauseUi() => pauseUi.SetActive(false);
+    public void OffPauseUi()
+    {
+        pauseUi.SetActive(false);
+        if (settingPanel.activeSelf)
+            settingPanel.SetActive(false);
+    }
 
     public GameObject OnBuffUi(GameObject buff)
     {
