@@ -141,6 +141,14 @@ public class GameUIManager : MonoBehaviour
     #region Item Buff
     [SerializeField] private Transform buffTransform;
     #endregion
+
+    [SerializeField] GameObject startUi;
+    [SerializeField] TextMeshProUGUI startText;
+    [SerializeField] float startWaitSeconds;
+    private readonly WaitForSeconds startloopDelay = new WaitForSeconds(1f);
+    private Coroutine startCoroutine;
+
+
     /// <summary>
     /// 매니저 인스턴스들을 등록하고 게임매니저에 자기 자신을 집어넣은 뒤 버튼을 구독하고 스타트 게임으로 변수를 바꿈.
     /// 게임을 재시작했을때 여기서 세팅함.
@@ -372,5 +380,27 @@ public class GameUIManager : MonoBehaviour
     public GameObject OnBuffUi(GameObject buff)
     {
         return Instantiate(buff, buffTransform);
+    }
+
+    public void StartWait()
+    {
+        startUi.SetActive(true);
+        if (startCoroutine != null)
+        {
+            StopCoroutine(startCoroutine);
+        }
+        startCoroutine = StartCoroutine(startWaitGame());
+    }
+
+    IEnumerator startWaitGame()
+    {
+        while(startWaitSeconds > 0f)
+        {
+            startText.text = startWaitSeconds.ToString();
+            yield return startloopDelay;
+            startWaitSeconds--;
+        }
+        startUi.SetActive(false);
+        GameManager.Instance.IsStart = true;
     }
 }

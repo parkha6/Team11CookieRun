@@ -15,15 +15,15 @@ public class PlayerIdleState : IPlayerState
     public void UpdateState(Player player)
     {
         //시작 시 RunState변경
-        /*if (gameManager.IsStart)
-            player.ChangeState(player.runState);*/
+        if (gameManager.IsStart)
+            player.ChangeState(player.runState);
 
         //테스트 코드
-        if (Input.GetKeyDown(KeyCode.N))
+        /*if (Input.GetKeyDown(KeyCode.N))
         {
             player.ChangeState(player.runState);         
             gameManager.IsStart = true;
-        }
+        }*/
     }
 
     public void ExitState(Player player)
