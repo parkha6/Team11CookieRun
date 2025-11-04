@@ -59,11 +59,15 @@ public class ItemSpawner : MonoBehaviour
                 itemPool.Add(entry.type, new Dictionary<Item.CoinSubType, Queue<GameObject>>());
             }
 
-            Item.CoinSubType currentCoinSubType = entry.coinSubType;
+            Item.CoinSubType currentCoinSubType;
 
-            if(entry.type != Item.ItemType.Coin)
+            if(entry.type == Item.ItemType.Coin)
             {
-                currentCoinSubType = Item.CoinSubType.Normal;
+                currentCoinSubType = entry.coinSubType;
+            }
+            else
+            {
+                currentCoinSubType = Item.CoinSubType.None;
             }
 
             if (!itemPool[entry.type].ContainsKey(currentCoinSubType))
@@ -101,7 +105,7 @@ public class ItemSpawner : MonoBehaviour
             return null;
         }
 
-        return GetItemInternal(type, Item.CoinSubType.Normal, position);
+        return GetItemInternal(type, Item.CoinSubType.None, position);
     }
 
     public GameObject GetItem(Item.ItemType type, Item.CoinSubType coinSubType, Vector3 position)
@@ -116,7 +120,7 @@ public class ItemSpawner : MonoBehaviour
 
         if (itemPool.ContainsKey(type))
         {
-            Item.CoinSubType targetCoinSubType = (type == Item.ItemType.Coin) ? coinSubType : Item.CoinSubType.Normal;
+            Item.CoinSubType targetCoinSubType = (type == Item.ItemType.Coin) ? coinSubType : Item.CoinSubType.None;
 
             if (itemPool[type].ContainsKey(targetCoinSubType))
             {
@@ -132,7 +136,7 @@ public class ItemSpawner : MonoBehaviour
         {
             ItemPrefab entry = itemPrefabs.FirstOrDefault(e =>
             e.type == type && ((type == Item.ItemType.Coin && e.coinSubType == coinSubType) ||
-            (type != Item.ItemType.Coin && e.coinSubType == Item.CoinSubType.Normal)) && e.IsValid()
+            (type != Item.ItemType.Coin && e.coinSubType == Item.CoinSubType.None)) && e.IsValid()
             );
 
             if (entry == null)
@@ -196,7 +200,7 @@ public class ItemSpawner : MonoBehaviour
 
         if (itemPool.ContainsKey(returnItemType))
         {
-            Item.CoinSubType targetCoinSubType = (returnItemType == Item.ItemType.Coin) ? returnCoinSubType : Item.CoinSubType.Normal;
+            Item.CoinSubType targetCoinSubType = (returnItemType == Item.ItemType.Coin) ? returnCoinSubType : Item.CoinSubType.None;
 
             if (itemPool[returnItemType].ContainsKey(targetCoinSubType))
             {
