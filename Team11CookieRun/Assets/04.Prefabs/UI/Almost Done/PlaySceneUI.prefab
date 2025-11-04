@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7829140641641652256
 RectTransform:
   m_ObjectHideFlags: 0
@@ -343,8 +343,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugUI: {fileID: 2299258995183806416}
   deleteDataButton: {fileID: 3160160443853508183}
-  gameSceneName: 
-  menuSceneName: 
+  gameSceneName: GameScene
+  menuSceneName: StartScene
   hpBar: {fileID: 7570204442416845225}
   scoreText: {fileID: 2007646597225096865}
   pauseUi: {fileID: 6049959803924006318}
@@ -359,7 +359,7 @@ MonoBehaviour:
   newText: {fileID: 8944012092459993278}
   endHomeButton: {fileID: 3799184192726430444}
   endRetryButton: {fileID: 4903014776621153812}
-  player: {fileID: 0}
+  player: {fileID: 1641773324268911510, guid: 2586752cfc7b96d48a164388b405ffd5, type: 3}
   mobileObject: {fileID: 139663666113692475}
   jumpButton: {fileID: 8245393914278524830}
   slideButton: {fileID: 7644400215238832648}

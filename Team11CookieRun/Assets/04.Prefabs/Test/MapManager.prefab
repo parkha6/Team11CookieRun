@@ -48,7 +48,7 @@ MonoBehaviour:
   _mapPiecePrefabEntries:
   - type: 0
     prefab: {fileID: 3098547257595994394, guid: 01b92cb108072fd4bbcaf776bf810f09, type: 3}
-    weight: 0.1
+    weight: 0.001
   - type: 1
     prefab: {fileID: 8686860405996717690, guid: fd93b5334b1a1e040b8eb0e2e32355aa, type: 3}
     weight: 5

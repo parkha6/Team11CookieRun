@@ -12,7 +12,7 @@ public class MapPiecePrefabEntry
     public GameObject prefab;
 
     // 맵 생성 시 이 조각이 선택될 확률의 가중치 (높을수록 자주 선택)
-    [Range(0.1f, 10f)]
+    [Range(0.0f, 10f)]
     public float weight = 1.0f;
 
     public bool IsValid()

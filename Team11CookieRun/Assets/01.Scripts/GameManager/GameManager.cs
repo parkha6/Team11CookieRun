@@ -100,7 +100,8 @@ public class GameManager : SingletonManager<GameManager>
             case GameStage.Waiting:
                 return GameStage.Waiting;
             case GameStage.Start:
-                BgmSetting(gameBgmManager.stageBgm, true);
+                if(!IsStart)
+                    BgmSetting(gameBgmManager.stageBgm, true);
                 return GameStage.Start;
             case GameStage.Pause:
                 ManageTime(GmConst.stopTime);

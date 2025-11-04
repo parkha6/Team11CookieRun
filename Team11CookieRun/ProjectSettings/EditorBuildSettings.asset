@@ -6,13 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/00.Scenes/YouChan/StartScene.unity
-    guid: ee5048232a2b9a34b967ae6c88db659e
-  - enabled: 1
-    path: Assets/00.Scenes/YouChan/YouChanTestScene.unity
-    guid: 71812cad48a21554382aff7b3e4e826c
-  - enabled: 1
-    path: Assets/00.Scenes/DummyGM/TestStartScene.unity
+    path: Assets/00.Scenes/DummyGM/StartScene.unity
     guid: f2bd01046fdf21943b88e375649813fa
   - enabled: 1
     path: Assets/00.Scenes/DummyGM/GameScene.unity

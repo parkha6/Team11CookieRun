@@ -9,7 +9,7 @@ public class PlayerIdleState : IPlayerState
     public void EnterState(Player player)
     {
         gameManager = GameManager.Instance;
-        inputManger = PlayerInputManager.Instance;
+        inputManger = player.playerInputManager;
         inputManger.DisableInput();
     }
     public void UpdateState(Player player)
@@ -21,7 +21,7 @@ public class PlayerIdleState : IPlayerState
         //테스트 코드
         if (Input.GetKeyDown(KeyCode.N))
         {
-            player.ChangeState(player.runState);
+            player.ChangeState(player.runState);         
             gameManager.IsStart = true;
         }
     }

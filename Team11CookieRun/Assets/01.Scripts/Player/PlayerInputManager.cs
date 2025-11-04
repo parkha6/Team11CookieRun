@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputManager : SingletonManager<PlayerInputManager>
+public class PlayerInputManager : MonoBehaviour
 {
     private PlayerControll playerControll;
     public Player player;
@@ -19,9 +19,8 @@ public class PlayerInputManager : SingletonManager<PlayerInputManager>
     public Action OnSlideEnd;
     public Action OnPause;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         playerControll = new PlayerControll();
         gameManager = GameManager.Instance;
         InitInputAction();
@@ -42,6 +41,16 @@ public class PlayerInputManager : SingletonManager<PlayerInputManager>
         pauseAction.performed -= OnPausePerformed;
         DisableInput();*/
     }
+
+    public void ClearInput()
+    {
+        jumpAction.performed -= OnJumpPerformed;
+        slideAction.performed -= OnSlidePerformed;
+        slideAction.canceled -= OnSlideCanceled;
+        pauseAction.performed -= OnPausePerformed;
+        DisableInput();
+    }
+
 
     private void InitInputAction()
     {
