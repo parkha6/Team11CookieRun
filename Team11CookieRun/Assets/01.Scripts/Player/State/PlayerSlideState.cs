@@ -7,6 +7,7 @@ public class PlayerSlideState : IPlayerState
     public void EnterState(Player player)
     {
         ConditionSetting(player, true);
+        player.PlayerSlideSound();
     }
     public void UpdateState(Player player)
     {
@@ -25,6 +26,7 @@ public class PlayerSlideState : IPlayerState
     {
         ConditionSetting(player, false);
         player.PlayerAnim.SetTrigger(SlideUpCondition);
+        player.StopSound();
     }
 
     public void ConditionSetting(Player player, bool isIn)

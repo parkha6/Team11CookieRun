@@ -71,6 +71,11 @@ public class Player : MonoBehaviour
     private Coroutine slowBuffCoroutine;
     private Coroutine invicibleBuffCoroutine;
 
+    //플레이어 사운드
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip slideSound;
+
     #region Property
     public Animator PlayerAnim { get { return playerAnim; } set { playerAnim = value; } }
     public float Hp { get { return hp; }
@@ -235,6 +240,22 @@ public class Player : MonoBehaviour
         IsGround = false;
         verticalVelocity = JumpPower;
     }
+    #region Sound
+    public void PlayerJumpSound()
+    {
+        audioSource.PlayOneShot(jumpSound);
+    }
+
+    public void PlayerSlideSound()
+    {
+        audioSource.PlayOneShot(slideSound);
+    }
+
+    public void StopSound()
+    {
+        audioSource.Stop();
+    }
+    #endregion
     #region ObstacleInteraction
     public void TakeDamage(float damage)
     {

@@ -8,6 +8,7 @@ public class PlayerJumpState : IPlayerState
     {
         player.Jump();
         ConditionSetting(player, true);
+        player.PlayerJumpSound();
     }
     public void UpdateState(Player player)
     {
@@ -22,6 +23,7 @@ public class PlayerJumpState : IPlayerState
     {
         player.IsJump = false;
         ConditionSetting(player, false);
+        player.StopSound();
     }
 
     public void ConditionSetting(Player player, bool isIn)
