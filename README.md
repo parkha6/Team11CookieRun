@@ -1,4 +1,4 @@
-<img width="420" height="420" alt="image" src="https://github.com/user-attachments/assets/7a5484f5-25e9-4844-9746-7429a678c960" />![로고 이미지](https://raw.githubusercontent.com/parkha6/Team11CookieRun/41dd80ffef3e717ecd460197a63c5a07bd8ef510/Capture/Logo.jpg)
+![로고 이미지](https://raw.githubusercontent.com/parkha6/Team11CookieRun/41dd80ffef3e717ecd460197a63c5a07bd8ef510/Capture/Logo.jpg)
 # Last Jump : 최후의 도약
 ## 목차
 1. [프로젝트 개요 및 목표]
