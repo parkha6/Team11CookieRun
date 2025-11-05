@@ -84,4 +84,4 @@ UI2 : [Fantasy Minimal Pixel Art GUI by etahoshi](https://etahoshi.itch.io/minim
 돌 에셋 : [Free Rocks Pixel Art Asset Pack](https://craftpix.net/freebies/free-rocks-pixel-art-asset-pack/)  
 메인화면 BGM : [Don’t Give Up The Fight - 김성원](https://gongu.copyright.or.kr/gongu/wrt/wrt/view.do?wrtSn=13073695&menuNo=200020)  
 게임씬 BGM : [Breakstone - 김성원](https://gongu.copyright.or.kr/gongu/wrt/wrt/view.do?wrtSn=13073685&menuNo=200020)  
-결과씬 BGM : [Sun Rise(일출) - 이충헌헌](https://gongu.copyright.or.kr/gongu/wrt/wrt/view.do?wrtSn=13048777&menuNo=200020)  
+결과씬 BGM : [Sun Rise(일출) - 이충헌](https://gongu.copyright.or.kr/gongu/wrt/wrt/view.do?wrtSn=13048777&menuNo=200020)  
