@@ -30,28 +30,28 @@
 ## 개발기간
 - 총 8일 { 2025.10.29 ~ 2025.11.05 }
 ## 역할분담
-캐릭터 & 저장
+|캐릭터 & 저장|
 |:---:|
 |<img src="https://avatars.githubusercontent.com/u/151013695?v=4" width="100"/>|
 |[정유찬](https://github.com/youchan97)|
 
-장애물 & 맵
+|장애물 & 맵|
 |:---:|
 |<img src="https://avatars.githubusercontent.com/u/101345563?v=4" width="100">|
 |[김하늘](https://github.com/Hagill)|
 
-아이템
+|아이템|
 |:---:|
 |<img src="https://avatars.githubusercontent.com/u/233911634?v=4" width="100">|
 |[백성현](https://github.com/tjdgus76)|
 
-UI - 김태환 (보조 : 곽민진) 
+|UI|
 |:---:|:---:|
 |<img src="https://avatars.githubusercontent.com/u/233683093?v=4" width="100">|<img src="https://avatars.githubusercontent.com/u/115542242?v=4" width="100">|
 |[김태환](https://github.com/kimdf)|[곽민진](https://github.com/parkha6)|
 
 
-게임매니저 - 곽민진 
+|게임매니저|
 |:---:|
 |<img src="https://avatars.githubusercontent.com/u/115542242?v=4" width="100">|
 |[곽민진](https://github.com/parkha6)|
