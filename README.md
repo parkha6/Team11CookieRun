@@ -1,4 +1,4 @@
-![로고 이미지](https://raw.githubusercontent.com/parkha6/Team11CookieRun/41dd80ffef3e717ecd460197a63c5a07bd8ef510/Capture/Logo.jpg)
+<img width="420" height="420" alt="image" src="https://github.com/user-attachments/assets/7a5484f5-25e9-4844-9746-7429a678c960" />![로고 이미지](https://raw.githubusercontent.com/parkha6/Team11CookieRun/41dd80ffef3e717ecd460197a63c5a07bd8ef510/Capture/Logo.jpg)
 # Last Jump : 최후의 도약
 ## 목차
 1. [프로젝트 개요 및 목표]
@@ -16,20 +16,41 @@
 ## 개발기간
 - 총 8일 { 2025.10.29 ~ 2025.11.05 }
 ## 역할분담
-* 캐릭터 & 저장 - 정유찬
-* 장애물 & 맵 - 김하늘
-* 아이템 - 백성현
-* UI - 김태환 (보조 : 곽민진) 
-* 게임매니저 - 곽민진
+캐릭터 & 저장
+|:---:|
+|<img src="https://avatars.githubusercontent.com/u/151013695?v=4" width="100"/>|
+|[정유찬](https://github.com/youchan97)|
+
+장애물 & 맵
+|:---:|
+|<img src="https://avatars.githubusercontent.com/u/101345563?v=4" width="100">|
+|[김하늘](https://github.com/Hagill)|
+
+아이템
+|:---:|
+|<img src="https://avatars.githubusercontent.com/u/233911634?v=4" width="100">|
+|[백성현](https://github.com/tjdgus76)|
+
+UI - 김태환 (보조 : 곽민진) 
+|:---:|
+|<img src="https://avatars.githubusercontent.com/u/233683093?v=4" width="100">|<img src="https://avatars.githubusercontent.com/u/115542242?v=4" width="100">|
+|[김태환](https://github.com/kimdf)||[곽민진](https://github.com/parkha6)|
+
+
+게임매니저 - 곽민진 
+|:---:|
+|<img src="https://avatars.githubusercontent.com/u/115542242?v=4" width="100">|
+|[곽민진](https://github.com/parkha6)|
+
 ## 기술스택
 ### Language
-* [![My Skills](https://skillicons.dev/icons?i=cs&perline=1)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=cs&perline=1)](https://skillicons.dev)
 ### Engine
-* [![My Skills](https://skillicons.dev/icons?i=unity&perline=1)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=unity&perline=1)](https://skillicons.dev)
 ### Version Control
-* [![My Skills](https://skillicons.dev/icons?i=git,github&perline=1)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=git,github&perline=1)](https://skillicons.dev)
 ### IDE
-* [![My Skills](https://skillicons.dev/icons?i=visualstudio&perline=1)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=visualstudio&perline=1)](https://skillicons.dev)
 
 ## 프레임 워크
  * [프레임 워크 & 초안 구성 (Figma)](https://www.figma.com/design/er4BxLbWAEO6Qd4Cq40ifw/11%EC%A1%B0-%ED%8C%80-%EC%8A%A4%ED%81%AC%EB%9F%BC?node-id=0-1&p=f&t=G4Sh1JYKRJVKQYyJ-0)
