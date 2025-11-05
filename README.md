@@ -46,9 +46,9 @@
 |[백성현](https://github.com/tjdgus76)|
 
 UI - 김태환 (보조 : 곽민진) 
-|:---:||:---:|
+|:---:|:---:|
 |<img src="https://avatars.githubusercontent.com/u/233683093?v=4" width="100">|<img src="https://avatars.githubusercontent.com/u/115542242?v=4" width="100">|
-|[김태환](https://github.com/kimdf)||[곽민진](https://github.com/parkha6)|
+|[김태환](https://github.com/kimdf)|[곽민진](https://github.com/parkha6)|
 
 
 게임매니저 - 곽민진 
